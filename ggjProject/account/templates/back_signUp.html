@@ -1,0 +1,21 @@
+<!-- signUp탬플릿입니다.  -->
+<div class="signup-container">
+
+    <form method="POST" action="{% url 'back_signup' %}">
+        {% csrf_token %}
+        <div class="signup-input-container">
+            <h3 class="signup-label">아이디</h3>
+            <input class="signup-input" name="username" type="text" value=""><!-- 아이디 -->
+            <h3 class="signup-label">비밀번호</h3>
+            <input class="signup-input" name="password" type="password" value=""><!-- 비밀번호 -->
+            <h3 class="signup-label">비밀번호 확인</h3>
+            <input class="signup-input" name="passwordCheck" type="password" value=""><!-- 비밀번호 확인 -->
+            <h3 class="signup-label">이름</h3>
+            <input class="signup-input" name="name" type="text" value=""><!-- 이름 -->
+            <h3 class="signup-label">전화번호</h3>
+            <input class="signup-input" name="phoneNumber" type="text" value=""><!-- 전화번호 -->
+            <h3 class="signup-label">이메일</h3>
+            <input class="signup-input" name="email" type="text" value=""><!-- 이메일 -->
+        </div>
+        <input class="acc-button" type="submit" value="회원가입하기">
+</div>

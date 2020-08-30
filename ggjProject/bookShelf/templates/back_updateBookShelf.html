@@ -1,0 +1,20 @@
+<!-- 책장 update 탬플릿입니다. 책장이름(bookShelfTitle)을 수정할 수 있음. 
+    url은 http://127.0.0.1:8000/back_myPage 로 가셔서 책장이름 옆의 수정링크 누르세요. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">제출하기</button>
+    </form>
+</body>
+</html>

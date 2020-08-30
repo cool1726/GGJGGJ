@@ -1,0 +1,12 @@
+<!-- update 탬플릿입니다. post를 수정할 수 있음. url은 http://127.0.0.1:8000/back_myPage 로 가셔서 글하단의 수정버튼 누르세요. -->
+<div class="container">
+    <h1>수정 페이지</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">제출하기</button>
+    </form>
+</div>

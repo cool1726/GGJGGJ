@@ -1,0 +1,92 @@
+<!-- 마이페이지 탬플릿입니다. url은 http://127.0.0.1:8000/back_myPage 로 가시면 됩니다.  
+본인 글만 확인 및 수정, 삭제 가능합니다. 제일 상단 책장만들기 누르면 책장 만들 수 있고, 삭제, 수정 가능합니다. 책장이름 옆 수정 삭제 링크 눌러주세요-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'back_newBookShelf' %}">책장만들기</a>
+    {% load static %}
+        <style>
+            .list-group-item{
+                list-style: none;
+            }
+            .btn-like{
+                display: inline-block;
+                width: 250px;
+                height: 250px;
+                background: url("{% static 'emptyheart.png' %}");
+                background-position:-100px -400px;
+                text-indent:-9999px;
+                overflow:hidden;
+                border:1px solid black;
+            }
+            .btn-like.active{
+                display: inline-block;
+                width: 250px;
+                height: 250px;
+                background:url("{% static 'heart.png' %}");
+                background-position: -50px -400px;
+                text-indent: -9999px;
+                overflow: hidden;
+                border: 1px solid black;
+            }
+            .btn-scrap{
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background: url("{% static 'emptyheart.png' %}");
+            background-position: -515px -150px;
+            text-indent: -9999px;
+            overflow: hidden;
+            border: none;
+            }
+            .btn-scrap.active{
+                display: inline-block;
+                width: 250px;
+                height: 250px;
+                background: url("{% static 'heart.png' %}");
+                background-position: -515px -100px;
+                text-indent: -9999px;
+                overflow: hidden;
+                border: none;
+            }
+    </style>
+
+    {% for bookShelf in bookShelves %}
+        {% if user.username == bookShelf.username %}
+            <button>{{bookShelf.bookShelfTitle}}</button>
+            <a href="{% url 'back_deleteBookShelf' bookShelf.id %}">bookShelf 삭제</a>
+            <a href="{% url 'back_updateBookShelf' bookShelf.id %}">bookShelf 수정</a>
+        {%endif%}
+    {% endfor %}
+    {% for post in posts %}
+        {% if user.username == post.username %}
+        <div class="body_box">
+            <p>title: {{post.title}}</p>
+            <p>body: {{post.body}}</p>
+            <img src=" {{ post.postCover.url }}" class="card-img-top" alt="...">
+            <p>username: {{post.username}}</p>
+            <p>postDate: {{post.postDate}}</p>
+            <p>좋아요 갯수: {{post.like.all.count}}</p>
+            <li class="list-group-item">
+                <p>아래를 누르면 좋아요입니다. </p>
+                <a href="{% url 'back_postLike' post.id %}" class="float-left btn-like {% if user in post.like.all %} active {% endif %}">좋아요!</a>
+                {% if post.like.all.count %}
+                <span class="float-left">
+                    {{post.like.all.count}}
+                </span>
+                {% endif %}
+                <p>아래를 누르면 스크랩입니다. </p>
+                <a href="{% url 'back_postScrap' post.id %}" class="float-right btn-scrap {% if user in post.scrap.all %} active {% endif %}">저장하기!</a>
+            </li>
+        </div>
+        <a href="{% url 'back_delete' post.id %}">post 삭제</a>
+        <a href="{% url 'back_update' post.id %}">post 수정</a>
+        {%endif%}
+    {% endfor %}
+</body>
+</html>
