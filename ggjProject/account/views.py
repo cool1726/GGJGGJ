@@ -18,7 +18,7 @@ def signup(request):
         if request.POST['password'] == request.POST['passwordCheck']:
             try:
                 user = User.objects.get(username=request.POST['username'])
-                return render(request, "back_signup.html", {'error': 'Username has already been taken'})
+                return render(request, "signup.html", {'error': 'Username has already been taken'})
             except:
                 user = User.objects.create_user(
                     email = request.POST['email'], username=request.POST['username'], password=request.POST['password']) 
@@ -29,9 +29,9 @@ def signup(request):
                 auth.login(request, user)
                 return redirect('/')
         else:
-            return render(request, "back_signup.html", {'error':'Passwords must match'})
+            return render(request, "signup.html", {'error':'Passwords must match'})
     else:
-        return render(request, "back_signup.html")
+        return render(request, "signup.html")
 
 """팔로우 함수에서 상속받아 사용했습니다. """
 class BaseView(View):

@@ -1,0 +1,136 @@
+/* base.css 
+    모든 페이지에 공통적으로 들어갈 수 있는 Typography, Color, Shape StyleSheet 명세
+    이 파일에 생성한 class들은 필요한 경우에만 직접 사용하며, 그 외에는 모두 만들어둔 컴포넌트 자체를 사용해주세요.
+*/
+
+/* Noto Sans KR
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: Thin 100 Light 300 Regular 400 Medium 500 Bold 700 Black 900; 
+    css 적용상황에 따라 noto-class 추가 및 수정 가능 (프론트쪽에 미리 말하기) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+.noto-light {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+}
+
+.noto-medium {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+}
+
+.noto-bold {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+}
+
+.noto-extrabold {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+
+/* Paybooc 
+    순서대로 Light, Medium, Bold, ExtraBold
+    font-family: 'paybooc-Light', sans-serif; */
+@font-face {
+    font-family: 'paybooc-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'paybooc-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'paybooc-ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-ExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.paybooc-light {
+    font-family: 'paybooc-Light', sans-serif;
+}
+
+.paybooc-medium {
+    font-family: 'paybooc-Medium', sans-serif;
+}
+
+.paybooc-bold {
+    font-family: 'paybooc-Bold', sans-serif;
+}
+
+.paybooc-extrabold {
+    font-family: 'paybooc-ExtraBold', sans-serif;
+}
+
+
+/* Color Style 
+    black: #000000
+    dark-green: #1A2E1B
+    green: #205F53
+    light-green: #73958F
+    beige: #F8F2C9
+    dark-gray: #707070
+    gray: #CECECE
+    light-gray: #F7F8F7
+    khaki: #87836B
+    error: #FF3636
+    success: #0CBB29
+    caution: #EFDD39
+*/
+.dark-green {
+    color: #1A2E1B;
+}
+
+.green {
+    color: #205F53;
+}
+
+.light-green {
+    color: #73958F;
+}
+
+.beige {
+    color: #F8F2C9;
+}
+
+.dark-gray {
+    color: #707070;
+}
+
+.gray {
+    color: #CECECE;
+}
+
+.light-gray {
+    color: #F7F8F7;
+}
+
+.khaki {
+    color: #87836B;
+}
+
+.c-error {
+    color: #FF3636;
+}
+
+.c-success {
+    color: #0CBB29;
+}
+
+.c-caution {
+    color: #EFDD39;
+}
