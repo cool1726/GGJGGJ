@@ -1,0 +1,16 @@
+/* 회원가입, 로그인 공통 Style */
+/* 재사용되지 않는 코드는 login.css, signUp.css 확인해주세요 */
+
+/* font url 임시로 여기에 둠. 나중에 base.css로 옮길 예정 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
+    font-family: 'Noto Sans KR', sans-serif;
+}
