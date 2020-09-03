@@ -3,6 +3,46 @@
     이 파일에 생성한 class들은 필요한 경우에만 직접 사용하며, 그 외에는 모두 만들어둔 컴포넌트 자체를 사용해주세요.
 */
 
+/* BareunBatang
+    순서대로 Light, Medium, Bold
+    font-family: 'bareunbatang-light', sans-serif; */
+@font-face {
+    font-family: 'BareunBatang-Medium';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFM.woff2') format('woff2'),
+    url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFM.woff') format('woff');
+}
+    
+@font-face {
+    font-family: 'BareunBatang-Light';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFB.woff2') format('woff2'),
+    url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFB.woff') format('woff');
+}
+    
+@font-face {
+    font-family: 'BareunBatang-Bold';
+    font-style: normal;
+    font-weight: 300;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFL.woff2') format('woff2'),
+    url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFL.woff') format('woff');
+}
+    
+.bareunbatang-light {
+    font-family: 'BareunBatang-Light', serif;
+}
+
+.bareunbatang-medium {
+    font-family: 'BareunBatang-Medium', serif;
+}
+
+.bareunbatang-bold {
+    font-family: 'BareunBatang-Bold', serif;
+}
+                
+
 /* Noto Sans KR
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: Thin 100 Light 300 Regular 400 Medium 500 Bold 700 Black 900; 
