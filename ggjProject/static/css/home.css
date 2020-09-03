@@ -4,33 +4,7 @@
     padding: 0;
 }
 
-/* 네브바 관련 class */
-
-.top-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-}
-
-.navbar-logo {
-    cursor: pointer;
-}
-
-.navbar-links {
-    list-style: none;
-}
-
-.navbar-links li {
-    display: inline-block;
-    padding: 0px 20px;
-}
-
-.navbar-links li a {
-    transition: all 0.3s ease 0s;
-}
-
-.navbar-links li a:hover {
-    color: aqua; 
-    /* 추후에 색은교체 */
+/* 메인컨텐츠 관련 */
+.main-container {
+    padding: 20px 10%;
 }

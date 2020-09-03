@@ -1,1 +1,72 @@
-/* 회원가입 전용 Style */
+/*배경*/
+body {
+    background: #1A2E1B;
+    text-align: center;
+}/*회원가입 - 제목 */
+.acc-title {
+    color: #F8F2C9;
+    font-size: 50px;
+    font-family: 'paybooc-Bold', sans-serif;
+}
+/* 회원가입 - 본인인증, 기본정보 입력 */
+.acc-guide-txt {
+    color: #CECECE;
+    font-size: 24px;
+    font-family: 'paybooc-Medium', sans-serif;
+    text-align: left;
+    width: 420px;
+}
+/* 회원가입 약관동의 텍스트 */
+.acc-agree-link {
+    color: #CECECE;
+    font-size: 16px;
+    font-family: 'paybooc-Bold', sans-serif;
+}
+.acc-small-btn {
+    width: 160px;
+    height: 56px;
+    padding: 18px 33px;
+    margin-left: 10px;
+    border: 1px solid #F8F2C9;
+    background: #F8F2C9;
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'paybooc-Medium', sans-serif;
+    box-sizing: border-box;
+}
+/*회원가입 버튼*/
+.acc-wide-btn {
+    width: 420px;
+    height: 56px;
+    padding: 16px 50px;
+    border: 1px solid #F8F2C9;
+    background: #F8F2C9;
+    color: #000000;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'paybooc-Bold', sans-serif;
+    box-sizing: border-box;
+}
+.acc-small-input {
+    width: 250px;
+    height: 56px;
+    padding: 16px 24px;
+    border: 1px solid #87836B;
+    background: #1a2e1b00;
+    color: #87836B;
+    font-size: 20px;
+    font-family: 'paybooc-Light', sans-serif;
+    box-sizing: border-box;
+}
+.acc-wide-input {
+    width: 420px;
+    height: 56px;
+    padding: 16px 24px;
+    border: 1px solid #87836B;
+    background: #1a2e1b00;
+    color: #87836B;
+    font-size: 20px;
+    font-family: 'paybooc-Light', sans-serif;
+    box-sizing: border-box;
+}
