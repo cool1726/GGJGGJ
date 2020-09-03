@@ -15,7 +15,7 @@
 }
 
 @font-face {
-    font-family: 'BareunBatang-Light';
+    font-family: 'BareunBatang-Bold';
     font-style: normal;
     font-weight: 700;
     src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFB.woff2') format('woff2'),
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'BareunBatang-Bold';
+    font-family: 'BareunBatang-Light';
     font-style: normal;
     font-weight: 300;
     src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunBatang/BareunBatangOTFL.woff2') format('woff2'),
