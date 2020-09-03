@@ -13,7 +13,7 @@ from django.views.generic.edit import UpdateView, CreateView
 """post들이 나옵니다.back_home.html로 이동"""
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'home.html', {'posts': posts})
+    return render(request, 'back_home.html', {'posts': posts})
 
 """back_new.html로 이동"""
 def new(request):
@@ -39,6 +39,7 @@ def create(request):
     post.save()
     return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 """
+
 """post삭제할 수 있는 함수"""
 def delete(request, post_id):
     Post.objects.get(id=post_id).delete()

@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
+
 # Create your views here.
 """회원가입을 위한 함수입니다. 로그인 함수는 추후 구현 예정입니다. """
 def signup(request):
@@ -32,6 +33,61 @@ def signup(request):
             return render(request, "signup.html", {'error':'Passwords must match'})
     else:
         return render(request, "signup.html")
+
+"""로그인 함수입니다. 로그인 유지까지 구현했는데 아직 되는지 안되는지 모르겠어요.일단 오류는 안남"""
+def login(request):
+    # 해당 쿠키에 값이 없을 경우 None을 return 한다.
+    if request.COOKIES.get('username') is not None:
+        username = request.COOKIES.get('username')
+        password = request.COOKIES.get('password')
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')  
+        else:
+            return render(request, "back_login.html")
+
+    elif request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        # 해당 user가 있으면 username, 없으면 None
+        user = auth.authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            if request.POST.get("keep_login") == "TRUE":
+                response = render(request, 'home.html', {'posts': posts})
+                response.set_cookie('username',username)
+                response.set_cookie('password',password)
+                return response
+            return redirect('/')
+        else:
+            return  render(request, "back_login.html", {'error':'invalid username or password'})
+    else:
+        return render(request, "back_login.html")
+    return render(request, "back_login.html") 
+
+def logout(request):
+    response = render(request, 'account/home.html')
+    response.delete_cookie('username')
+    response.delete_cookie('password')
+    auth.logout(request)
+    return response
+"""
+옛날 로그인 함수인데 혹시 몰라서 남겨둠.
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(request, username = username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            return render(request, "back_login.html", {'error':'invalid username or password'})
+    else:
+        return render(request, "back_login.html")
+"""
 
 """팔로우 함수에서 상속받아 사용했습니다. """
 class BaseView(View):
