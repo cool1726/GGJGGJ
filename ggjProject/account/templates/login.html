@@ -14,20 +14,23 @@
 
 <body>
   <div class="login-container">
-    <h1 class="">로그인</h1>
-    <p class="">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
+    <h1 class="acc-title">로그인</h1>
+    <p class="login-guide-txt">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
     {% if error %}
     <p>{{ error }}</p>
     {% endif %}
     <div class="">
       <form id="" name="" method="post" action="{% url 'back_login' %}" class="">
         {% csrf_token %}
-        <p><input type="text" name="username" placeholder="아이디"></p>
-        <p><input type="password" name="password" placeholder="비밀번호"></p>
-        <p><input type="checkbox" name="keep_login">로그인 유지</p>
-        <p><input type="submit" value="로그인"></p>
+        <input class="acc-wide-input" name="username" type="text" value=""  placeholder="필명(ID)"><!-- 아이디 -->
+        <br>
+        <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )><!-- 비밀번호 -->
+        <p class="login-guide-txt"><input type="checkbox" name="keep_login">로그인 유지</p>
+        <input class="acc-wide-btn" type="submit" value="회원가입">
       </form>
-      <a href="#">ID/PW 찾기</a> | <a href="#">회원가입</a>
+      <div class="blank">
+      <a class="login-guide-txt" href="#">ID/PW 찾기</a> | <a class="login-guide-txt" href="#">회원가입</a>
+    </div>
     </div>
     <!--//login_wrapper -->
   </div>

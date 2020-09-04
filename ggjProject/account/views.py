@@ -45,7 +45,7 @@ def login(request):
             auth.login(request, user)
             return redirect('/')  
         else:
-            return render(request, "back_login.html")
+            return render(request, "login.html")
 
     elif request.method == "POST":
         username = request.POST["username"]
@@ -62,10 +62,10 @@ def login(request):
                 return response
             return redirect('/')
         else:
-            return  render(request, "back_login.html", {'error':'invalid username or password'})
+            return  render(request, "login.html", {'error':'invalid username or password'})
     else:
-        return render(request, "back_login.html")
-    return render(request, "back_login.html") 
+        return render(request, "login.html")
+    return render(request, "login.html") 
 
 def logout(request):
     response = render(request, 'account/home.html')

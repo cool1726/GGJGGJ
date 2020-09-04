@@ -19,6 +19,9 @@
 
 body {
     background: #1A2E1B;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .acc-title {
@@ -65,13 +68,15 @@ body {
     font-size: 20px;
     font-family: 'paybooc-Bold', sans-serif;
     box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .acc-small-btn {
     width: 160px;
     height: 56px;
     padding: 18px 33px;
-    margin-left: 10px;
+    margin-left: 5px;
     border: 1px solid #F8F2C9;
     background: #F8F2C9;
     color: #000000;
@@ -79,6 +84,9 @@ body {
     font-size: 16px;
     font-family: 'paybooc-Medium', sans-serif;
     box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
 }
 
 .acc-wide-input {
@@ -91,6 +99,8 @@ body {
     font-size: 20px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .acc-small-input {
@@ -103,4 +113,7 @@ body {
     font-size: 20px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
+    margin-right: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
