@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="login-container">
+  <div class="acc-position">
     <h1 class="acc-title">로그인</h1>
     <p class="login-guide-txt">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
     {% if error %}
@@ -25,7 +25,7 @@
         <input class="acc-wide-input" name="username" type="text" value=""  placeholder="필명(ID)"><!-- 아이디 -->
         <br>
         <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )><!-- 비밀번호 -->
-        <p class="login-guide-txt"><input type="checkbox" name="keep_login">로그인 유지</p>
+        <p class="login-keep-box"><input type="checkbox" name="keep_login">로그인 유지</p>
         <input class="acc-wide-btn" type="submit" value="회원가입">
       </form>
       <div class="blank">
