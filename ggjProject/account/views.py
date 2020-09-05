@@ -62,7 +62,7 @@ def login(request):
                 return response
             return redirect('/')
         else:
-            return  render(request, "login.html", {'error':'invalid username or password'})
+            return  render(request, "login.html", {'error':'아이디나 비밀번호가 일치하지 않습니다'})
     else:
         return render(request, "login.html")
     return render(request, "login.html") 

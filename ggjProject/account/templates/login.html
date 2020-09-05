@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 {% load static %}
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <script src="https://kit.fontawesome.com/c8c52fc116.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div class="acc-position">
-    <h1 class="acc-title">로그인</h1>
-    <p class="login-guide-txt">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
-    {% if error %}
-    <p>{{ error }}</p>
-    {% endif %}
-    <div class="">
-      <form id="" name="" method="post" action="{% url 'back_login' %}" class="">
-        {% csrf_token %}
-        <input class="acc-wide-input" name="username" type="text" value=""  placeholder="필명(ID)"><!-- 아이디 -->
-        <br>
-        <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )><!-- 비밀번호 -->
-        <p class="login-keep-box"><input type="checkbox" name="keep_login">로그인 유지</p>
-        <input class="acc-wide-btn" type="submit" value="회원가입">
-      </form>
-      <div class="blank">
-      <a class="login-guide-txt" href="#">ID/PW 찾기</a> | <a class="login-guide-txt" href="#">회원가입</a>
+    <div class="acc-position">
+        <h1 class="acc-title">로그인</h1>
+        <p class="login-guide-txt paybooc-medium">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
+        {% if error %}
+        <div class="acc-error c-error">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>{{ error }}</span>
+        </div>
+
+        {% endif %}
+        <div>
+            <form id="" name="" method="post" action="{% url 'back_login' %}" class="acc-input-section">
+                {% csrf_token %}
+                <input class="acc-wide-input" name="username" type="text" value="" placeholder="필명(ID)"><!-- 아이디 -->
+                <br>
+                <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )>
+                <!-- 비밀번호 -->
+                <div class="login-keep-box">
+                    <input id="login-cb" type="checkbox" name="keep_login">
+                    <label for="login-cb"></label>
+                    <span>로그인 유지</span>
+                </div>
+                <input class="acc-wide-btn" type="submit" value="로그인">
+            </form>
+            <div class="blank beige login-guide-txt paybooc-light">
+                <a class="login-guide-txt" href="#">ID/PW 찾기</a> | <a class="login-guide-txt" href="#">회원가입</a>
+            </div>
+        </div>
+        <!--//login_wrapper -->
     </div>
-    </div>
-    <!--//login_wrapper -->
-  </div>
-  <!--//content -->
+    <!--//content -->
 </body>
 
 </html>

@@ -19,12 +19,29 @@
 
 body {
     background: #1A2E1B;
+    text-align: center;
+}
+
+/* 로그인, 회원가입 영역 가운데 정렬 */
+.acc-position {
+    width: 100%;
+    min-width: 500px;
+    min-height: 450px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.acc-input-section {
+    margin: 18px 0px;
 }
 
 .acc-title {
     color: #F8F2C9;
     font-size: 50px;
     font-family: 'paybooc-Bold', sans-serif;
+    margin: 8px 0;
 }
 
 .acc-input-txt {
@@ -48,16 +65,18 @@ body {
 }
 
 /* error 텍스트 */
-.acc-error-txt {
-    color: #FF3636;
-    font-size: 16px;
+.acc-error {
+    font-size: 14px;
+    margin: 20px 0 18px;
     font-family: 'paybooc-Medium', sans-serif;
 }
 
+/* 큰 버튼 */
 .acc-wide-btn {
     width: 420px;
     height: 56px;
     padding: 16px 50px;
+    margin-top: 20px;
     border: 1px solid #F8F2C9;
     background: #F8F2C9;
     color: #000000;
@@ -65,13 +84,16 @@ body {
     font-size: 20px;
     font-family: 'paybooc-Bold', sans-serif;
     box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
 }
 
+/* 작은 버튼 */
 .acc-small-btn {
     width: 160px;
     height: 56px;
     padding: 18px 33px;
-    margin-left: 10px;
+    margin-left: 5px;
     border: 1px solid #F8F2C9;
     background: #F8F2C9;
     color: #000000;
@@ -79,28 +101,39 @@ body {
     font-size: 16px;
     font-family: 'paybooc-Medium', sans-serif;
     box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    outline: none;
 }
 
+/* 넓은 input */
 .acc-wide-input {
     width: 420px;
     height: 56px;
     padding: 16px 24px;
+    margin: 5px 0px;
     border: 1px solid #87836B;
     background: #1a2e1b00;
     color: #87836B;
     font-size: 20px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
+    outline: none;
 }
 
+/* 작은 input */
 .acc-small-input {
     width: 250px;
     height: 56px;
     padding: 16px 24px;
+    margin: 5px 0px;
     border: 1px solid #87836B;
     background: #1a2e1b00;
     color: #87836B;
     font-size: 20px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
+    margin-right: 0px;
+    outline: none;
 }

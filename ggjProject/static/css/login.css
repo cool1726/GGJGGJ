@@ -1,1 +1,46 @@
 /* 로그인 전용 Style */
+
+/* 로그인 - 안내 문구 */
+/* 로그인 - ID/PW 찾기, 회원가입 a 링크 */
+.login-guide-txt {
+    margin: 16px 0;
+    color: #CECECE;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.blank {
+    margin-top: 20px;
+}
+
+.login-keep-box {
+    color: #F8F2C9;
+    width: 420px;
+    height: 48px;
+    padding: 12px 0px;
+    margin: auto;
+    font-size: 16px;
+    font-family: 'paybooc-Light', sans-serif;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+input[id="login-cb"] {
+    display: none;
+}
+
+input[id="login-cb"]+label {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    border: 1px solid #F8F2C9;
+    border-radius: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+input[id="login-cb"]:checked+label {
+    border-style: none;
+    background: url(../check-square-solid.svg) no-repeat center/16px 16px;
+}

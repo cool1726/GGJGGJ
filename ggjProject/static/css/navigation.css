@@ -113,6 +113,14 @@
     text-decoration: none;
 }
 
+.footer-right {
+    line-height: 1.7em;
+}
+
+.footer-left {
+    line-height: 1.7em;
+}
+
 /* 배경색모음 */
 .white-background {
     background-color: #FFFFFF;
