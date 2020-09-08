@@ -14,18 +14,17 @@
 
 <body>
     <div class="acc-position">
-        <form method="POST" action="{% url 'signup' %}">
-            {% csrf_token %}
-            <!-- form tag 추가하기, csrf_token 추가하기, 약관동의 체크박스 넣기
-            각 입력항목 p태그 말고 input text로 넣으면 좋을 듯 합니다 -->
+        <h1 class="acc-title">회원가입</h1>
 
-            <h1 class="acc-title">회원가입</h1>
+        <form method="POST" action="{% url 'signup' %}" class="acc-input-section">
+            {% csrf_token %}
             <h2 class="signup-guide-box">본인인증</h2>
             <input class="acc-small-input" name="phoneNumber" type="text" value="" placeholder="휴대폰 번호"><!-- 전화번호 -->
             <input class="acc-small-btn" type="button" value="인증번호 발송">
             <br>
             <input class="acc-small-input" name="certifiNumber" type="text" value="" placeholder="인증 번호"><!-- 인증번호 -->
             <input class="acc-small-btn" type="button" value="인증번호 확인">
+
             <h2 class="signup-guide-box">기본정보 입력</h2>
             <input class="acc-wide-input" name="email" type="text" value="" placeholder="이메일"><!-- 이메일 -->
             <br>
@@ -37,7 +36,11 @@
             <br>
             <input class="acc-wide-input" name="passwordCheck" type="password" value="" placeholder="비밀번호 확인">
             <!-- 비밀번호 확인 -->
-            <p class="acc-agree-link">끄적끄적의 약관, 데이터 정책 및 쿠키 정책에 동의<input type="checkbox"></p>
+            <div class="acc-check-box beige paybooc-light">
+                <span>끄적끄적의 약관, 데이터 정책 및 쿠키 정책에 동의</span>
+                <input id="acc-cb" type="checkbox" name="signup_agree">
+                <label for="acc-cb"></label>
+            </div>
             <input class="acc-wide-btn" type="submit" value="회원가입">
         </form>
     </div>
