@@ -19,7 +19,7 @@ def signup(request):
         if request.POST['password'] == request.POST['passwordCheck']:
             try:
                 user = User.objects.get(username=request.POST['username'])
-                return render(request, "signup.html", {'error': 'Username has already been taken'})
+                return render(request, "signup.html", {'error': '필명이 중복됩니다'})
             except:
                 user = User.objects.create_user(
                     email = request.POST['email'], username=request.POST['username'], password=request.POST['password']) 
@@ -30,7 +30,7 @@ def signup(request):
                 auth.login(request, user)
                 return redirect('/')
         else:
-            return render(request, "signup.html", {'error':'Passwords must match'})
+            return render(request, "signup.html", {'error':'비밀번호가 일치하지 않습니다'})
     else:
         return render(request, "signup.html")
 
