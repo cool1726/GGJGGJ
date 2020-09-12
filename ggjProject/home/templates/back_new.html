@@ -24,11 +24,13 @@
 
                 <h1>책장</h1>
                 <br>
-                <select name="bookShelfTitle" class="new-input">
+                <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
+                <select name="bookShelfID" class="new-input">
 
                     {% for bookShelf in bookShelves %}
                     {% if user.username == bookShelf.username %}
-                    <option>{{bookShelf.bookShelfTitle}}</option>
+                    <!-- option value 추가했어요-->
+                    <option value="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</option>
                     {%endif%}
                     {% endfor %}
 

@@ -21,24 +21,21 @@ def new(request):
     return render(request, 'new.html', {'bookShelves': bookShelves})
 
 """
-post create 함수 구현 필요 현재 IntegrityError임.
+post create 함수
+"""
 def create(request):
     bookShelves = BookShelf.objects.all()
     posts = Post.objects.all()
     post = Post()
-    bookShelf = BookShelf()
-    bookShelf.bookShelfTitle = request.POST.get('bookShelfTitle')
-    bookShelf.save()
     post.username = request.user
-    post.bookID = request.POST.get('bookID')
-    # post.bookShelfID = request.POST.get('bookShelfID')
+    # post.bookID = request.POST.get('bookID')
+    post.bookShelfID = request.POST.get('bookShelfID')
     post.title =  request.POST.get('title')
     post.body = request.POST.get('body')
     post.postDate = timezone.datetime.now()
     post.postCover = request.FILES['postCover']
     post.save()
     return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
-"""
 
 """post삭제할 수 있는 함수"""
 def delete(request, post_id):
