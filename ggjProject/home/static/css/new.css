@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.new-container {
+    padding: 20px 10%;
+    width: 100%;
+}
+
+/* 제목 한줄 작성 (글자수 제한 있나?) */
+.new-input-title {
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+    margin: 10px 0;
+    font-size: 24px;
+    letter-spacing: 1px;
+    outline: none;
+    border: none;
+    resize: none;
+    word-wrap: break-word;
+}
+
+/*
+    본문 작성 (이것도 글자수 제한 있나?) -> 있다면 자바스크립트로 현재 글자수 보여주는 기능 추가도 좋을 듯!
+    background-color: #F7F8F7;
+*/
+.new-input-body {
+    display: block;
+    width: 100%;
+    height: 380px;
+    padding: 8px 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    line-height: 1.8;
+    resize: none;
+    word-wrap: break-word;
+}
+
+/* 글쓰기 아래 부분 (이미지 업로드, 책장 선택 등) */
+.new-etc-container {
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+}
+
+/* 이미지 업로드, unsplash 영역 */
+.new-etc-left {
+    float: left;
+    width: 45%;
+    height: 100%;
+    margin-right: 5%;
+    padding: 40px;
+    background-color: #F7F8F7;
+}
+
+/* 책장선택, 책선택, 제출버튼 영역 */
+.new-etc-right {
+    float: left;
+    width: 45%;
+    height: 100%;
+    margin-left: 5%;
+    padding: 40px;
+    border: 1px solid #CECECE;
+}
+
+.new-etc-left input[type="file"] {
+    text-align: center;
+}
+
+/* 책장 선택 */
+.new-bookshelf {
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid #CECECE;
+    margin-bottom: 20px;
+    font-size: 24px;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url(../caret-down-solid.svg) no-repeat 95% 50%;
+}
+
+.new-bookshelf::-ms-expand {
+    display: none;
+}
+
+/* 작성완료 버튼 */
+.new-btn-save {
+    float: right;
+    padding: 12px 30px;
+    background-color: #1A2E1B;
+    border: 1px solid #1A2E1B;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+}

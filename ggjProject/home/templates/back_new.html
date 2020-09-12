@@ -2,6 +2,7 @@
     데이터를 어떻게 가져오는지만 참고해주세요. 지금은 제출하기 누르면 에러납니다. -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<label for="">주제(카테고리)</label>
@@ -9,49 +10,53 @@
     <title>Document</title>
 </head>
 <body>
-    <article class="new-container">
+    <article class=" new-container">
 
-        <div role="main">
-     
+    <div role="main">
+
         <h1>posting</h1>
-           <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data" action="{% url 'back_create' %}">
-              {% csrf_token %}
-          <br>
-          <br>
-              <div class="mb-3">
-     
-              <h1>책장</h1>
+        <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data"
+            action="{% url 'back_create' %}">
+            {% csrf_token %}
             <br>
-            <select name="bookShelfTitle" class="new-input">
-                
-                {% for bookShelf in bookShelves %}
-                {% if user.username == bookShelf.username %}
-                    <option>{{bookShelf.bookShelfTitle}}</option>
-                {%endif%}
-                {% endfor %}
-                
-            </select>
-     
-              </div>
-              <div class="mb-3">
-                 <h1>제목</h1>
-                 <input name = "title" type="text" class="new-input" placeholder="제목을 입력해 주세요">
-              </div>
-     
-              <div class="mb-3">
+            <br>
+            <div class="mb-3">
+
+                <h1>책장</h1>
+                <br>
+                <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
+                <select name="bookShelfID" class="new-input">
+
+                    {% for bookShelf in bookShelves %}
+                    {% if user.username == bookShelf.username %}
+                    <!-- option value 추가했어요-->
+                    <option value="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</option>
+                    {%endif%}
+                    {% endfor %}
+
+                </select>
+
+            </div>
+            <div class="mb-3">
+                <h1>제목</h1>
+                <input name="title" type="text" class="new-input" placeholder="제목을 입력해 주세요">
+            </div>
+
+            <div class="mb-3">
                 <h1>내용</h1>
-                <input name = "body" type="text" class="new-input" placeholder="제목을 입력해 주세요">
-             </div>
-             <h1>이미지</h1>
-             <input name = "postCover" type="file">
-           <div>
-     
-           <input type="submit" class="new-btn" value="제출하기">
-           </form>
-           </div>    
-        </div>
-     
-     </article>
-     
-</body>
+                <input name="body" type="text" class="new-input" placeholder="제목을 입력해 주세요">
+            </div>
+            <h1>이미지</h1>
+            <input name="postCover" type="file">
+            <div>
+
+                <input type="submit" class="new-btn" value="제출하기">
+        </form>
+    </div>
+    </div>
+
+    </article>
+
+    </body>
+
 </html>

@@ -1,14 +1,13 @@
+/* 회원가입 전용 Style */
+
 .signup-guide-box {
     color: #CECECE;
     width: 420px;
-    height: 56px;
-    padding: 16px 24px;
-    font-size: 24px;
+    height: 30px;
+    padding: 0 3px;
+    margin: 30px auto 3px;
+    font-size: 20px;
     font-family: 'paybooc-Medium', sans-serif;
     box-sizing: border-box;
     text-align: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin: auto;
-   
 }

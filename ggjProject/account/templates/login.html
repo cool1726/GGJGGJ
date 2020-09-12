@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="acc-position">
+    <div class="acc-container">
         <h1 class="acc-title">로그인</h1>
         <p class="login-guide-txt paybooc-medium">끄적끄적 서비스를 이용하기 위해 로그인 해주세요</p>
         {% if error %}
@@ -22,25 +22,23 @@
             <i class="fas fa-exclamation-triangle"></i>
             <span>{{ error }}</span>
         </div>
-
         {% endif %}
-        <div>
-            <form id="" name="" method="post" action="{% url 'back_login' %}" class="acc-input-section">
-                {% csrf_token %}
-                <input class="acc-wide-input" name="username" type="text" value="" placeholder="필명(ID)"><!-- 아이디 -->
-                <br>
-                <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )>
-                <!-- 비밀번호 -->
-                <div class="login-keep-box">
-                    <input id="login-cb" type="checkbox" name="keep_login">
-                    <label for="login-cb"></label>
-                    <span>로그인 유지</span>
-                </div>
-                <input class="acc-wide-btn" type="submit" value="로그인">
-            </form>
-            <div class="blank beige login-guide-txt paybooc-light">
-                <a class="login-guide-txt" href="#">ID/PW 찾기</a> | <a class="login-guide-txt" href="#">회원가입</a>
+
+        <form id="" name="" method="post" action="{% url 'back_login' %}" class="acc-input-section">
+            {% csrf_token %}
+            <input class="acc-wide-input" name="username" type="text" value="" placeholder="필명(ID)"><!-- 아이디 -->
+            <br>
+            <input class="acc-wide-input" name="password" type="password" value="" placeholder="비밀번호" )>
+            <!-- 비밀번호 -->
+            <div class="login-check-box gray paybooc-light">
+                <input id="acc-cb" type="checkbox" name="keep_login">
+                <label for="acc-cb"></label>
+                <span>로그인 유지</span>
             </div>
+            <input class="acc-wide-btn" type="submit" value="로그인">
+        </form>
+        <div class="blank beige paybooc-light">
+            <a class="login-guide-txt" href="#">ID/PW 찾기</a> | <a class="login-guide-txt" href="#">회원가입</a>
         </div>
         <!--//login_wrapper -->
     </div>

@@ -22,15 +22,19 @@ body {
     text-align: center;
 }
 
-/* 로그인, 회원가입 영역 가운데 정렬 */
-.acc-position {
-    width: 100%;
+/* 로그인, 회원가입 영역 수평 가운데 정렬,
+   수직 가운데 정렬은 일부러 안 했습니다 */
+.acc-container {
     min-width: 500px;
     min-height: 450px;
-    margin: 0 auto;
+    margin: auto;
+    padding: 30px;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 80px;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    text-align: center;
 }
 
 .acc-input-section {
@@ -92,7 +96,6 @@ body {
 .acc-small-btn {
     width: 160px;
     height: 56px;
-    padding: 18px 33px;
     margin-left: 5px;
     border: 1px solid #F8F2C9;
     background: #F8F2C9;
@@ -107,6 +110,16 @@ body {
     outline: none;
 }
 
+/* input autofill: 자동완성 내용 클릭 시, 특정 컬러로 스타일 변경 막기 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px #1a2e1b00 inset !important;
+    -webkit-text-fill-color: #87836B !important;
+}
+
 /* 넓은 input */
 .acc-wide-input {
     width: 420px;
@@ -116,7 +129,7 @@ body {
     border: 1px solid #87836B;
     background: #1a2e1b00;
     color: #87836B;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
     outline: none;
@@ -131,9 +144,53 @@ body {
     border: 1px solid #87836B;
     background: #1a2e1b00;
     color: #87836B;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'paybooc-Light', sans-serif;
     box-sizing: border-box;
     margin-right: 0px;
     outline: none;
+}
+
+/* checkbox : 로그인 유지 버튼, 회원가입 약관동의 버튼 */
+.acc-check-box {
+    width: 420px;
+    height: 48px;
+    padding: 12px 0px;
+    margin: auto;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-check-box {
+    width: 420px;
+    height: 48px;
+    padding: 12px 0px;
+    margin: auto;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+input[id="acc-cb"] {
+    display: none;
+}
+
+input[id="acc-cb"]+label {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    border: 1px solid #CECECE;
+    border-radius: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+input[id="acc-cb"]:checked+label {
+    border-style: none;
+    width: 16px;
+    height: 16px;
+    font-size: 18px;
+    color: #CECECE;
+    background: url(../check-square-solid.svg) no-repeat center/16px 16px;
 }
