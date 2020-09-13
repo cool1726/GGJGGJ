@@ -16,3 +16,8 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 <2020.09.12 백>
 - create 함수 오류 고쳤습니다. back_new에서 바뀐부분 주석처리 해줬으니까 참고해주세요. 
 - urls.py에 back_create 추가해줬습니다.
+
+<2020.09.13 백>
+- bookmodel 생성했습니다!
+- create할 때 book검색후 선택해주세요. 
+- views.py에 create함수 수정해줬어요(book save되게!)

@@ -27,11 +27,11 @@ post create 함수
 def create(request):
     bookShelves = BookShelf.objects.all()
     book = Book()
-    books = request.POST.get('bookInfo')
+    books = json.loads(request.POST.get('bookInfo'))
     print(books)
     book.bookName = books['title'] #title
     book.ISBN = books['isbn'] #isbn
-    book.writer = books['authors'] #authors
+    book.writer = books['authors'][0] #authors
     book.bookCover = books['thumbnail'] #thumbnail
     book.description = books['contents'] #contents
     book.publisher = books['publisher'] #publisher
