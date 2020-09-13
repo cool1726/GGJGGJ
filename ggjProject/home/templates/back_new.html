@@ -52,7 +52,7 @@
                             headers: { Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1" }
                         })
                             .done(function (msg) {
-                                $("#select *").remove();
+                                $("#selectBook *").remove();
                                 for (var i = 0; i < 10; i++) {
                                     // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
                                     let data = JSON.stringify(msg.documents[i])
