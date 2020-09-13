@@ -1,3 +1,4 @@
+<!-- new 탬플릿입니다. post를 쓸 수 있음. url은 http://127.0.0.1:8000/back_new 로 가시면 됩니다. -->
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -11,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
     <script src="https://kit.fontawesome.com/c8c52fc116.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -46,28 +49,81 @@
 
     <div class="new-container">
         <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data"
-            action="{% url 'back_new' %}">
+            action="{% url 'back_create' %}">
             {% csrf_token %}
+            <!-- 제목, 내용 작성 부분 name: title, body -->
             <input type="text" name="title" class="new-input-title noto-extrabold" placeholder="제목을 입력하세요"
                 autocomplete="off">
-
             <textarea type="text" name="body" class="new-input-body noto-medium" placeholder="책을 읽고 끄적끄적 후기를 남겨보세요."
                 autocomplete="off"></textarea>
 
+            <!-- 이미지 첨부 및 책장선택, 책검색 부분 : left와 right으로 구분함 -->
             <div class="new-etc-container">
                 <div class="new-etc-left">
-                    <input type="file" name="postCover">
-                    <label for="img-upload"><i class="fas fa-cloud-upload-alt"></i><br>당신의 한 문장에 어울리는 사진이 있나요?</label>
+                    <label for="img-upload" class="upload-label"><i
+                            class="fas fa-cloud-upload-alt green upload-logo"></i><br>
+                        <p class="noto-medium green upload-text">당신의 한 문장에 어울리는 사진이 있나요?</p>
+                    </label>
+                    or
+                    <label for="img-upload" class="unsplash-label">
+                        <p class="noto-bold green upload-text">unsplash에서 사진 찾기</p>
+                    </label>
+                    <input type="file" name="postCover" id="img-upload">
                 </div>
                 <div class="new-etc-right">
-                    <select name="bookShelfTitle" class="new-bookshelf green paybooc-medium">
+                    <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
+                    <select name="bookShelfID" class="new-bookshelf green paybooc-medium">
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
-                        <option>{{bookShelf.bookShelfTitle}}</option>
-                        {%endif%}
+                        <!-- option value 추가했어요-->
+                        <option value='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
+
+                    <div class="new-book-search">
+                        <input id="bookName" value="" type="text">
+                        <button id="search" type="button">검색</button>
+                        <select name="bookInfo" id="selectBook"></select>
+                    </div>
                     <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
+                    <script>
+                        $(document).ready(function () {
+                            $("#search").click(function () {
+                                $.ajax({
+                                        method: "GET",
+                                        url: "https://dapi.kakao.com/v3/search/book?target=title",
+                                        data: {
+                                            query: $("#bookName").val()
+                                        },
+                                        headers: {
+                                            Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1"
+                                        }
+                                    })
+                                    .done(function (msg) {
+                                        $("#selectBook *").remove();
+                                        for (var i = 0; i < 10; i++) {
+                                            // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
+                                            let data = JSON.stringify(msg.documents[i])
+                                            $("#selectBook").append("<option value = '" + data +
+                                                "'>" + msg.documents[i].title + "<br>" + msg
+                                                .documents[i].authors + "<br>" + msg.documents[
+                                                    i].thumbnail + "<br>" + msg.documents[i]
+                                                .contents + "<br>" + msg.documents[i]
+                                                .publisher + msg.documents[i].isbn + "</option>"
+                                            );
+                                            // console.log(msg.documents[i].title);
+                                            // console.log(msg.documents[i].thumbnail);
+                                            // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
+                                            // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
+                                            // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                                            // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
+                                            // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
+                                        }
+                                    });
+                            });
+                        });
+                    </script>
                 </div>
 
 

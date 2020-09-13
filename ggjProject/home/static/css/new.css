@@ -4,7 +4,7 @@
 }
 
 .new-container {
-    padding: 20px 10%;
+    padding: 20px 15%;
     width: 100%;
 }
 
@@ -42,33 +42,69 @@
 
 /* 글쓰기 아래 부분 (이미지 업로드, 책장 선택 등) */
 .new-etc-container {
+    display: inline-flex;
     width: 100%;
-    height: 200px;
+    height: 250px;
     margin-top: 20px;
+    margin-bottom: 60px;
 }
 
 /* 이미지 업로드, unsplash 영역 */
 .new-etc-left {
-    float: left;
-    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 47%;
     height: 100%;
-    margin-right: 5%;
+    margin-right: 3%;
     padding: 40px;
     background-color: #F7F8F7;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.new-etc-left * {
+    width: 100%;
 }
 
 /* 책장선택, 책선택, 제출버튼 영역 */
 .new-etc-right {
-    float: left;
-    width: 45%;
+    width: 47%;
     height: 100%;
-    margin-left: 5%;
+    margin-left: 3%;
     padding: 40px;
     border: 1px solid #CECECE;
 }
 
+/* 이미지 파일 업로드 버튼 숨기기 */
 .new-etc-left input[type="file"] {
-    text-align: center;
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    display: none;
+}
+
+.upload-label {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.unsplash-label {
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.upload-logo {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.upload-text {
+    font-size: 18px;
 }
 
 /* 책장 선택 */
@@ -89,6 +125,11 @@
 
 .new-bookshelf::-ms-expand {
     display: none;
+}
+
+.new-book-search {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 /* 작성완료 버튼 */

@@ -19,7 +19,7 @@ def home(request):
 """back_new.html로 이동"""
 def new(request):
     bookShelves = BookShelf.objects.all()
-    return render(request, 'back_new.html', {'bookShelves': bookShelves})
+    return render(request, 'new.html', {'bookShelves': bookShelves})
 
 """
 post create 함수
