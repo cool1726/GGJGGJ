@@ -10,6 +10,8 @@
     <title>Document</title>
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <article class=" new-container">
 
     <div role="main">
@@ -24,17 +26,49 @@
 
                 <h1>책장</h1>
                 <br>
-                <select name="bookShelfTitle" class="new-input">
+                <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
+                <select name="bookShelfID" class="new-input">
 
                     {% for bookShelf in bookShelves %}
                     {% if user.username == bookShelf.username %}
-                    <option>{{bookShelf.bookShelfTitle}}</option>
+                    <!-- option value 추가했어요-->
+                    <option value='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</option>
                     {%endif%}
                     {% endfor %}
 
                 </select>
 
             </div>
+            <input id="bookName" value="" type="text">
+            <button id="search" type="button">검색</button>
+            <select name="bookInfo" id="selectBook"></select>
+            <script>
+                $(document).ready(function () {
+                    $("#search").click(function () {
+                        $.ajax({
+                            method: "GET",
+                            url: "https://dapi.kakao.com/v3/search/book?target=title",
+                            data: { query: $("#bookName").val() },
+                            headers: { Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1" }
+                        })
+                            .done(function (msg) {
+                                $("#select *").remove();
+                                for (var i = 0; i < 10; i++) {
+                                    // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
+                                    let data = JSON.stringify(msg.documents[i])
+                                    $("#selectBook").append("<option value = '"+data+"'>"+msg.documents[i].title+"<br>"+msg.documents[i].authors+"<br>"+msg.documents[i].thumbnail+"<br>"+msg.documents[i].contents+"<br>"+msg.documents[i].publisher+ msg.documents[i].isbn + "</option>");
+                                    // console.log(msg.documents[i].title);
+                                    // console.log(msg.documents[i].thumbnail);
+                                    // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
+                                    // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
+                                    // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                                    // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
+                                    // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
+                                }
+                            });
+                    });
+                });
+            </script>
             <div class="mb-3">
                 <h1>제목</h1>
                 <input name="title" type="text" class="new-input" placeholder="제목을 입력해 주세요">
