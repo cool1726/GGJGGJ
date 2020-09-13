@@ -2,12 +2,13 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponseForbidden, HttpResponseRedirect, HttpResponse
 from urllib.parse import urlparse
 from django.views.generic.base import View
-from .models import Post
+from .models import Post, Book
 from django.utils import timezone
 from bookShelf.models import BookShelf
 from .forms import PostUpdate
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView, CreateView
+import json
 
 # Create your views here.
 """post들이 나옵니다.back_home.html로 이동"""
@@ -18,17 +19,28 @@ def home(request):
 """back_new.html로 이동"""
 def new(request):
     bookShelves = BookShelf.objects.all()
-    return render(request, 'new.html', {'bookShelves': bookShelves})
+    return render(request, 'back_new.html', {'bookShelves': bookShelves})
 
 """
 post create 함수
 """
 def create(request):
     bookShelves = BookShelf.objects.all()
+    book = Book()
+    books = request.POST.get('bookInfo')
+    print(books)
+    book.bookName = books['title'] #title
+    book.ISBN = books['isbn'] #isbn
+    book.writer = books['authors'] #authors
+    book.bookCover = books['thumbnail'] #thumbnail
+    book.description = books['contents'] #contents
+    book.publisher = books['publisher'] #publisher
+    book.save()
+
     posts = Post.objects.all()
     post = Post()
     post.username = request.user
-    # post.bookID = request.POST.get('bookID')
+    post.bookID = book.id
     post.bookShelfID = request.POST.get('bookShelfID')
     post.title =  request.POST.get('title')
     post.body = request.POST.get('body')
