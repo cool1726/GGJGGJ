@@ -19,28 +19,35 @@ def home(request):
 """back_new.html로 이동"""
 def new(request):
     bookShelves = BookShelf.objects.all()
-    return render(request, 'new.html', {'bookShelves': bookShelves})
+    return render(request, 'back_new.html', {'bookShelves': bookShelves})
 
 """
 post create 함수
 """
 def create(request):
     bookShelves = BookShelf.objects.all()
-    book = Book()
-    books = json.loads(request.POST.get('bookInfo'))
-    print(books)
-    book.bookName = books['title'] #title
-    book.ISBN = books['isbn'] #isbn
-    book.writer = books['authors'][0] #authors
-    book.bookCover = books['thumbnail'] #thumbnail
-    book.description = books['contents'] #contents
-    book.publisher = books['publisher'] #publisher
-    book.save()
-
+    bookInfo = json.loads(request.POST.get('bookInfo'))
+    books = Book.objects.all()
+    flag = 0
     posts = Post.objects.all()
     post = Post()
+    for i in books:
+        if i.ISBN == bookInfo['isbn']:
+            flag = i
+            break
+    if flag==0:
+        book = Book()
+        book.bookName = bookInfo['title'] #title
+        book.ISBN = bookInfo['isbn'] #isbn
+        book.writer = bookInfo['authors'][0] #authors
+        book.bookCover = bookInfo['thumbnail'] #thumbnail
+        book.description = bookInfo['contents'] #contents
+        book.publisher = bookInfo['publisher'] #publisher
+        book.save()
+        post.bookID = book.id
+    else: 
+        post.bookID = flag.id
     post.username = request.user
-    post.bookID = book.id
     post.bookShelfID = request.POST.get('bookShelfID')
     post.title =  request.POST.get('title')
     post.body = request.POST.get('body')
