@@ -15,7 +15,6 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 <2020.09.09 블랙>
 - 회원가입 화면 디테일(margin, padding, font, checkbox etc)이랑 에러텍스트 추가함 (views.py에서 에러텍스트 한글로 바꿨어요)
 - new.html 파일이랑 new.css 파일 추가함 (텍스트작성과 이미지업로드, 책장선택은 이미 구현됨)
-- 앞으로 해야할 일 : new.html 로컬 파일업로드 javascript 사용 또는 css 수정 필요! + 책장선택 드롭다운 디자인!
 
 <2020.09.12 백>
 - create 함수 오류 고쳤습니다. back_new에서 바뀐부분 주석처리 해줬으니까 참고해주세요. 
