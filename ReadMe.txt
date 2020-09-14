@@ -23,4 +23,15 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 <2020.09.13 백>
 - bookmodel 생성했습니다!
 - create할 때 book검색후 선택해주세요. 
+<<<<<<< HEAD
 - views.py에 create함수 수정해줬어요(book save되게!)
+=======
+- views.py에 create함수 수정해줬어요(book save되게!)
+
+<2020.09.13 블랙> 
+- new.html에 back_new.html 업데이트된 내용들 수정했고, unsplash input label도 추가했습니다 
+- 궁금한 거: 글 작성 화면에서(/back_new) 사진 업로드하면 이미지 미리보기는 어떤식으로 보여주는게 좋을까요?
+
+<2020.09.14 백>
+- unsplash API 페이지 따로 만들어서 연습했어요. 아직 구현 안함
+>>>>>>> 085e36e7d1e1f5cdbbe97848caf2eafe4be1c4d6
