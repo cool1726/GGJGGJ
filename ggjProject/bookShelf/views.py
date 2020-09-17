@@ -6,6 +6,9 @@ from .forms import BookShelfUpdate
 """back_newBookShelf.html로 이동하는 함수"""
 def newBookShelf(request):
     return render(request, 'back_newBookShelf.html')
+"""detail.html로 이동하는 함수"""
+def detail(request):
+    return render(request, 'detail.html')
 
 """책장 생성 함수 """
 def createBookShelf(request):

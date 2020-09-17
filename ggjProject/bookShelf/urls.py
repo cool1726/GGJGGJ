@@ -6,4 +6,5 @@ urlpatterns = [
     path('back_deleteBookShelf/<int:bookShelf_id>', deleteBookShelf, name='back_deleteBookShelf'),
     path('back_updateBookShelf/<int:bookShelf_id>', updateBookShelf, name='back_updateBookShelf'),
     path('back_createBookShelf/', createBookShelf, name='back_createBookShelf'),
+    path('detail/', detail, name='detail'),
 ]
