@@ -16,7 +16,7 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<>
     <header class="top-navbar white-background">
         <span>
             <img class="navbar-logo vertically-center" src="{% static 'ggjlogo.png' %}" alt="끄적끄적로고">
@@ -60,15 +60,26 @@
             <!-- 이미지 첨부 및 책장선택, 책검색 부분 : left와 right으로 구분함 -->
             <div class="new-etc-container">
                 <div class="new-etc-left">
-                    <label for="img-upload" class="upload-label"><i
-                            class="fas fa-cloud-upload-alt green upload-logo"></i><br>
-                        <p class="noto-medium green upload-text">당신의 한 문장에 어울리는 사진이 있나요?</p>
-                    </label>
-                    or
-                    <label for="img-upload" class="unsplash-label">
-                        <p class="noto-bold green upload-text">unsplash에서 사진 찾기</p>
-                    </label>
-                    <input type="file" name="postCover" id="img-upload">
+                    <p id="btn-upload" class="noto-medium green upload-text">당신의 한 문장에 어울리는 사진이 있나요?</p>
+
+                    <div class="modal hidden">
+                        <div class="modal__overlay"></div>
+                        <div class="modal__content">
+                            <i class="fas fa-times btn-close" type="button"></i>
+                            <div class="modal__upload">
+                                <label for="img-upload" class="upload-label">
+                                    <i class="fas fa-cloud-upload-alt green upload-logo"></i><br>
+                                    <p class="noto-medium green upload-text">이미지 업로드하기</p>
+                                </label>
+                                <label for="img-upload" class="unsplash-label">
+                                    <p class="noto-bold green upload-text">unsplash에서
+                                        사진 찾기</p>
+                                </label>
+                            </div>
+                            <input type="file" name="postCover" id="img-upload">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="new-etc-right">
                     <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
@@ -87,43 +98,6 @@
                         <select name="bookInfo" id="selectBook"></select>
                     </div>
                     <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
-                    <script>
-                        $(document).ready(function () {
-                            $("#search").click(function () {
-                                $.ajax({
-                                        method: "GET",
-                                        url: "https://dapi.kakao.com/v3/search/book?target=title",
-                                        data: {
-                                            query: $("#bookName").val()
-                                        },
-                                        headers: {
-                                            Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1"
-                                        }
-                                    })
-                                    .done(function (msg) {
-                                        $("#selectBook *").remove();
-                                        for (var i = 0; i < 10; i++) {
-                                            // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
-                                            let data = JSON.stringify(msg.documents[i])
-                                            $("#selectBook").append("<option value = '" + data +
-                                                "'>" + msg.documents[i].title + "<br>" + msg
-                                                .documents[i].authors + "<br>" + msg.documents[
-                                                    i].thumbnail + "<br>" + msg.documents[i]
-                                                .contents + "<br>" + msg.documents[i]
-                                                .publisher + msg.documents[i].isbn + "</option>"
-                                            );
-                                            // console.log(msg.documents[i].title);
-                                            // console.log(msg.documents[i].thumbnail);
-                                            // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
-                                            // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
-                                            // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
-                                            // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
-                                            // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
-                                        }
-                                    });
-                            });
-                        });
-                    </script>
                 </div>
 
 
@@ -157,6 +131,64 @@
             <p class="bareunbatang-light beige">Copyright 2020. 사르사르타르트. All rights reserved.</p>
         </div>
     </div>
-</body>
+
+    <script>
+        const openBtn = document.getElementById("btn-upload");
+        const modal = document.querySelector(".modal");
+        const overlay = modal.querySelector(".modal__overlay");
+        const closeBtn = modal.querySelector(".btn-close");
+        const fileBtn = modal.querySelector("#img-upload")
+
+        const openModal = () => {
+            modal.classList.remove("hidden");
+        }
+        const closeModal = () => {
+            modal.classList.add("hidden");
+        }
+
+        overlay.addEventListener("click", closeModal);
+        closeBtn.addEventListener("click", closeModal);
+        openBtn.addEventListener("click", openModal);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#search").click(function () {
+                $.ajax({
+                        method: "GET",
+                        url: "https://dapi.kakao.com/v3/search/book?target=title",
+                        data: {
+                            query: $("#bookName").val()
+                        },
+                        headers: {
+                            Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1"
+                        }
+                    })
+                    .done(function (msg) {
+                        $("#selectBook *").remove();
+                        for (var i = 0; i < 10; i++) {
+                            // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
+                            let data = JSON.stringify(msg.documents[i])
+                            $("#selectBook").append("<option value = '" + data +
+                                "'>" + msg.documents[i].title + "<br>" + msg
+                                .documents[i].authors + "<br>" + msg.documents[
+                                    i].thumbnail + "<br>" + msg.documents[i]
+                                .contents + "<br>" + msg.documents[i]
+                                .publisher + msg.documents[i].isbn + "</option>"
+                            );
+                            // console.log(msg.documents[i].title);
+                            // console.log(msg.documents[i].thumbnail);
+                            // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
+                            // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
+                            // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                            // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
+                            // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
+                        }
+                    });
+            });
+        });
+    </script>
+
+    </body>
 
 </html>
