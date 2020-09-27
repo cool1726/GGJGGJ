@@ -50,3 +50,6 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 <2020.09.26 백>
 - unsplash.html에서 unsplash 자동완성 구현해봤어요. 아직 new.html에는 안옮겼습니다.
 - back_new.html에서 책검색 자동완성 구현해봤어요. 이것도 아직 new.html에는 안옮겼습니다.
+
+<2020.09.27 백, 블랙>
+- new.html에 자동완성 옮겼어요.
