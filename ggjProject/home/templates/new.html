@@ -17,51 +17,29 @@
 </head>
 
 <body>
-    <header class="top-navbar white-background">
-        <span>
-            <img class="navbar-logo vertically-center" src="{% static 'ggjlogo.png' %}" alt="끄적끄적로고">
-            <a class="navbar-title vertically-center green" href="">끄적끄적</a>
-        </span>
-
-        <nav class="navbar-links">
-            <ul>
-                <li><a class="vertically-center" href="">둘러보기</a></li>
-                <li><a class="vertically-center" href="">책갈피</a></li>
-                <li><a class="vertically-center" href="">팔로잉</a></li>
-                <li><a class="vertically-center" href="">나의 책장</a></li>
-            </ul>
-        </nav>
-
-        <div>
-            <a class="navbar-btn-write vertically-center beige" href="">
-                <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
-
-            <span class="navbar-profile">
-                <i class="fas fa-user-circle vertically-center fa-3x"></i>
-                <a class="navbar-welcome vertically-center dark-green" href="">
-                    <div>
-                        안녕하세요<br>김끄적 독자님!
-                    </div>
-                </a>
-            </span>
-        </div>
-    </header>
+    {% include 'navbar.html' %}
 
     <div class="new-container">
         <form name="form" id="form" role="form" method="POST" onsubmit="return false" enctype="multipart/form-data"
             action="{% url 'back_create' %}">
             {% csrf_token %}
-            <!-- 제목, 내용 작성 부분 name: title, body -->
-            <input type="text" name="title" class="new-input-title noto-extrabold" placeholder="제목을 입력하세요"
-                autocomplete="off">
-            <textarea type="text" name="body" class="new-input-body noto-medium" placeholder="책을 읽고 끄적끄적 후기를 남겨보세요."
-                autocomplete="off"></textarea>
+
+            <div class="text_container">
+                <!-- 제목, 내용 작성 부분 name: title, body -->
+                <input type="text" name="title" class="new_input_title noto-extrabold" placeholder="제목을 입력하세요"
+                    autocomplete="off">
+                <textarea type="text" name="body" class="new-input-body noto-medium" placeholder="책을 읽고 끄적끄적 후기를 남겨보세요."
+                    autocomplete="off" onkeydown="autoResize(this)" onkeyup="autoResize(this)"></textarea>
+            </div>
+
 
             <!-- 이미지 첨부 및 책장선택, 책검색 부분 : left와 right으로 구분함 -->
-            <div class="new-etc-container">
-                <div class="new-etc-left">
-                    <i class="fas fa-cloud-upload-alt green upload-logo"></i><br>
-                    <p id="btn-upload" class="noto-medium green upload-text">당신의 한 문장에 어울리는 사진이 있나요?</p>
+            <div class="etc_container">
+                <div class="etc_image">
+                    <div id="btn-upload">
+                        <i class="fas fa-cloud-upload-alt green upload-logo"></i>
+                        <p class="noto-medium green upload-text">당신의 한 문장에 <br>어울리는 사진이 있나요?</p>
+                    </div>
 
                     <div class="modal hidden">
                         <div class="modal__overlay"></div>
@@ -87,193 +65,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="new-etc-right">
-                        <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
-                        <select name="bookShelfID" class="new-bookshelf green paybooc-medium">
-                            {% for bookShelf in bookShelves %}
-                            {% if user.username == bookShelf.username %}
-                            <!-- option value 추가했어요-->
-                            <option value='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                        <div class="new-book-search">
-                        <input id="bookSearch" value="" type="text">
-                        <ul id="bookResult"></ul>
+                </div>
+                <div class="etc_book_shelf" data-role="selectBox">
+                    <div class="options-container">
+                        {% for bookShelf in bookShelves %}
+                        {% if user.username == bookShelf.username %}
+                        <div class="option">
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' name="bookshelf">
+                            <label for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
                         </div>
-                        <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="selectedShelf">
+                        책장을 선택하세요
                     </div>
                 </div>
+                <div class="etc_book_search">
+                    <input id="bookSearch" class="noto-light" value="" type="text" placeholder="읽은 책을 검색하세요">
+                    <div id="bookResult" class="results-container"></div>
+                    <div class="selectedBook"></div>
+                </div>
+                <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
             </div>
         </form>
     </div>
-    <div class="bottom-footer dark-green-background">
-        <div class="footer-left beige bareunbatang-light">
-            (주)사르사르타르트 | 대표 OOO | 사업자등록번호 |<br>
-            Email : welcom@sarsartarte.com <br>
-            주소 : 서울시 서울구 서울길 0층
-        </div>
-        <div class="footer-right">
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">소개</a>
-                <a class="bareunbatang-light beige" href="">도움말</a>
-                <a class="bareunbatang-light beige" href="">홍보센터</a>
-                <a class="bareunbatang-light beige" href="">채용정보</a>
-            </span>
-            <br>
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">개인정보처리방침</a>
-                <a class="bareunbatang-light beige" href="">약관</a>
-                <a class="bareunbatang-light beige" href="">위치</a>
-                <a class="bareunbatang-light beige" href="">언어</a>
-                <a class="bareunbatang-light beige" href="">고객센터</a>
-                <a class="bareunbatang-light beige" href="">제휴문의</a>
-            </span>
-            <p class="bareunbatang-light beige">Copyright 2020. 사르사르타르트. All rights reserved.</p>
-        </div>
-    </div>
 
-    <script>
-        const body = document.querySelector('body');
+    {% include 'footer.html' %}
 
-        const openBtn = document.getElementById("btn-upload");
-        const modal = document.querySelector(".modal");
-        const overlay = modal.querySelector(".modal__overlay");
-        const closeBtn = modal.querySelector(".btn-close");
-        const fileBtn = modal.querySelector("#img-upload");
-
-        const navUpload = modal.querySelector("#nav__upload");
-        const navUnsplash = modal.querySelector("#nav__unsplash");
-        const contUpload = modal.querySelector(".upload-container");
-        const contUnsplash = modal.querySelector(".unsplash-container");
-
-        const uploadBtn = modal.querySelector("#img-upload");
-        const imgPre = modal.querySelector("#img__preview");
-
-        const openModal = () => {
-            modal.classList.remove("hidden");
-            body.classList.add("not-scroll");
-        }
-        const closeModal = () => {
-            modal.classList.add("hidden");
-            body.classList.remove("not-scroll");
-        }
-        const openUpload = () => {
-            contUnsplash.classList.add("hidden");
-            contUpload.classList.remove("hidden");
-        }
-        const openUnsplash = () => {
-            contUpload.classList.add("hidden");
-            contUnsplash.classList.remove("hidden");
-        }
-        const showPreview = (e) => {
-            let get_file = e.target.files;
-            let image = document.createElement('img');
-            if (imgPre.hasChildNodes()) {
-                imgPre.removeChild(imgPre.firstChild);
-            }
-
-            /* FileReader 객체 생성 */
-            var reader = new FileReader();
-
-            /* reader 시작 시 함수 구현 */
-            reader.onload = (function (aImg) {
-                console.log(1);
-
-                return function (e) {
-                    console.log(3);
-                    aImg.src = e.target.result
-                }
-            })(image)
-
-            if (get_file) {
-                reader.readAsDataURL(get_file[0]);
-                console.log(2);
-            }
-
-            imgPre.appendChild(image);
-        }
-
-        overlay.addEventListener("click", closeModal);
-        closeBtn.addEventListener("click", closeModal);
-        openBtn.addEventListener("click", openModal);
-        navUpload.addEventListener("click", openUpload);
-        navUnsplash.addEventListener("click", openUnsplash);
-        uploadBtn.addEventListener("change", showPreview);
-    </script>
-
-    <script>
-        //엔터키 눌리는거 방지
-        $(function() { $("input:text").keydown(function(evt) { if (evt.keyCode == 13) return false; }); });
-
-        //unsplash 자동완성 
-        $(document).ready(function(){
-            $('#unsplashSearch').keyup(function(){
-                if($(this).val()==''){
-                    $("#unsplashResult *").remove();
-                    $('#unsplashResult').append('<p>검색어를 입력해주세요 </p>')
-                }else{
-                    $('#unsplashResult').html('');
-                    var searchField = $('#unsplashSearch').val();
-                    $.getJSON("https://api.unsplash.com/search/photos?page=1&query=" + searchField +
-                        "&client_id=6YvVbroc-hwUBpgp89bjK5fgUs-_eSSH6dyPjDuqmYw&per_page=20", function(data){
-                        $("#unsplashResult *").remove();
-                        $.each(data, function(key,value){
-                            if(value.length==0){
-                                $('#unsplashResult').append('<p>검색결과가 없습니다. </p>')
-                            }else{
-                                $("#unsplashResult *").remove();
-                                data.results.forEach(item => {
-                                    image =
-                                        `<div class="list_item">
-                                        <img class="list_img" src="${item.urls.thumb}"/> <p class="list_text noto-light gray">${item.alt_description}</p>
-                                        </div>`
-                                    $("#unsplashResult").append(image)
-                                });
-                            }
-                        })
-                    })
-                }
-                        
-            });
-        });
-    </script>
-
-    <script>
-        //book 검색 자동완성
-        $(document).ready(function(){
-             $('#bookSearch').keyup(function(){
-                if($(this).val()==''){
-                    $("#bookResult *").remove();
-                    $('#bookResult').append('<li>검색어를 입력해주세요 </li>')
-                }else{
-                    $('#bookResult').html('');
-                    var searchField = $('#bookSearch').val();
-                    $.ajaxSetup({
-                        method: "GET",
-                        data: { query: $("#bookSearch").val() },
-                        headers: { Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1" }
-                    })
-                    $.getJSON('https://dapi.kakao.com/v3/search/book?', function(bookData){
-                        $("#bookResult *").remove();
-                        $.each(bookData, function(key,value){
-                            if(value.length==0){
-                                $('#bookResult').append('<li>검색결과가 없습니다. </li>')
-                            }else{
-                                for(var j=0; j<value.length; j++){
-                                    $('#bookResult').append('<li>'+'<a href="#"><img src="'+value[j].thumbnail+
-                                    '" /></a>'+value[j].title+value[j].authors+value[j].contents+value[j].publisher+'</li>')
-                                    // $('#bookResult').append('<li>'+value[j].title+value[j].authors+
-                                    // value[j].thumbnail+value[j].contents+value[j].publisher+'</li>')
-                                } 
-                            }
-                        })
-                    })
-                }
-                        
-            });
-        });
-    </script>
+    <script type="text/javascript" src="../static/js/new.js"></script>
+    <script type="text/javascript" src="../static/js/new-bookapi.js"></script>
+    <script type="text/javascript" src="../static/js/new-unsplash.js"></script>
 
 </body>
 

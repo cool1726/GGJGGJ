@@ -1,0 +1,31 @@
+{% load static %}
+
+<header class="top-navbar white-background">
+    <span>
+        <img class="navbar-logo vertically-center" src="{% static 'images/ggjlogo.png' %}" alt="끄적끄적로고">
+        <a class="navbar-title vertically-center green" href="{% url 'home' %}">끄적끄적</a>
+    </span>
+
+    <nav class="navbar-links">
+        <ul>
+            <li><a class="vertically-center" href="{% url 'home' %}">둘러보기</a></li>
+            <li><a class="vertically-center" href="">책갈피</a></li>
+            <li><a class="vertically-center" href="">팔로잉</a></li>
+            <li><a class="vertically-center" href="{% url 'back_myPage' %}">나의 책장</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <a class="navbar-btn-write vertically-center beige" href="{% url 'new' %}">
+            <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
+
+        <span class="navbar-profile">
+            <i class="fas fa-user-circle vertically-center fa-3x"></i>
+            <a class="navbar-welcome vertically-center dark-green" href="">
+                <div>
+                    안녕하세요<br>김끄적 독자님!
+                </div>
+            </a>
+        </span>
+    </div>
+</header>
