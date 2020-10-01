@@ -2,8 +2,6 @@
 
 const body = document.querySelector("body");
 
-const inputBody = document.querySelector(".new-input-body");
-
 const openBtn = document.getElementById("btn-upload");
 const modal = document.querySelector(".modal");
 const overlay = modal.querySelector(".modal__overlay");
@@ -71,6 +69,7 @@ navUpload.addEventListener("click", openUpload);
 navUnsplash.addEventListener("click", openUnsplash);
 uploadBtn.addEventListener("change", showPreview);
 
+
 // 엔터키 눌리는거 방지
 $(function () {
   $("input:text").keydown(function (evt) {
@@ -80,11 +79,15 @@ $(function () {
 
 
 // 글 쓸 때 길이 늘어나면 자동으로 높이 조정
-const autoResize = (obj) => {
-  obj.style.height = 12 + obj.scrollHeight + "px";
-};
+const inputBody = document.querySelector("textarea");
 
-autoResize(inputBody);
+inputBody.addEventListener('input', autoResize);
+
+function autoResize() {
+  this.style.height = 'auto';
+  this.style.height = this.scrollHeight + 'px';
+}
+
 
 // 책장 선택 관련 함수
 const selectedShelf = document.querySelector(".selectedShelf");
@@ -103,6 +106,7 @@ optionsList.forEach(obj => {
     optionsContainer.classList.remove("active");
   });
 });
+
 
 // 도서 검색 관련 함수
 const selectedBook = document.querySelector("#bookSearch");
