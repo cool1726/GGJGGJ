@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/myPage.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/myPage.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
     <script src="https://kit.fontawesome.com/c8c52fc116.js" crossorigin="anonymous"></script>
 </head>
@@ -45,25 +45,23 @@
     </header>
 
     <div class="navbar-bookShelf">
-        <a class="bookShelf-title" href="">나의 책장</a> 
+        <a class="bookShelf-title vertically-center green" href="">나의 책장</a> 
         <div>
-            <div class="navbar-bookShelf">
+            <div class="navbar-bookShelf-border">
                 <ul>
                     {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
-                            <li><a href="">{{bookShelf.bookShelfTitle}}</a></li>
+                            <li><a class="navbar-bookShelf-item green" href="">{{bookShelf.bookShelfTitle}}</a></li>
                         {%endif%}
                     {% endfor %}
                 </ul>
 
-                <a href="">책장 편집하기</a>
+                <a class="navbar-bookShelf-edit gray" href="">책장 편집하기</a>
             </div>
         </div>
 
         <div class="my-book-search">
-            <input id="bookName" value="" type="text">
-            <button id="search" type="button">검색</button>
-            <select name="bookInfo" id="selectBook"></select>
+            <input class="my-book-search-input" id="bookName" value="찾고 싶은 책을 검색해 보세요" type="text">
         </div>
     </div>
 

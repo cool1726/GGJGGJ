@@ -1,0 +1,56 @@
+.bookShelf-title {
+    font-family: 'paybooc-Extrabold', sans-serif;
+    text-decoration: none;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-bookShelf {
+    padding: 17px 18.5% ;
+}
+
+.navbar-bookShelf-border {
+    display: flex;
+    border: solid #205F53 1px;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding: 17px 1%;
+}
+
+.navbar-bookShelf-border li {
+    display: inline;
+    text-decoration: none;
+    list-style: none;
+    padding: 0px 10px;
+}
+
+.navbar-bookShelf-item {
+    font-family: 'paybooc-Medium', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar-bookShelf-edit {
+    font-family: 'paybooc-Medium', sans-serif;
+    font-size: 18px;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+
+.my-book-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.my-book-search-input {
+    border: 1px solid #CECECE;
+    border-radius: 45px;
+    height: 44px;
+    width: 35%;
+    font-family: 'paybooc-Medium', sans-serif;
+    color: #CECECE;
+    background: #FFFFFF;
+    padding: 15px;
+}
