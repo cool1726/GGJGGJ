@@ -43,51 +43,55 @@
             </span>
         </div>
     </header>
-
+    
     <div class="navbar-bookShelf">
         <a class="bookShelf-title vertically-center green" href="">나의 책장</a> 
-        <div>
-            <div class="navbar-bookShelf-border">
-                <ul>
-                    {% for bookShelf in bookShelves %}
-                        {% if user.username == bookShelf.username %}
-                            <li><a class="navbar-bookShelf-item green" href="">{{bookShelf.bookShelfTitle}}</a></li>
-                        {%endif%}
-                    {% endfor %}
-                </ul>
-
-                <a class="navbar-bookShelf-edit gray" href="">책장 편집하기</a>
+        <div class="bookShelf-floating">
+            <div>
+                <div class="navbar-bookShelf-border">
+                    <ul>
+                        {% for bookShelf in bookShelves %}
+                            {% if user.username == bookShelf.username %}
+                                <li><a class="navbar-bookShelf-item green" href="">{{bookShelf.bookShelfTitle}}</a></li>
+                            {%endif%}
+                        {% endfor %}
+                    </ul>
+    
+                    <a class="navbar-bookShelf-edit gray" href="">책장 편집하기</a>
+                </div>
+            </div>
+    
+            <div class="my-book-search">
+                <input class="my-book-search-input" id="bookName" value="찾고 싶은 책을 검색해 보세요" type="text">
             </div>
         </div>
+    </div>
 
-        <div class="my-book-search">
-            <input class="my-book-search-input" id="bookName" value="찾고 싶은 책을 검색해 보세요" type="text">
+    <div class="my-bookShelf-background">
+        <div class="my-bookShelf">
+            <script>
+                var count=0 
+                document.write("<div class='my-book-oneLine'>")
+            </script>
+            {% for post in posts %}
+                {% if user.username == post.username %}
+                    <!-- 카카오 api에서 이미지 불러와 주세요 백 분들 -->
+                    <script>
+                        document.write("<div class='book-info'>book</div>")
+                        count+=1
+                        if (count%6 == 0){ //6개씩 끊게하기 위한 방법입니다
+                            document.write("</div>")
+                            document.write("<div class='my-book-oneLine'>")
+                        }
+                    </script>
+                {%endif%}
+            {% endfor %}
+            <script>
+                document.write("</div>")
+            </script>
         </div>
     </div>
-
-
-    <div class="my-bookShelf">
-        <script>
-            var count=0 
-            document.write("<div class='my-book-oneLin'>")
-        </script>
-        {% for post in posts %}
-            {% if user.username == post.username %}
-                <!-- 카카오 api에서 이미지 불러와 주세요 백 분들 -->
-                <script>
-                    document.write(count)
-                    count+=1
-                    if (count%6 == 0){ //6개씩 끊게하기 위한 방법입니다
-                        document.write("</div>")
-                        document.write("<div class='my-book-oneLine'>")
-                    }
-                </script>
-            {%endif%}
-        {% endfor %}
-        <script>
-            document.write("</div>")
-        </script>
-    </div>
+    
    
     <div class="bottom-footer dark-green-background">
         <div class="footer-left beige bareunbatang-light">

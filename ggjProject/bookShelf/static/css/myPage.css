@@ -7,14 +7,14 @@
 }
 
 .navbar-bookShelf {
-    padding: 17px 18.5% ;
+    padding: 17px 18.5% 0px 18.5%;
 }
 
 .navbar-bookShelf-border {
     display: flex;
     border: solid #205F53 1px;
+    background: #FFFFFF;
     justify-content: space-between;
-    margin-top: 50px;
     padding: 17px 1%;
 }
 
@@ -53,4 +53,37 @@
     color: #CECECE;
     background: #FFFFFF;
     padding: 15px;
+}
+
+.bookShelf-floating {
+    position: relative;
+    top: 88px;
+}
+
+.my-bookShelf-background {
+    background: #1A2E1B;
+}
+
+.my-bookShelf {
+    margin: 0px 10%;
+    padding: 80px 5%;
+    background: #152416;
+}
+
+.my-book-oneLine {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding: 0px 2%;
+    border-bottom: 4px solid#FFC57A;
+    border-radius: 2px;
+}
+
+.book-info {
+    display: inline-block;
+    border: 2px solid #FFFFFF;
+    height: 212px;
+    width: 151px;
+    text-align: center;
+    color: #FFFFFF;
 }
