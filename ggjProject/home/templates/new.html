@@ -16,179 +16,87 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 
-<>
-    <header class="top-navbar white-background">
-        <span>
-            <img class="navbar-logo vertically-center" src="{% static 'ggjlogo.png' %}" alt="끄적끄적로고">
-            <a class="navbar-title vertically-center green" href="">끄적끄적</a>
-        </span>
-
-        <nav class="navbar-links">
-            <ul>
-                <li><a class="vertically-center" href="">둘러보기</a></li>
-                <li><a class="vertically-center" href="">책갈피</a></li>
-                <li><a class="vertically-center" href="">팔로잉</a></li>
-                <li><a class="vertically-center" href="">나의 책장</a></li>
-            </ul>
-        </nav>
-
-        <div>
-            <a class="navbar-btn-write vertically-center beige" href="">
-                <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
-
-            <span class="navbar-profile">
-                <i class="fas fa-user-circle vertically-center fa-3x"></i>
-                <a class="navbar-welcome vertically-center dark-green" href="">
-                    <div>
-                        안녕하세요<br>김끄적 독자님!
-                    </div>
-                </a>
-            </span>
-        </div>
-    </header>
+<body>
+    {% include 'navbar.html' %}
 
     <div class="new-container">
-        <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data"
+        <form name="form" id="form" role="form" method="POST" onsubmit="return false" enctype="multipart/form-data"
             action="{% url 'back_create' %}">
             {% csrf_token %}
-            <!-- 제목, 내용 작성 부분 name: title, body -->
-            <input type="text" name="title" class="new-input-title noto-extrabold" placeholder="제목을 입력하세요"
-                autocomplete="off">
-            <textarea type="text" name="body" class="new-input-body noto-medium" placeholder="책을 읽고 끄적끄적 후기를 남겨보세요."
-                autocomplete="off"></textarea>
+
+            <div class="text_container">
+                <!-- 제목, 내용 작성 부분 name: title, body -->
+                <input type="text" name="title" class="new_input_title noto-extrabold" placeholder="제목을 입력하세요"
+                    autocomplete="off">
+                <textarea type="text" name="body" class="new-input-body noto-medium" placeholder="책을 읽고 끄적끄적 후기를 남겨보세요."
+                    autocomplete="off" onkeydown="autoResize(this)" onkeyup="autoResize(this)"></textarea>
+            </div>
+
 
             <!-- 이미지 첨부 및 책장선택, 책검색 부분 : left와 right으로 구분함 -->
-            <div class="new-etc-container">
-                <div class="new-etc-left">
-                    <p id="btn-upload" class="noto-medium green upload-text">당신의 한 문장에 어울리는 사진이 있나요?</p>
+            <div class="etc_container">
+                <div class="etc_image">
+                    <div id="btn-upload">
+                        <i class="fas fa-cloud-upload-alt green upload-logo"></i>
+                        <p class="noto-medium green upload-text">당신의 한 문장에 <br>어울리는 사진이 있나요?</p>
+                    </div>
 
                     <div class="modal hidden">
                         <div class="modal__overlay"></div>
                         <div class="modal__content">
                             <i class="fas fa-times btn-close" type="button"></i>
-                            <div class="modal__upload">
+                            <div class="modal__nav">
+                                <p id="nav__upload" class="nav__item noto-medium dark-green">이미지 업로드</p>
+                                <p id="nav__unsplash" class="nav__item noto-medium dark-green ">unsplash</p>
+                            </div>
+                            <div class="upload-container">
                                 <label for="img-upload" class="upload-label">
-                                    <i class="fas fa-cloud-upload-alt green upload-logo"></i><br>
                                     <p class="noto-medium green upload-text">이미지 업로드하기</p>
                                 </label>
-                                <label for="img-upload" class="unsplash-label">
-                                    <p class="noto-bold green upload-text">unsplash에서
-                                        사진 찾기</p>
-                                </label>
+                                <input type="file" name="postCover" id="img-upload">
+                                <div id="img__preview"></div>
                             </div>
-                            <input type="file" name="postCover" id="img-upload">
+
+                            <div class="unsplash-container hidden">
+                                <div class="unsplash-search">
+                                    <input id="unsplashSearch" class="noto-light" value="" type="text">
+                                </div>
+                                <div id="unsplashResult"></div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="new-etc-right">
-                    <!-- select name을 bookShelfTitle => bookShelfID 로 수정했습니다.-->
-                    <select name="bookShelfID" class="new-bookshelf green paybooc-medium">
+                <div class="etc_book_shelf" data-role="selectBox">
+                    <div class="options-container">
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
-                        <!-- option value 추가했어요-->
-                        <option value='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</option>
+                        <div class="option">
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' name="bookshelf">
+                            <label for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
+                        </div>
                         {% endif %}
                         {% endfor %}
-                    </select>
-
-                    <div class="new-book-search">
-                        <input id="bookName" value="" type="text">
-                        <button id="search" type="button">검색</button>
-                        <select name="bookInfo" id="selectBook"></select>
                     </div>
-                    <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
+                    <div class="selectedShelf">
+                        책장을 선택하세요
+                    </div>
                 </div>
-
-
+                <div class="etc_book_search">
+                    <input id="bookSearch" class="noto-light" value="" type="text" placeholder="읽은 책을 검색하세요">
+                    <div id="bookResult" class="results-container"></div>
+                    <div class="selectedBook"></div>
+                </div>
+                <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
             </div>
-
         </form>
     </div>
 
-    <div class="bottom-footer dark-green-background">
-        <div class="footer-left beige bareunbatang-light">
-            (주)사르사르타르트 | 대표 OOO | 사업자등록번호 |<br>
-            Email : welcom@sarsartarte.com <br>
-            주소 : 서울시 서울구 서울길 0층
-        </div>
-        <div class="footer-right">
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">소개</a>
-                <a class="bareunbatang-light beige" href="">도움말</a>
-                <a class="bareunbatang-light beige" href="">홍보센터</a>
-                <a class="bareunbatang-light beige" href="">채용정보</a>
-            </span>
-            <br>
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">개인정보처리방침</a>
-                <a class="bareunbatang-light beige" href="">약관</a>
-                <a class="bareunbatang-light beige" href="">위치</a>
-                <a class="bareunbatang-light beige" href="">언어</a>
-                <a class="bareunbatang-light beige" href="">고객센터</a>
-                <a class="bareunbatang-light beige" href="">제휴문의</a>
-            </span>
-            <p class="bareunbatang-light beige">Copyright 2020. 사르사르타르트. All rights reserved.</p>
-        </div>
-    </div>
+    {% include 'footer.html' %}
 
-    <script>
-        const openBtn = document.getElementById("btn-upload");
-        const modal = document.querySelector(".modal");
-        const overlay = modal.querySelector(".modal__overlay");
-        const closeBtn = modal.querySelector(".btn-close");
-        const fileBtn = modal.querySelector("#img-upload")
+    <script type="text/javascript" src="../static/js/new.js"></script>
+    <script type="text/javascript" src="../static/js/new-bookapi.js"></script>
+    <script type="text/javascript" src="../static/js/new-unsplash.js"></script>
 
-        const openModal = () => {
-            modal.classList.remove("hidden");
-        }
-        const closeModal = () => {
-            modal.classList.add("hidden");
-        }
-
-        overlay.addEventListener("click", closeModal);
-        closeBtn.addEventListener("click", closeModal);
-        openBtn.addEventListener("click", openModal);
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $("#search").click(function () {
-                $.ajax({
-                        method: "GET",
-                        url: "https://dapi.kakao.com/v3/search/book?target=title",
-                        data: {
-                            query: $("#bookName").val()
-                        },
-                        headers: {
-                            Authorization: "KakaoAK ea6f4522facf69c938f433e154fd99a1"
-                        }
-                    })
-                    .done(function (msg) {
-                        $("#selectBook *").remove();
-                        for (var i = 0; i < 10; i++) {
-                            // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
-                            let data = JSON.stringify(msg.documents[i])
-                            $("#selectBook").append("<option value = '" + data +
-                                "'>" + msg.documents[i].title + "<br>" + msg
-                                .documents[i].authors + "<br>" + msg.documents[
-                                    i].thumbnail + "<br>" + msg.documents[i]
-                                .contents + "<br>" + msg.documents[i]
-                                .publisher + msg.documents[i].isbn + "</option>"
-                            );
-                            // console.log(msg.documents[i].title);
-                            // console.log(msg.documents[i].thumbnail);
-                            // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
-                            // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
-                            // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
-                            // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
-                            // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
-                        }
-                    });
-            });
-        });
-    </script>
-
-    </body>
+</body>
 
 </html>

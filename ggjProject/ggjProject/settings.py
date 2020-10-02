@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ggjProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['ggjProject/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -14,35 +14,7 @@
 </head>
 
 <body>
-    <header class="top-navbar white-background">
-        <span>
-            <img class="navbar-logo vertically-center" src="{% static 'ggjlogo.png' %}" alt="끄적끄적로고">
-            <a class="navbar-title vertically-center green" href="">끄적끄적</a>
-        </span>
-    
-        <nav class="navbar-links">
-            <ul>
-                <li><a class="vertically-center" href="">둘러보기</a></li>
-                <li><a class="vertically-center" href="">책갈피</a></li>
-                <li><a class="vertically-center" href="">팔로잉</a></li>
-                <li><a class="vertically-center" href="">나의 책장</a></li>
-            </ul>
-        </nav>
-
-        <div>
-            <a class="navbar-btn-write vertically-center beige" href="">
-                <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
-        
-            <span class="navbar-profile">
-                <i class="fas fa-user-circle vertically-center fa-3x"></i>
-                <a class="navbar-welcome vertically-center dark-green" href="">
-                    <div>
-                        안녕하세요<br>김끄적 독자님!
-                    </div> 
-                </a>
-            </span>
-        </div>
-    </header>
+    {% include 'navbar.html' %}
 
     <div class="main-container">
         <h1>this is test - sarsartarte ggjggj</h1>
@@ -68,32 +40,9 @@
         <h1>this is test - sarsartarte ggjggj</h1>
         <h1>this is test - sarsartarte ggjggj</h1>
     </div>
-   
-    <div class="bottom-footer dark-green-background">
-        <div class="footer-left beige bareunbatang-light">
-            (주)사르사르타르트 | 대표 OOO | 사업자등록번호 |<br>
-            Email : welcom@sarsartarte.com <br>
-            주소 : 서울시 서울구 서울길 0층
-        </div>
-        <div class="footer-right">
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">소개</a>
-                <a class="bareunbatang-light beige" href="">도움말</a>
-                <a class="bareunbatang-light beige" href="">홍보센터</a>
-                <a class="bareunbatang-light beige" href="">채용정보</a>
-            </span>
-            <br>
-            <span class="footer-link">
-                <a class="bareunbatang-light beige" href="">개인정보처리방침</a>
-                <a class="bareunbatang-light beige" href="">약관</a>
-                <a class="bareunbatang-light beige" href="">위치</a>
-                <a class="bareunbatang-light beige" href="">언어</a>
-                <a class="bareunbatang-light beige" href="">고객센터</a>
-                <a class="bareunbatang-light beige" href="">제휴문의</a>
-            </span>
-            <p class="bareunbatang-light beige" >Copyright 2020. 사르사르타르트. All rights reserved.</p>
-        </div>
-    </div>
+
+    {% include 'footer.html' %}
+
 </body>
 
 </html>

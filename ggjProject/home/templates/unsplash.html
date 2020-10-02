@@ -8,41 +8,54 @@
 </head>
 
 <body>
-    <input id="postCover" value="" type="text">
-    <button id="search" type="button">검색</button>
-    <div id="result">
+    <input type="text" name="search" id="search" placeholder="dsafafs">
+    <ul id="result"></ul>
     </div>
     <script>
-        $(document).ready(function () {
-            $("#search").click(function () {
-                var search = $("#postCover").val()
-                $.ajax({
-                    method: "GET",
-                    url: "https://api.unsplash.com/search/photos?page=1&query="+search+"&client_id=6YvVbroc-hwUBpgp89bjK5fgUs-_eSSH6dyPjDuqmYw&per_page=50",
-                    success:function(msg){
+        // $(document).ready(function () {
+        //     $("#search").click(function () {
+        //         var search = $("#postCover").val()
+        //         $.ajax({
+        //             method: "GET",
+        //             url: "https://api.unsplash.com/search/photos?page=1&query="+search+"&client_id=6YvVbroc-hwUBpgp89bjK5fgUs-_eSSH6dyPjDuqmYw&per_page=50",
+        //             success:function(msg){
+        //                 $("#result *").remove();
+        //                 msg.results.forEach(item =>{
+        //                     image =`<img src="${item.urls.thumb}"/><br><h1>${item.alt_description}</h1>`
+        //                     $("#result").append(image)
+        //                 });
+        //                 console.log(msg)
+        //             }
+        //         })
+        //     });
+        // });
+         $(document).ready(function(){
+            $('#search').keyup(function(){
+                if($(this).val()==''){
+                    $("#result *").remove();
+                    $('#result').append('<li>검색어를 입력해주세요 </li>')
+                }else{
+                    $('#result').html('');
+                    var searchField = $('#search').val();
+                    $.getJSON("https://api.unsplash.com/search/photos?page=1&query="+searchField+"&client_id=6YvVbroc-hwUBpgp89bjK5fgUs-_eSSH6dyPjDuqmYw&per_page=50", function(data){
                         $("#result *").remove();
-                        msg.results.forEach(item =>{
-                            image =`<img src="${item.urls.thumb}"/><br><h1>${item.alt_description}</h1>`
-                            $("#result").append(image)
-                        });
-                        console.log(msg)
-                    }
-                })
-                    // .done(function (msg) {
-                    //     $("#selectBook *").remove();
-                    //     for (var i = 0; i < 10; i++) {
-                    //         // document.getElementById("select").innerHTML="<option>"+msg.documents[i].title+"</option>"
-                    //         let data = JSON.stringify(msg.documents[i])
-                    //         $("#selectBook").append("<option value = '"+data+"'>"+msg.documents[i].title+"<br>"+msg.documents[i].authors+"<br>"+msg.documents[i].thumbnail+"<br>"+msg.documents[i].contents+"<br>"+msg.documents[i].publisher+ msg.documents[i].isbn + "</option>");
-                    //         // console.log(msg.documents[i].title);
-                    //         // console.log(msg.documents[i].thumbnail);
-                    //         // $("p").append("<strong>" + msg.documents[i].title + "</strong><br>");
-                    //         // $("p").append("<strong>" + msg.documents[i].authors + "</strong><br>");
-                    //         // $("p").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
-                    //         // $("p").append("<strong>" + msg.documents[i].contents + "</strong><br>");
-                    //         // $("p").append("<strong>" + msg.documents[i].publisher + "</strong><br>");
-                    //     }
-                    // });
+                        $.each(data, function(key,value){
+                            if(value.length==0){
+                                $('#result').append('<li>검색결과가 없습니다. </li>')
+                            }else{
+                                $("#result *").remove();
+                                data.results.forEach(item => {
+                                    image =
+                                        `<div class="list_item">
+                                        <img class="list_img" src="${item.urls.thumb}"/> <p class="list_text noto-light gray">${item.alt_description}</p>
+                                        </div>`
+                                    $("#result").append(image)
+                                });
+                            }
+                        })
+                    })
+                }
+                        
             });
         });
     </script>
