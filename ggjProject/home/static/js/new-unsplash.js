@@ -18,14 +18,20 @@ $(document).ready(function () {
                         if (value.length == 0) {
                             $('#unsplashResult').append('<p>검색결과가 없습니다. </p>')
                         } else {
-                            $("#unsplashResult *").remove();
-                            data.results.forEach(item => {
-                                image =
-                                    `<div class="list_item">
+                            //data.results.forEach(item => {
+                            for (var j = 0; j < value.length; j++) {
+                                let data = JSON.stringify(value[j]);
+                                console.log(data);
+                                $("#unsplashResult").append(
+                                    '<div class="list_item" id='+"'" + data + "'" + ' onclick="showSelectImage(this)">' +
+                                    '<img class="list_img" src="' + value[j].urls.thumb + '"/>' +
+                                    '<p class="list_text noto-light gray">by ' + value[j].user.first_name + value[j].user.last_name + '</p>' +
+                                    '</div>'
+                                    /*`<div class="list_item" id='data' onclick="showSelectImage(this)">
                                         <img class="list_img" src="${item.urls.thumb}"/> <p class="list_text noto-light gray">by ${item.user.first_name} ${item.user.last_name}</p>
-                                        </div>`
-                                $("#unsplashResult").append(image)
-                            });
+                                        </div>`*/
+                               )
+                            }
                         }
                     })
                 })

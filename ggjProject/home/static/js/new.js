@@ -146,3 +146,15 @@ function showSelectBook(event){
                                 '</div>' + '</div>')
                                 
 }
+
+//사진 선택시
+function showSelectImage(event){
+  var value = JSON.parse(event.id)
+  console.log(value)
+  $('.etc_image .list_item').remove()
+  $('.etc_image').append(
+    '<div class="list_item" id="'+ "value" + '">' +
+    '<img class="list_img" src="' + value.urls.small + '"/>' +
+    '</div>')
+  modal.classList.add("hidden");
+}
