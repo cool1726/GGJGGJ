@@ -26,7 +26,9 @@ $(document).ready(function () {
                     } else {
                         console.log(bookData);
                         for (var j = 0; j < value.length; j++) {
-                            $('#bookResult').append('<div class="book_item">' +
+                            let data = JSON.stringify(value[j]);
+                            console.log(data)
+                            $('#bookResult').append('<div class="book_item" id='+ "'" + data + "'" + ' onclick="showSelectBook(this)">' +
                                 '<img src="' + value[j].thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
                                 '<p class="book_info title noto-medium">' + value[j].title + '</p>' +
                                 '<p class="book_info authors noto-light">' + value[j].authors + ' 지음</p>' +
@@ -51,3 +53,4 @@ const strToDate = (obj) => {
     let month = obj.substring(5, 7);
     return `${year}년 ${month}월`;
 }
+

@@ -126,8 +126,23 @@ selectedBook.addEventListener("blur", deactiveBooks);
 
 booksList.forEach(obj => {
   obj.addEventListener("click", () => {
-    console.log(obj);
     div.innerHTML = obj.querySelector(".title").innerHTML;
     booksContainer.classList.remove("active");
   });
 });
+
+//도서 선택시
+function showSelectBook(event){
+  var value = JSON.parse(event.id)
+  console.log(value)
+  $('.selectedBook .book_item').remove()
+  $('.selectedBook').append('<div class="book_item" id="'+ "value" + '">' +
+                                '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
+                                '<p class="book_info title noto-medium">' + value.title + '</p>' +
+                                '<p class="book_info authors noto-light">' + value.authors + ' 지음</p>' +
+                                // '<p class="contents">' + value[j].contents + '</p>' +
+                                '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
+                                '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
+                                '</div>' + '</div>')
+                                
+}
