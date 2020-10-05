@@ -14,7 +14,8 @@ class Post(models.Model):
     title = models.CharField(max_length=1000)
     body = models.TextField()
     postDate = models.DateTimeField('date published')
-    postCover = models.ImageField(upload_to='images/postCover/')
+    postCover = models.ImageField(upload_to='images/postCover/', blank=True, null=True)
+    postCover2 = models.URLField(max_length=500, blank=True, null=True)
 
     like = models.ManyToManyField(User, related_name='like_post', blank=True)
     scrap = models.ManyToManyField(User, blank=True)

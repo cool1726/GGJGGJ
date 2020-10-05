@@ -23,7 +23,7 @@ $(document).ready(function () {
                                 let data = JSON.stringify(value[j]);
                                 console.log(data);
                                 $("#unsplashResult").append(
-                                    '<div class="list_item" id='+"'" + data + "'" + ' onclick="showSelectImage(this)">' +
+                                    '<div class="list_item" id='+"'" + value[j].urls.thumb + "'" + ' onclick="showSelectImage(id)">' +
                                     '<img class="list_img" src="' + value[j].urls.thumb + '"/>' +
                                     '<p class="list_text noto-light gray">by ' + value[j].user.first_name + value[j].user.last_name + '</p>' +
                                     '</div>'
