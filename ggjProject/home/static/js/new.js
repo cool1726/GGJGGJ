@@ -40,26 +40,33 @@ const showPreview = (e) => {
   if (imgPre.hasChildNodes()) {
     imgPre.removeChild(imgPre.firstChild);
   }
+  imgPre.appendChild(image);
 
   /* FileReader 객체 생성 */
   var reader = new FileReader();
 
   /* reader 시작 시 함수 구현 */
-  reader.onload = (function (aImg) {
+  reader.onload = (function (aImg, img) {
     console.log(1);
 
     return function (e) {
       console.log(3);
-      aImg.src = e.target.result;
+      // image url 반환하여 image(parameter name: aImg)에 저장
+      aImg.style.backgroundImage = `url('${e.target.result}')`;
+      aImg.style.backgroundSize = "cover";
+      img.src = e.target.result;
     };
-  })(image);
+  })(divImage, image);
 
   if (get_file) {
-    reader.readAsDataURL(get_file[0]);
+    reader.readAsDataURL(get_file[0]); // 업로드한 파일 객체 읽어오기
     console.log(2);
   }
 
-  imgPre.appendChild(image);
+  Array.from(openBtn.children).forEach(child => {
+    child.classList.remove("green");
+    child.classList.add("white");
+  });
 };
 
 overlay.addEventListener("click", closeModal);
@@ -132,31 +139,38 @@ booksList.forEach(obj => {
   });
 });
 
-//도서 선택시
-function showSelectBook(event){
+
+// 도서 선택시
+function showSelectBook(event) {
   var value = JSON.parse(event.id)
   console.log(value)
   $('.selectedBook .book_item').remove()
-  $('.selectedBook').append('<div class="book_item" id="'+ "value" + '">' +
-                                '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
-                                '<p class="book_info title noto-medium">' + value.title + '</p>' +
-                                '<p class="book_info authors noto-light">' + value.authors + ' 지음</p>' +
-                                // '<p class="contents">' + value[j].contents + '</p>' +
-                                '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
-                                '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
-                                '</div>' + '</div>')
+  $('.selectedBook').append('<div class="book_item" id="' + "value" + '">' +
+    '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
+    '<p class="book_info title noto-medium">' + value.title + '</p>' +
+    '<p class="book_info authors noto-light">' + value.authors + ' 지음</p>' +
+    // '<p class="contents">' + value[j].contents + '</p>' +
+    '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
+    '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
+    '</div>' + '</div>')
   $('#bookInfo').val(value);
-                                
+
 }
 
-//사진 선택시
-function showSelectImage(event){
-  console.log(event)
-  $('.etc_image .list_item').remove()
-  $('.etc_image').append(
-    '<div class="list_item" id="'+ "value" + '">' +
-    '<img class="list_img" src="' + event + '"/>' +
-    '</div>')
-  modal.classList.add("hidden");
+
+// unsplash 사진 선택시
+function showSelectImage(event) {
+  console.log(event);
+  $('.etc_image .list_item').remove();
+  closeModal();
+
+  Array.from(openBtn.children).forEach(child => {
+    child.classList.remove("green");
+    child.classList.add("white");
+  });
+
+  divImage.style.backgroundImage = `url('${event}')`;
+  divImage.style.backgroundSize = "cover";
+
   $('#postCover2').val(event);
 }

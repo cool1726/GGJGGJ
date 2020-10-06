@@ -21,7 +21,7 @@
 
     <div class="new-container">
         <!--onsubmit="return false"-->
-        <form name="form" id="form" role="form" method="POST"  enctype="multipart/form-data"
+        <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data"
             action="{% url 'back_create' %}">
             {% csrf_token %}
 
@@ -73,7 +73,8 @@
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
                         <div class="option">
-                            <input type="radio" class="radio" id='{{bookShelf.id}}' value = '{{bookShelf.id}}'name="bookshelfID">
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' value='{{bookShelf.id}}'
+                                name="bookshelfID">
                             <label for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
                         </div>
                         {% endif %}
