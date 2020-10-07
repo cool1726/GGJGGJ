@@ -4,7 +4,39 @@
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 /* 메인컨텐츠 관련 */
 .main-container {
     padding: 20px 10%;
+}
+
+#masonry-container {
+    max-width: 1200px;
+    height: auto;
+}
+
+/* closed-container : 0번 펼친 글 스타일 */
+.closed-post {
+    display: inline-block;
+    position: absolute;
+    width: 290px;
+    border-radius: 5px;
+}
+
+.closed-img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.closed-title {
+    position: absolute;
+    max-width: 240px;
+    top: 25px;
+    left: 30px;
+    font-size: 18px;
+    line-height: 140%;
 }

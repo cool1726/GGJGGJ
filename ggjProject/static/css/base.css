@@ -130,6 +130,10 @@
     success: #0CBB29
     caution: #EFDD39
 */
+.white {
+    color: #ffffff;
+}
+
 .dark-green {
     color: #1A2E1B;
 }

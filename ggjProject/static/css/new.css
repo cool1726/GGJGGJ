@@ -76,7 +76,7 @@
   align-items: flex-end;
 }
 
-.etc_container > * {
+.etc_container>* {
   margin-bottom: 20px;
 }
 
@@ -335,7 +335,7 @@
 }
 
 /* options-container active 일 때 화살표 뒤집기 */
-.etc_book_shelf .options-container.active + .selectedShelf::after {
+.etc_book_shelf .options-container.active+.selectedShelf::after {
   transform: rotate(180deg);
   text-align: center;
 }
@@ -404,7 +404,7 @@
 /* results-container active 일 때 */
 .etc_book_search .results-container.active {
   max-height: 280px;
-  width: 440px;
+  width: 100%;
   padding: 10px 0;
   opacity: 1;
   overflow-y: scroll;
@@ -429,6 +429,7 @@
 .etc_book_search .book_infos {
   display: inline-block;
   width: 280px;
+  text-align: left;
 }
 
 .etc_book_search .book_info {

@@ -23,14 +23,14 @@ $(document).ready(function () {
                                 let data = JSON.stringify(value[j]);
                                 console.log(data);
                                 $("#unsplashResult").append(
-                                    '<div class="list_item" id='+"'" + value[j].urls.thumb + "'" + ' onclick="showSelectImage(id)">' +
+                                    '<div class="list_item" id=' + "'" + value[j].urls.regular + "'" + ' onclick="showSelectImage(id)">' +
                                     '<img class="list_img" src="' + value[j].urls.thumb + '"/>' +
                                     '<p class="list_text noto-light gray">by ' + value[j].user.first_name + value[j].user.last_name + '</p>' +
                                     '</div>'
                                     /*`<div class="list_item" id='data' onclick="showSelectImage(this)">
                                         <img class="list_img" src="${item.urls.thumb}"/> <p class="list_text noto-light gray">by ${item.user.first_name} ${item.user.last_name}</p>
                                         </div>`*/
-                               )
+                                )
                             }
                         }
                     })

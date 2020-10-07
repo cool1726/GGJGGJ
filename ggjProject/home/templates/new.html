@@ -21,7 +21,7 @@
 
     <div class="new-container">
         <!--onsubmit="return false"-->
-        <form name="form" id="form" role="form" method="POST"  enctype="multipart/form-data"
+        <form name="form" id="form" role="form" method="POST" enctype="multipart/form-data"
             action="{% url 'back_create' %}">
             {% csrf_token %}
 
@@ -56,7 +56,7 @@
                                 </label>
                                 <input type="file" name="postCover" id="img-upload">
                                 <!--모델에 저장하기 위한 hidden input-->
-                                <input type="hidden" name="postCover2" id="img-upload">
+                                <input type="hidden" name="postCover2" id="img-upload2">
                                 <div id="img__preview"></div>
                             </div>
                             <div class="unsplash-container hidden">
@@ -67,14 +67,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--이미지 선택 안할 시 경고문구-->
+                    {% if error %}
+                    <div class="acc-error c-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>{{ error }}</span>
+                    </div>
+                    {% endif %}
+                    
+
                 </div>
                 <div class="etc_book_shelf" data-role="selectBox">
                     <div class="options-container">
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
                         <div class="option">
-                            <input type="radio" class="radio" id='{{bookShelf.id}}' value = '{{bookShelf.id}}'name="bookshelfID">
-                            <label for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' value="id"
+                                name="bookShelfID">
+                            <label for='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</label>
                         </div>
                         {% endif %}
                         {% endfor %}
