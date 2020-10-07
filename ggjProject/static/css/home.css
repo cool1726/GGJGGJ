@@ -4,31 +4,39 @@
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 /* 메인컨텐츠 관련 */
 .main-container {
     padding: 20px 10%;
 }
 
 #masonry-container {
-    column-count: 4;
-    column-gap : 20px;
-    border: 2px solid tomato;
+    max-width: 1200px;
+    height: auto;
 }
 
 /* closed-container : 0번 펼친 글 스타일 */
 .closed-post {
     display: inline-block;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    width: 290px;
     border-radius: 5px;
-    margin: 0;
-    margin-bottom: 20px;
-    padding: 25px;
-    background: url("{{ post.postCover.url }}") no-repeat;
-    background-size: cover;
-    border: 2px solid cornflowerblue;
+}
+
+.closed-img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .closed-title {
-    font-size: 20px;
+    position: absolute;
+    max-width: 240px;
+    top: 25px;
+    left: 30px;
+    font-size: 18px;
+    line-height: 140%;
 }
