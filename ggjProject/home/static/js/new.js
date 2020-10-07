@@ -102,6 +102,7 @@ selectedShelf.addEventListener("click", activeOption);
 
 optionsList.forEach(obj => {
   obj.addEventListener("click", () => {
+    console.log(obj)
     selectedShelf.innerHTML = obj.querySelector("label").innerHTML;
     optionsContainer.classList.remove("active");
   });
@@ -144,17 +145,18 @@ function showSelectBook(event){
                                 '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
                                 '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
                                 '</div>' + '</div>')
+  $('#bookInfo').val(value);
                                 
 }
 
 //사진 선택시
 function showSelectImage(event){
-  var value = JSON.parse(event.id)
-  console.log(value)
+  console.log(event)
   $('.etc_image .list_item').remove()
   $('.etc_image').append(
     '<div class="list_item" id="'+ "value" + '">' +
-    '<img class="list_img" src="' + value.urls.small + '"/>' +
+    '<img class="list_img" src="' + event + '"/>' +
     '</div>')
   modal.classList.add("hidden");
+  $('#postCover2').val(event);
 }

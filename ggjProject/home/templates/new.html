@@ -20,7 +20,8 @@
     {% include 'navbar.html' %}
 
     <div class="new-container">
-        <form name="form" id="form" role="form" method="POST" onsubmit="return false" enctype="multipart/form-data"
+        <!--onsubmit="return false"-->
+        <form name="form" id="form" role="form" method="POST"  enctype="multipart/form-data"
             action="{% url 'back_create' %}">
             {% csrf_token %}
 
@@ -54,9 +55,10 @@
                                     <p class="noto-medium green upload-text">이미지 업로드하기</p>
                                 </label>
                                 <input type="file" name="postCover" id="img-upload">
+                                <!--모델에 저장하기 위한 hidden input-->
+                                <input type="hidden" name="postCover2" id="img-upload">
                                 <div id="img__preview"></div>
                             </div>
-
                             <div class="unsplash-container hidden">
                                 <div class="unsplash-search">
                                     <input id="unsplashSearch" class="noto-light" value="" type="text">
@@ -71,7 +73,7 @@
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
                         <div class="option">
-                            <input type="radio" class="radio" id='{{bookShelf.id}}' name="bookshelf">
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' value = '{{bookShelf.id}}'name="bookshelfID">
                             <label for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
                         </div>
                         {% endif %}
@@ -85,6 +87,8 @@
                     <input id="bookSearch" class="noto-light" value="" type="text" placeholder="읽은 책을 검색하세요">
                     <div id="bookResult" class="results-container"></div>
                     <div class="selectedBook"></div>
+                    <!--모델에 저장하기 위한 hidden input-->
+                    <input type="hidden" name="bookInfo" id="bookInfo">
                 </div>
                 <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
             </div>
