@@ -48,13 +48,21 @@ def create(request):
     else: 
         post.bookID = flag.id
     post.username = request.user
-    post.bookShelfID = request.POST.get('bookShelfID')
+    post.bookShelfID = request.POST.get('bookShelfID') #여기서 IntegrityError 에러 발생
     post.title =  request.POST.get('title')
+    print(post.title)
     post.body = request.POST.get('body')
     post.postDate = timezone.datetime.now()
-    post.postCover = request.FILES['postCover']
-    post.save()
-    return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
+    post.postCover = request.FILES.get('postCover', None)
+    post.postCover2 = request.POST.get('postCover2', None)
+    print(post.postCover)
+    print(post.postCover2)
+    if post.postCover is None:  #None 말고 다른 값으로 고쳐야 할 듯 합니다.
+        if post.postCover2 is None:
+            return render(request, "new.html", {'error':'사진을 업로드 해주세요.'})
+    else:
+        post.save()
+        return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 
 """post삭제할 수 있는 함수"""
 def delete(request, post_id):

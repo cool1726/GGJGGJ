@@ -7,6 +7,7 @@ const modal = document.querySelector(".modal");
 const overlay = modal.querySelector(".modal__overlay");
 const closeBtn = modal.querySelector(".btn-close");
 const fileBtn = modal.querySelector("#img-upload");
+const fileBtn2 = modal.querySelector("#img-upload2"); //unsplash 사진
 
 const navUpload = modal.querySelector("#nav__upload");
 const navUnsplash = modal.querySelector("#nav__unsplash");
@@ -14,6 +15,7 @@ const contUpload = modal.querySelector(".upload-container");
 const contUnsplash = modal.querySelector(".unsplash-container");
 
 const uploadBtn = modal.querySelector("#img-upload");
+const uploadBtn2 = modal.querySelector("#img-upload2"); //unsplash 사진
 const imgPre = modal.querySelector("#img__preview");
 
 const divImage = document.querySelector(".etc_image");
@@ -153,7 +155,8 @@ function showSelectBook(event) {
     '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
     '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
     '</div>' + '</div>')
-  $('#bookInfo').val(value);
+    console.log(JSON.stringify(value))
+  $('#bookInfo').val(JSON.stringify(value));
 
 }
 
@@ -171,6 +174,7 @@ function showSelectImage(event) {
 
   divImage.style.backgroundImage = `url('${event}')`;
   divImage.style.backgroundSize = "cover";
-
-  $('#postCover2').val(event);
+  
+  $('#img-upload2').val(event);
+  fileBtn2.value = `${event}`;
 }
