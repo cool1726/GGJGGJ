@@ -15,30 +15,17 @@
 
 <body>
     {% include 'navbar.html' %}
-
     <div class="main-container">
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
-        <h1>this is test - sarsartarte ggjggj</h1>
+        지금 로그인되어있는 아이디(필명): {{user.username}}
+        <div id="masonry-container">
+            {% for post in posts %}
+            <div class="closed-post" style="background-image: url(' {{post.postCover.url}} '); background-size: cover;">
+                <p class="closed-title bareunbatang-medium white">{{post.title}}</p>
+                <!-- <img src="{{ post.postCover.url }}" class="closed-img" alt="..."> -->
+            </div>
+            {% endfor %}
+        </div>
+
     </div>
 
     {% include 'footer.html' %}
