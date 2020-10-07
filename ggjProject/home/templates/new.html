@@ -83,9 +83,9 @@
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
                         <div class="option">
-                            <input type="radio" class="radio" id='{{bookShelf.id}}' value='{{bookShelf.id}}'
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' value="id"
                                 name="bookShelfID">
-                            <label value='{{bookShelf.id}}' value='{{bookShelf.id}}' for="{{bookShelf.id}}">{{bookShelf.bookShelfTitle}}</label>
+                            <label for='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</label>
                         </div>
                         {% endif %}
                         {% endfor %}
