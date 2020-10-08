@@ -83,9 +83,8 @@
                         {% for bookShelf in bookShelves %}
                         {% if user.username == bookShelf.username %}
                         <div class="option">
-                            <input type="radio" class="radio" id='{{bookShelf.id}}' value="id"
-                                name="bookShelfID">
-                            <label for='{{bookShelf.id}}'>{{bookShelf.bookShelfTitle}}</label>
+                            <input type="radio" class="radio" id='{{bookShelf.id}}' value="{{bookShelf.id}}">
+                            <label for='{{bookShelf.id}}' id ='{{bookShelf.id}}' >{{bookShelf.bookShelfTitle}}</label>
                         </div>
                         {% endif %}
                         {% endfor %}
@@ -93,6 +92,7 @@
                     <div class="selectedShelf">
                         책장을 선택하세요
                     </div>
+                    <input type="hidden" name = "bookShelfID" id = "bookShelfID">
                 </div>
                 <div class="etc_book_search">
                     <input id="bookSearch" class="noto-light" value="" type="text" placeholder="읽은 책을 검색하세요">

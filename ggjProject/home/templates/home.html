@@ -20,7 +20,11 @@
         <div id="masonry-container">
             {% for post in posts %}
             <div class="closed-post">
+                {% if post.postCover.url != null %}
                 <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+                {% elif post.postCover2 != null %}
+                <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+                {% endif %}
                 <p class="closed-title noto-medium white">{{post.title}}</p>
                 <p class="hidden closed-body">{{post.body}}</p>
             </div>

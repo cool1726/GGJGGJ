@@ -111,7 +111,8 @@ selectedShelf.addEventListener("click", activeOption);
 
 optionsList.forEach(obj => {
   obj.addEventListener("click", () => {
-    console.log(obj)
+    console.log(obj.querySelector("label").id)
+    $('#bookShelfID').val(obj.querySelector("label").id);
     selectedShelf.innerHTML = obj.querySelector("label").innerHTML;
     optionsContainer.classList.remove("active");
   });

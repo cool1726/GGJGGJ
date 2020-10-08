@@ -26,8 +26,15 @@ $(document).ready(function () {
                     } else {
                         console.log(bookData);
                         for (var j = 0; j < value.length; j++) {
-                            let data = JSON.stringify(value[j]);
-                            console.log(data)
+                            var toObj = new Object;
+                            toObj.thumbnail = value[j].thumbnail;
+                            toObj.title = value[j].title;
+                            toObj.isbn = value[j].isbn;
+                            toObj.authors = value[j].authors;
+                            toObj.publisher = value[j].publisher;
+                            toObj.datetime = value[j].datetime;
+                            let data = JSON.stringify(toObj);
+                            console.log(toObj)
                             $('#bookResult').append('<div class="book_item" id='+ "'" + data + "'" + ' onclick="showSelectBook(this)">' +
                                 '<img src="' + value[j].thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
                                 '<p class="book_info title noto-medium">' + value[j].title + '</p>' +

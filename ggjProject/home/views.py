@@ -49,19 +49,19 @@ def create(request):
     else: 
         post.bookID = flag.id
     post.username = request.user
-    post.bookShelfID = request.POST.get('bookShelfID') #여기서 IntegrityError 에러 발생
+    print(request.POST.get('bookShelfID') )
+    post.bookShelfID = request.POST.get('bookShelfID') 
     post.title =  request.POST.get('title')
-    print(post.title)
     post.body = request.POST.get('body')
     post.postDate = timezone.datetime.now()
     post.postCover = request.FILES.get('postCover', None)
     post.postCover2 = request.POST.get('postCover2', None)
-    if len(post.postCover2) == 0:
-         if not bool(post.postCover.name) :  
-            return render(request, "new.html", {'error':'사진을 업로드 해주세요.', 'bookShelves': bookShelves})
-    else:
-        post.save()
-        return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
+    # if len(post.postCover2) == 0:
+    #      if not bool(post.postCover.name) :  
+    #         return render(request, "new.html", {'error':'사진을 업로드 해주세요.', 'bookShelves': bookShelves})
+    # else:
+    post.save()
+    return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 
 """post삭제할 수 있는 함수"""
 def delete(request, post_id):

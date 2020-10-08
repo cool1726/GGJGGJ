@@ -68,7 +68,11 @@
         <div class="body_box">
             <p>title: {{post.title}}</p>
             <p>body: {{post.body}}</p>
-            <img src=" {{ post.postCover.url }}" class="card-img-top" alt="...">
+            {% if post.postCover.url != null %}
+            <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+            {% elif post.postCover2 != null %}
+            <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+            {% endif %}
             <p>username: {{post.username}}</p>
             <p>postDate: {{post.postDate}}</p>
             <p>좋아요 갯수: {{post.like.all.count}}</p>
