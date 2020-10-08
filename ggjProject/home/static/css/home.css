@@ -1,3 +1,4 @@
+/* reset & default css style */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,21 +9,30 @@
     display: none;
 }
 
+/* 1024px 이상일 때 적용할 기본 스타일 */
+
 /* 메인컨텐츠 관련 */
 .main-container {
-    padding: 20px 10%;
+    width: 1165px;
+    height: 100%;
+    padding: 20px 30px;
+    margin: 0 auto;
+    box-sizing: content-box;
+    border: 2px solid royalblue;
 }
 
 #masonry-container {
-    max-width: 1200px;
-    height: auto;
+    max-width: 1165px;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2px solid tomato;
 }
 
 /* closed-container : 0번 펼친 글 스타일 */
 .closed-post {
     display: inline-block;
     position: absolute;
-    width: 290px;
+    width: 280px;
     border-radius: 5px;
 }
 
@@ -34,9 +44,20 @@
 
 .closed-title {
     position: absolute;
-    max-width: 240px;
+    max-width: 220px;
     top: 25px;
     left: 30px;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 140%;
 }
+
+
+@media ( max-width: 1023px ) { 
+    /* 1023px 이하일 때 적용할 스타일*/
+}
+@media ( max-width: 767px ) { 
+    /* 767px 이하일 때 적용할 스타일 */ 
+}
+
+
+

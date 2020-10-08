@@ -3,8 +3,8 @@ window.onload = () => {
     let image = document.querySelectorAll(".closed-img");
     let body = document.querySelectorAll(".closed-body");
     let imgStack = [0, 0, 0, 0];
-    const colWidth = 310;
-    const bottomMargin = 20;
+    const colWidth = 295;
+    const bottomMargin = 15;
     const minHeight = 160;
 
     // 각 글 위치는 imgStack이라는 배열을 만들어 계산함 (Column의 개수에 해당하는 길이를 가짐)
