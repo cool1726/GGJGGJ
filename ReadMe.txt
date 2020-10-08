@@ -87,7 +87,7 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 - 이슈 : 이미지 화질, 제목(title) 글자수제한, 본문 글자수제한 등
 
 <2020.10.08 백>
+- new.html 제출하기 되게끔 하려고 했는데 실패..! 아직 에러 납니다 (create함수 IntegrityError 에러)
 - create 함수에서 book api 가져오는 중 발생하는 에러 해결했습니다.
 - unsplash bookCover url 주소 받아와지도록 new.js 조금 수정했습니다.
-- new.html에 사진 미입력 시 경고문구가 뜨도록 수정 하던 중, 에러 발생했습니다. 이건 추후 수정 예정 (home에 views.py create 함수 참고)
-
+- new.html에 사진 미입력 시 경고문구 뜨도록 수정했습니다.
