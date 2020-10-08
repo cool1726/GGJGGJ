@@ -36,6 +36,13 @@ const openUnsplash = () => {
   contUpload.classList.add("hidden");
   contUnsplash.classList.remove("hidden");
 };
+function uploadClick(){
+  if(form.postCover2.url!=null){
+    form.postCover2.url=null;
+    console.log(form.postCover2.url)
+  }
+  return true;
+}
 const showPreview = (e) => {
   let get_file = e.target.files;
   let image = document.createElement("img");
@@ -50,7 +57,7 @@ const showPreview = (e) => {
   /* reader 시작 시 함수 구현 */
   reader.onload = (function (aImg, img) {
     console.log(1);
-
+    // form.postCover2.value=null;
     return function (e) {
       console.log(3);
       // image url 반환하여 image(parameter name: aImg)에 저장
@@ -161,9 +168,11 @@ function showSelectBook(event) {
 
 }
 
-
 // unsplash 사진 선택시
 function showSelectImage(event) {
+  
+  $("#img-upload").replaceWith($("#img-upload").val('').clone(true));
+ 
   console.log(event);
   $('.etc_image .list_item').remove();
   closeModal();
@@ -175,7 +184,25 @@ function showSelectImage(event) {
 
   divImage.style.backgroundImage = `url('${event}')`;
   divImage.style.backgroundSize = "cover";
-  
   $('#img-upload2').val(event);
   fileBtn2.value = `${event}`;
+}
+
+//폼내용 다 채웠는지 체크
+function formCheck(){
+  if(form.title.value == ""){
+    alert("제목을 입력해주세요");
+    return false;
+  }else if(form.body.value == ""){
+    alert("후기를 입력해주세요");
+    return false;
+  }else if(form.bookShelfID.value==""){
+    alert("책장을 선택해주세요");
+  }else if(form.bookInfo.value==""){
+    alert("읽으신 책을 선택해주세요");
+  }else if(form.postCover.files.length==0 && form.postCover2.value == null){
+    alert("사진을 올려주세요");
+  }else{
+    document.form.submit();
+  }
 }

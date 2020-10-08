@@ -69,12 +69,12 @@
                     </div>
 
                     <!--이미지 선택 안할 시 경고문구-->
-                    {% if error %}
+                    <!-- {% if error %}
                     <div class="acc-error c-error">
                         <i class="fas fa-exclamation-triangle"></i>
                         <span>{{ error }}</span>
                     </div>
-                    {% endif %}
+                    {% endif %} -->
                     
 
                 </div>
@@ -101,7 +101,7 @@
                     <!--모델에 저장하기 위한 hidden input-->
                     <input type="hidden" name="bookInfo" id="bookInfo">
                 </div>
-                <input type="submit" class="new-btn-save paybooc-bold beige" value="작성 완료">
+                <input type="button" class="new-btn-save paybooc-bold beige" value="작성 완료" onclick="formCheck()">
             </div>
         </form>
     </div>

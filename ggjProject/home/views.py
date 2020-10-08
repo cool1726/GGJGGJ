@@ -42,7 +42,7 @@ def create(request):
         book.ISBN = bookInfo['isbn'] #isbn
         book.writer = bookInfo['authors'][0] #authors
         book.bookCover = bookInfo['thumbnail'] #thumbnail
-        book.description = bookInfo['contents'] #contents
+        #book.description = bookInfo['contents'] #contents
         book.publisher = bookInfo['publisher'] #publisher
         book.save()
         post.bookID = book.id
