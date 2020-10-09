@@ -74,7 +74,10 @@
                 document.write("<div class='my-book-oneLine'>")
             </script>
             {% for post in posts %}
-                {% if user.username == post.username %}
+                
+                    <a href=""><img src="{{post.bookID.bookCover}}" alt=""></a>
+                    
+                    
                     <!-- 카카오 api에서 이미지 불러와 주세요 백 분들 -->
                     <script>
                         document.write("<div class='book-info'>book</div>")
@@ -84,7 +87,6 @@
                             document.write("<div class='my-book-oneLine'>")
                         }
                     </script>
-                {%endif%}
             {% endfor %}
             <script>
                 document.write("</div>")

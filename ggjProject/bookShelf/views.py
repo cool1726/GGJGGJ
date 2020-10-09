@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import BookShelf
-from home.models import Post
+from home.models import Post, Book
 from .forms import BookShelfUpdate
 # Create your views here.
 """back_newBookShelf.html로 이동하는 함수"""
@@ -23,8 +23,8 @@ def createBookShelf(request):
 """back_myPage.html 로 이동하는 함수. """
 def myPage(request):
     bookShelves = BookShelf.objects.all()
-    posts = Post.objects.all()
-    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': posts})
+
+    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
 """책장 삭제 함수"""
 def deleteBookShelf(request, bookShelf_id):

@@ -46,9 +46,9 @@ def create(request):
         #book.description = bookInfo['contents'] #contents
         book.publisher = bookInfo['publisher'] #publisher
         book.save()
-        post.bookID = book.id
+        post.bookID = book
     else: 
-        post.bookID = flag.id
+        post.bookID = flag
     post.username = request.user
     print(request.POST.get('bookShelfID') )
     post.bookShelfID = request.POST.get('bookShelfID') 
@@ -62,12 +62,8 @@ def create(request):
     #         return render(request, "new.html", {'error':'사진을 업로드 해주세요.', 'bookShelves': bookShelves})
     # else:
     post.save()
-    profiles = Profile.objects.all()
-    for i in profiles:
-        if (str)(i.user.username) == (str)(post.username):
-            flag = i
-            break
-    flag.postID.add(post.id)
+    
+    request.user.profile.postID.add(post.id)
     return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 
 """post삭제할 수 있는 함수"""
