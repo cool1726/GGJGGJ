@@ -32,7 +32,7 @@ def signup(request):
         else:
             return render(request, "signup.html", {'error':'비밀번호가 일치하지 않습니다'})
     else:
-        return render(request, "signup.html")
+        return render(request, "back_signup.html")
 
 """로그인 함수입니다. 로그인 유지까지 구현했는데 아직 되는지 안되는지 모르겠어요.일단 오류는 안남"""
 def login(request):

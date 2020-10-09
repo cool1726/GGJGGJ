@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden, HttpResponseRedirect, HttpRespons
 from urllib.parse import urlparse
 from django.views.generic.base import View
 from .models import Post, Book
+from account.models import Profile
 from django.utils import timezone
 from bookShelf.models import BookShelf
 from .forms import PostUpdate
@@ -61,6 +62,12 @@ def create(request):
     #         return render(request, "new.html", {'error':'사진을 업로드 해주세요.', 'bookShelves': bookShelves})
     # else:
     post.save()
+    profiles = Profile.objects.all()
+    for i in profiles:
+        if (str)(i.user.username) == (str)(post.username):
+            flag = i
+            break
+    flag.postID.add(post.id)
     return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 
 """post삭제할 수 있는 함수"""

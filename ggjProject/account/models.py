@@ -12,6 +12,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=10)
     phoneNumber = models.TextField(max_length=20)
+    postID = models.ManyToManyField(Post, related_name= 'myPost')
 """
 팔로우 모델입니다. 
 """
