@@ -75,12 +75,13 @@
             </script>
             {% for post in posts %}
                 
-                    <a href=""><img src="{{post.bookID.bookCover}}" alt=""></a>
+                   
                     
                     
                     <!-- 카카오 api에서 이미지 불러와 주세요 백 분들 -->
                     <script>
-                        document.write("<div class='book-info'>book</div>")
+                        document.write("<div class='book-info'>")
+                        document.write('<a href=""><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
                         count+=1
                         if (count%6 == 0){ //6개씩 끊게하기 위한 방법입니다
                             document.write("</div>")
