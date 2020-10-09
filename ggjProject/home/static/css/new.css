@@ -403,11 +403,11 @@
 
 /* results-container active 일 때 */
 .etc_book_search .results-container.active {
-  max-height: 280px;
   width: 100%;
+  max-height: 200px;
   padding: 10px 0;
   opacity: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .results-container .exception {

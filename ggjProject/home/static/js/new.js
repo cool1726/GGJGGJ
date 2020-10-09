@@ -36,9 +36,9 @@ const openUnsplash = () => {
   contUpload.classList.add("hidden");
   contUnsplash.classList.remove("hidden");
 };
-function uploadClick(){
-  if(form.postCover2.url!=null){
-    form.postCover2.url=null;
+function uploadClick() {
+  if (form.postCover2.url != null) {
+    form.postCover2.url = null;
     console.log(form.postCover2.url)
   }
   return true;
@@ -142,18 +142,13 @@ selectedBook.addEventListener("keydown", activeBooks);
 selectedBook.addEventListener("focus", activeBooks);
 selectedBook.addEventListener("blur", deactiveBooks);
 
-booksList.forEach(obj => {
-  obj.addEventListener("click", () => {
-    div.innerHTML = obj.querySelector(".title").innerHTML;
-    booksContainer.classList.remove("active");
-  });
-});
-
 
 // 도서 선택시
 function showSelectBook(event) {
   var value = JSON.parse(event.id)
   console.log(value)
+  $('#bookResult').css("max-height", "0px");
+  deactiveBooks;
   $('.selectedBook .book_item').remove()
   $('.selectedBook').append('<div class="book_item" id="' + "value" + '">' +
     '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
@@ -163,16 +158,16 @@ function showSelectBook(event) {
     '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
     '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
     '</div>' + '</div>')
-    console.log(JSON.stringify(value))
+  console.log(JSON.stringify(value))
   $('#bookInfo').val(JSON.stringify(value));
 
 }
 
 // unsplash 사진 선택시
 function showSelectImage(event) {
-  
+
   $("#img-upload").replaceWith($("#img-upload").val('').clone(true));
- 
+
   console.log(event);
   $('.etc_image .list_item').remove();
   closeModal();
@@ -189,20 +184,20 @@ function showSelectImage(event) {
 }
 
 //폼내용 다 채웠는지 체크
-function formCheck(){
-  if(form.title.value == ""){
+function formCheck() {
+  if (form.title.value == "") {
     alert("제목을 입력해주세요");
     return false;
-  }else if(form.body.value == ""){
+  } else if (form.body.value == "") {
     alert("후기를 입력해주세요");
     return false;
-  }else if(form.bookShelfID.value==""){
+  } else if (form.bookShelfID.value == "") {
     alert("책장을 선택해주세요");
-  }else if(form.bookInfo.value==""){
+  } else if (form.bookInfo.value == "") {
     alert("읽으신 책을 선택해주세요");
-  }else if(form.postCover.files.length==0 && form.postCover2.value == null){
+  } else if (form.postCover.files.length == 0 && form.postCover2.value == null) {
     alert("사진을 올려주세요");
-  }else{
+  } else {
     document.form.submit();
   }
 }

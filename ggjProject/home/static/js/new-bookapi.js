@@ -25,6 +25,11 @@ $(document).ready(function () {
                         $('#bookResult').append('<p class="exception">검색결과가 없습니다 </p>')
                     } else {
                         console.log(bookData);
+                        if (value.length == 1) {
+                            $('#bookResult').css("max-height", "200px");
+                        } else {
+                            $('#bookResult').css("max-height", "320px");
+                        }
                         for (var j = 0; j < value.length; j++) {
                             var toObj = new Object;
                             toObj.thumbnail = value[j].thumbnail;
@@ -35,7 +40,7 @@ $(document).ready(function () {
                             toObj.datetime = value[j].datetime;
                             let data = JSON.stringify(toObj);
                             console.log(toObj)
-                            $('#bookResult').append('<div class="book_item" id='+ "'" + data + "'" + ' onclick="showSelectBook(this)">' +
+                            $('#bookResult').append('<div class="book_item" id=' + "'" + data + "'" + ' onclick="showSelectBook(this)">' +
                                 '<img src="' + value[j].thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
                                 '<p class="book_info title noto-medium">' + value[j].title + '</p>' +
                                 '<p class="book_info authors noto-light">' + value[j].authors + ' 지음</p>' +
