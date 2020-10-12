@@ -81,12 +81,10 @@
                 <div class="etc_book_shelf" data-role="selectBox">
                     <div class="options-container">
                         {% for bookShelf in bookShelves %}
-                        {% if user.username == bookShelf.username %}
                         <div class="option">
                             <input type="radio" class="radio" id='{{bookShelf.id}}' value="{{bookShelf.id}}">
                             <label for='{{bookShelf.id}}' id ='{{bookShelf.id}}' >{{bookShelf.bookShelfTitle}}</label>
                         </div>
-                        {% endif %}
                         {% endfor %}
                     </div>
                     <div class="selectedShelf">

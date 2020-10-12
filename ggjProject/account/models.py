@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from home.models import Post
+from bookShelf.models import BookShelf
 
 # Create your models here.
 """
@@ -13,6 +14,11 @@ class Profile(models.Model):
     name = models.TextField(max_length=10)
     phoneNumber = models.TextField(max_length=20)
     postID = models.ManyToManyField(Post, related_name= 'myPost')
+    scrap = models.ManyToManyField(Post, related_name = 'myScarp', blank=True)
+    bookShelf = models.ManyToManyField(BookShelf, related_name='myBookShelf', blank = True)
+
+    def __str__(self):
+        return str(self.user)
 """
 팔로우 모델입니다. 
 """

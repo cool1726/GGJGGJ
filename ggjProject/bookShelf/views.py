@@ -17,6 +17,7 @@ def createBookShelf(request):
     bookShelf.postID = request.POST.get('postID')
     bookShelf.bookShelfTitle = request.GET['bookShelfTitle']
     bookShelf.save()
+    request.user.profile.bookShelf.add(bookShelf.id)
 
     return redirect('/back_myPage/')
 
@@ -24,7 +25,7 @@ def createBookShelf(request):
 def myPage(request):
     bookShelves = BookShelf.objects.all()
 
-    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
+    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
 """책장 삭제 함수"""
 def deleteBookShelf(request, bookShelf_id):

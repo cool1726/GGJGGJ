@@ -20,13 +20,12 @@ def home(request):
 
 """back_new.html로 이동"""
 def new(request):
-    bookShelves = BookShelf.objects.all()
-    return render(request, 'new.html', {'bookShelves': bookShelves})
+    return render(request, 'new.html', {'bookShelves': request.user.profile.bookShelf.all})
 
 """
 post create 함수
 """
-def create(request):
+def create(request): #책장에 post 추가해줘야합니다. 책장이 bookShelfID 로 넘어옴. 저 넘어본 id를 가지고 책장.postid.add
     bookShelves = BookShelf.objects.all()
     bookInfo = json.loads(request.POST.get('bookInfo'))
     books = Book.objects.all()
@@ -50,8 +49,8 @@ def create(request):
     else: 
         post.bookID = flag
     post.username = request.user
-    print(request.POST.get('bookShelfID') )
-    post.bookShelfID = request.POST.get('bookShelfID') 
+    bookshelfID = request.POST.get('bookShelfID') 
+    post.bookShelfID = bookshelfID
     post.title =  request.POST.get('title')
     post.body = request.POST.get('body')
     post.postDate = timezone.datetime.now()
@@ -63,6 +62,8 @@ def create(request):
     # else:
     post.save()
     
+    bookShelf = bookShelves.get(id = bookshelfID)
+    bookShelf.postID.add(post.id)
     request.user.profile.postID.add(post.id)
     return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
 
@@ -120,9 +121,11 @@ class postScrap(View):
                 post_id = kwargs['post_id']
                 post = Post.objects.get(pk=post_id)
                 user = request.user
-                if user in post.scrap.all():
+                if post in user.profile.scrap.all():
+                    user.profile.scrap.remove(post)
                     post.scrap.remove(user)
                 else :
+                    user.profile.scrap.add(post)
                     post.scrap.add(user)
             referer_url = request.META.get('HTTP_REFERER')
             path = urlparse(referer_url).path

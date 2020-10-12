@@ -36,14 +36,11 @@ const openUnsplash = () => {
   contUpload.classList.add("hidden");
   contUnsplash.classList.remove("hidden");
 };
-function uploadClick() {
-  if (form.postCover2.url != null) {
-    form.postCover2.url = null;
-    console.log(form.postCover2.url)
-  }
-  return true;
-}
+
 const showPreview = (e) => {
+  if (form.postCover2.value != null) {
+    form.postCover2.value = null;
+  }
   let get_file = e.target.files;
   let image = document.createElement("img");
   if (imgPre.hasChildNodes()) {
@@ -166,7 +163,9 @@ function showSelectBook(event) {
 // unsplash 사진 선택시
 function showSelectImage(event) {
 
-  $("#img-upload").replaceWith($("#img-upload").val('').clone(true));
+  //$("#img-upload").replaceWith($("#img-upload").val('').clone(true));
+
+  form.postCover.value = null;
 
   console.log(event);
   $('.etc_image .list_item').remove();
