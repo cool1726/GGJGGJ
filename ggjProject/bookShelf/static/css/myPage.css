@@ -73,7 +73,7 @@
 .my-book-oneLine {
     display: flex;
     margin-top: 50px;
-    padding: 0px 2% 0px 6.5%;
+    padding: 0px 2% 0px 8.5%;
     flex-direction: row;
     flex-wrap: wrap;
 }
