@@ -50,7 +50,7 @@
     height: 44px;
     width: 35%;
     font-family: 'paybooc-Medium', sans-serif;
-    color: #CECECE;
+    color: #222222;
     background: #FFFFFF;
     padding: 15px;
 }
@@ -72,18 +72,20 @@
 
 .my-book-oneLine {
     display: flex;
-    justify-content: space-between;
     margin-top: 50px;
-    padding: 0px 2%;
-    border-bottom: 4px solid#FFC57A;
-    border-radius: 2px;
+    padding: 0px 2% 0px 6.5%;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .book-info {
     display: inline-block;
-    border: 2px solid #FFFFFF;
-    height: 212px;
-    width: 151px;
+    padding: 2% 4% 0px 4%;
     text-align: center;
-    color: #FFFFFF;
+    border-bottom: 4px solid#FFC57A;
+}
+
+.book-cover {
+    top:4px;
+    position: relative;
 }

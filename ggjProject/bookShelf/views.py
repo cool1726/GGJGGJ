@@ -25,7 +25,7 @@ def createBookShelf(request):
 def myPage(request):
     bookShelves = BookShelf.objects.all()
 
-    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
+    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
 """책장 삭제 함수"""
 def deleteBookShelf(request, bookShelf_id):

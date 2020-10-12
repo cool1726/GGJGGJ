@@ -14,35 +14,8 @@
 </head>
 
 <body>
-    <header class="top-navbar white-background">
-        <span>
-            <img class="navbar-logo vertically-center" src="{% static 'ggjlogo.png' %}" alt="끄적끄적로고">
-            <a class="navbar-title vertically-center green" href="">끄적끄적</a>
-        </span>
-    
-        <nav class="navbar-links">
-            <ul>
-                <li><a class="vertically-center" href="">둘러보기</a></li>
-                <li><a class="vertically-center" href="">책갈피</a></li>
-                <li><a class="vertically-center" href="">팔로잉</a></li>
-                <li><a class="vertically-center" href="">나의 책장</a></li>
-            </ul>
-        </nav>
 
-        <div>
-            <a class="navbar-btn-write vertically-center beige" href="">
-                <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
-        
-            <span class="navbar-profile">
-                <i class="fas fa-user-circle vertically-center fa-3x"></i>
-                <a class="navbar-welcome vertically-center dark-green" href="">
-                    <div>
-                        안녕하세요<br>김끄적 독자님!
-                    </div> 
-                </a>
-            </span>
-        </div>
-    </header>
+    {% include 'navbar.html' %}
     
     <div class="navbar-bookShelf">
         <a class="bookShelf-title vertically-center green" href="">나의 책장</a> 
@@ -50,9 +23,10 @@
             <div>
                 <div class="navbar-bookShelf-border">
                     <ul>
+                        <li><a class="navbar-bookShelf-item green" href="javascript:return false;" onclick="reloadBookShelf(-1);">전체</a></li>
                         {% for bookShelf in bookShelves %}
                             {% if user.username == bookShelf.username %}
-                                <li><a class="navbar-bookShelf-item green" href="">{{bookShelf.bookShelfTitle}}</a></li>
+                                <li><a class="navbar-bookShelf-item green" href="javascript:return false;" onclick="reloadBookShelf('{{bookShelf.id}}')">{{bookShelf.bookShelfTitle}}</a></li>
                             {%endif%}
                         {% endfor %}
                     </ul>
@@ -62,35 +36,69 @@
             </div>
     
             <div class="my-book-search">
-                <input class="my-book-search-input" id="bookName" value="찾고 싶은 책을 검색해 보세요" type="text">
+                <input onkeyup="searchBook()" class="my-book-search-input" id="bookName" placeholder="찾고 싶은 책을 검색하세요" type="text">
             </div>
         </div>
     </div>
 
     <div class="my-bookShelf-background">
         <div class="my-bookShelf">
+            <!-- 전체 로딩을 끝내고, 책장을 선택하면 책장에 맞는 책만 보여 주도록 -->
             <script>
-                var count=0 
+                var count=0;
+
                 document.write("<div class='my-book-oneLine'>")
             </script>
             {% for post in posts %}
-                
-                   
-                    
-                    
-                    <!-- 카카오 api에서 이미지 불러와 주세요 백 분들 -->
                     <script>
-                        document.write("<div class='book-info'>")
-                        document.write('<a href=""><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
-                        count+=1
-                        if (count%6 == 0){ //6개씩 끊게하기 위한 방법입니다
-                            document.write("</div>")
-                            document.write("<div class='my-book-oneLine'>")
-                        }
+                        document.write("<div class='book-info' id='{{post.bookShelfID}}'>")
+                        document.write('<a class="book-cover" href="" id="{{post.bookID.bookName}}"><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
                     </script>
             {% endfor %}
             <script>
                 document.write("</div>")
+            
+                var item, idOfElements;
+
+                function reloadBookShelf(id) {
+                    item = document.getElementsByClassName("book-info");
+                    if(id==-1){
+                        for(i=0; i<item.length;i++){
+                            item[i].style.display = "flex";
+                        }
+                    }else{
+                        for(i=0; i<item.length;i++){
+                            idOfElements = item[i].id
+                            if(idOfElements==id){
+                                item[i].style.display = "flex";
+                            }else{
+                                item[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+                function searchBook() {
+            
+                    var value, name, item, i;
+
+                    value = document.getElementById("bookName").value;
+                    item = document.getElementsByClassName("book-info");
+                    
+                    console.log(value);
+
+                    name = document.getElementsByClassName("book-cover")
+
+                    for(i=0;  i<item.length; i++){
+                        if(name[i].id.indexOf(value) > -1){
+                            console.log("in");
+                            item[i].style.display = "flex";
+                        }else{
+                            console.log("else");
+                            item[i].style.display = "none";
+                        }
+                    }
+                }
             </script>
         </div>
     </div>
