@@ -42,6 +42,16 @@
     border-radius: 5px;
 }
 
+.closed-opacity {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 .closed-title {
     position: absolute;
     max-width: 220px;
@@ -50,7 +60,6 @@
     font-size: 16px;
     line-height: 140%;
 }
-
 
 @media ( max-width: 1023px ) { 
     /* 1023px 이하일 때 적용할 스타일*/
