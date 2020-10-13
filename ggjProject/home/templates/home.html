@@ -19,16 +19,33 @@
         지금 로그인되어있는 아이디(필명): {{user.username}}
         <div id="masonry-container">
             {% for post in posts reversed %}
-            <div class="closed-post">
-                <div class="closed-opacity"> </div>
-                {% if post.postCover.url != null %}
-                <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
-                {% elif post.postCover2 != null %}
-                <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
-                {% endif %}
+            <div class="post-container">
+                <div class="closed-post">
+                    <img class="closed-opacity"> </img>
+                    {% if post.postCover.url != null %}
+                    <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+                    {% elif post.postCover2 != null %}
+                    <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+                    {% endif %}
 
-                <p class="closed-title noto-medium white">{{post.title}}</p>
-                <p class="hidden closed-body">{{post.body}}</p>
+                    <p class="closed-title noto-medium white">{{post.title}}</p>
+                    <p class="hidden closed-body">{{post.body}}</p>
+                </div>
+                <div class="opened-post hidden">
+                    {% if post.postCover.url != null %}
+                    <img src="{{ post.postCover.url }}" class="opened-img" alt="...">
+                    {% elif post.postCover2 != null %}
+                    <img src="{{ post.postCover2 }}" class="opened-img" alt="...">
+                    {% endif %}
+                    <span class="pub-description pub-date">{{ post.postDate }}</span>
+                    <span class="pub-description">{{ post.username }}</span>
+                    <div class="bottom-post-box">
+                        <h3 class="post-title bareunbatang-medium">{{ post.title }}</h3>
+                        <p class="post-body bareunbatang-light">{{ post.body }}</p>
+
+                        <p class="open-book"> > 어떤 책인지 확인하기 < </p>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>

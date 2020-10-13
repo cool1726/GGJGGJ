@@ -18,14 +18,12 @@
     padding: 20px 30px;
     margin: 0 auto;
     box-sizing: content-box;
-    border: 2px solid royalblue;
 }
 
 #masonry-container {
     max-width: 1165px;
     height: 100%;
     box-sizing: border-box;
-    border: 2px solid tomato;
 }
 
 /* closed-container : 0번 펼친 글 스타일 */
@@ -34,6 +32,7 @@
     position: absolute;
     width: 280px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .closed-img {
@@ -43,13 +42,12 @@
 }
 
 .closed-opacity {
-    display: inline-block;
     position: absolute;
     width: 100%;
     margin: 0;
     padding: 0;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .closed-title {
@@ -59,6 +57,31 @@
     left: 30px;
     font-size: 16px;
     line-height: 140%;
+}
+
+/* opened-container : 1번 펼친 글 스타일 (책정보 없고 글만 있는 상태) */
+.opened-post {
+    width: 575px;
+    border-radius: 5px;
+    border: 1px solid #CECECE;
+}
+
+.opened-img {
+    width: 573px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.bottom-post-box {
+    padding: 30px 50px;
+}
+.post-title {
+
+}
+
+.post-body {
+    line-height: 1.5;
 }
 
 @media ( max-width: 1023px ) { 
