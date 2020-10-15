@@ -89,3 +89,35 @@
     top:4px;
     position: relative;
 }
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+}
+
+.modal_overlay {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal_content {
+    background: white;
+    padding: 20px 20px;
+    position: absolute;
+    width: 700px;
+    height: 650px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}

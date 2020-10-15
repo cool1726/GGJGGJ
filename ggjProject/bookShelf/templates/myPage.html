@@ -32,6 +32,35 @@
                     </ul>
     
                     <a class="navbar-bookShelf-edit gray" href="">책장 편집하기</a>
+
+                    <div class="modal">
+                        <!--배경-->
+                        <div class="modal_overlay"></div>
+                        <!--컨텐츠-->
+                        <div class="modal_content">
+                            <!--종료 아이콘-->
+                            <i class="fas fa-times btn-close" type="button"></i>
+                            <div class="modal_title">나의 책장 편집</div>
+                            
+                            <div class="bookShelf_editor">
+                                {% for bookShelf in bookShelves %}
+                                    {% if user.username == bookShelf.username %}
+                                        <div>
+                                            <p>{{bookShelf.bookShelfTitle}}</p>
+                                            <input value="{{bookShelf.bookShelfTitle}}">
+                                            <p>완료</p>
+                                            <div>
+                                                <i class="far fa-edit"></i>
+                                                <i class="far fa-trash-alt"></i>
+                                            </div>
+                                        </div>
+                                    {%endif%}
+                                {% endfor %}
+                                <input placeholder="새로운 책장 이름을 입력하세요" type="text">
+                                <p>편집 완료</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     
