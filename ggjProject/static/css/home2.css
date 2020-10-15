@@ -1,0 +1,21 @@
+/* reset & default css style */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 1024px 이상일 때 적용할 기본 스타일 */
+
+/* 메인컨텐츠 관련 */
+.main-container {
+  width: 1165px;
+  height: 100%;
+  padding: 20px 30px;
+  margin: 0 auto;
+  box-sizing: content-box;
+}

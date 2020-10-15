@@ -7,6 +7,7 @@ const modal = document.querySelector(".modal");
 const overlay = modal.querySelector(".modal__overlay");
 const closeBtn = modal.querySelector(".btn-close");
 const fileBtn = modal.querySelector("#img-upload");
+const fileBtn2 = modal.querySelector("#img-upload2"); //unsplash 사진
 
 const navUpload = modal.querySelector("#nav__upload");
 const navUnsplash = modal.querySelector("#nav__unsplash");
@@ -14,6 +15,7 @@ const contUpload = modal.querySelector(".upload-container");
 const contUnsplash = modal.querySelector(".unsplash-container");
 
 const uploadBtn = modal.querySelector("#img-upload");
+const uploadBtn2 = modal.querySelector("#img-upload2"); //unsplash 사진
 const imgPre = modal.querySelector("#img__preview");
 
 const divImage = document.querySelector(".etc_image");
@@ -34,7 +36,11 @@ const openUnsplash = () => {
   contUpload.classList.add("hidden");
   contUnsplash.classList.remove("hidden");
 };
+
 const showPreview = (e) => {
+  if (form.postCover2.value != null) {
+    form.postCover2.value = null;
+  }
   let get_file = e.target.files;
   let image = document.createElement("img");
   if (imgPre.hasChildNodes()) {
@@ -48,7 +54,7 @@ const showPreview = (e) => {
   /* reader 시작 시 함수 구현 */
   reader.onload = (function (aImg, img) {
     console.log(1);
-
+    // form.postCover2.value=null;
     return function (e) {
       console.log(3);
       // image url 반환하여 image(parameter name: aImg)에 저장
@@ -109,7 +115,8 @@ selectedShelf.addEventListener("click", activeOption);
 
 optionsList.forEach(obj => {
   obj.addEventListener("click", () => {
-    console.log(obj)
+    console.log(obj.querySelector("label").id)
+    $('#bookShelfID').val(obj.querySelector("label").id);
     selectedShelf.innerHTML = obj.querySelector("label").innerHTML;
     optionsContainer.classList.remove("active");
   });
@@ -132,18 +139,13 @@ selectedBook.addEventListener("keydown", activeBooks);
 selectedBook.addEventListener("focus", activeBooks);
 selectedBook.addEventListener("blur", deactiveBooks);
 
-booksList.forEach(obj => {
-  obj.addEventListener("click", () => {
-    div.innerHTML = obj.querySelector(".title").innerHTML;
-    booksContainer.classList.remove("active");
-  });
-});
-
 
 // 도서 선택시
 function showSelectBook(event) {
   var value = JSON.parse(event.id)
   console.log(value)
+  $('#bookResult').css("max-height", "0px");
+  deactiveBooks;
   $('.selectedBook .book_item').remove()
   $('.selectedBook').append('<div class="book_item" id="' + "value" + '">' +
     '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
@@ -153,13 +155,18 @@ function showSelectBook(event) {
     '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
     '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
     '</div>' + '</div>')
-  $('#bookInfo').val(value);
+  console.log(JSON.stringify(value))
+  $('#bookInfo').val(JSON.stringify(value));
 
 }
 
-
 // unsplash 사진 선택시
 function showSelectImage(event) {
+
+  //$("#img-upload").replaceWith($("#img-upload").val('').clone(true));
+
+  form.postCover.value = null;
+
   console.log(event);
   $('.etc_image .list_item').remove();
   closeModal();
@@ -171,6 +178,25 @@ function showSelectImage(event) {
 
   divImage.style.backgroundImage = `url('${event}')`;
   divImage.style.backgroundSize = "cover";
+  $('#img-upload2').val(event);
+  fileBtn2.value = `${event}`;
+}
 
-  $('#postCover2').val(event);
+//폼내용 다 채웠는지 체크
+function formCheck() {
+  if (form.title.value == "") {
+    alert("제목을 입력해주세요");
+    return false;
+  } else if (form.body.value == "") {
+    alert("후기를 입력해주세요");
+    return false;
+  } else if (form.bookShelfID.value == "") {
+    alert("책장을 선택해주세요");
+  } else if (form.bookInfo.value == "") {
+    alert("읽으신 책을 선택해주세요");
+  } else if (form.postCover.files.length == 0 && form.postCover2.value == null) {
+    alert("사진을 올려주세요");
+  } else {
+    document.form.submit();
+  }
 }

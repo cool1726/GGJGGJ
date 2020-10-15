@@ -1,4 +1,206 @@
-.bookShekf-title {
+.bookShelf-title {
     font-family: 'paybooc-Extrabold', sans-serif;
+    text-decoration: none;
     font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-bookShelf {
+    padding: 17px 18.5% 0px 18.5%;
+}
+
+.navbar-bookShelf-border {
+    display: flex;
+    border: solid #205F53 1px;
+    background: #FFFFFF;
+    justify-content: space-between;
+    padding: 17px 1%;
+}
+
+.navbar-bookShelf-border li {
+    display: inline;
+    text-decoration: none;
+    list-style: none;
+    padding: 0px 10px;
+}
+
+.navbar-bookShelf-item {
+    font-family: 'paybooc-Medium', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar-bookShelf-edit {
+    font-family: 'paybooc-Medium', sans-serif;
+    font-size: 18px;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+
+.my-book-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.my-book-search-input {
+    border: 1px solid #CECECE;
+    border-radius: 45px;
+    height: 44px;
+    width: 35%;
+    font-family: 'paybooc-Medium', sans-serif;
+    color: #222222;
+    background: #FFFFFF;
+    padding: 15px;
+}
+
+.bookShelf-floating {
+    position: relative;
+    top: 88px;
+}
+
+.my-bookShelf-background {
+    background: #1A2E1B;
+}
+
+.my-bookShelf {
+    margin: 0px 10%;
+    padding: 80px 5%;
+    background: #152416;
+}
+
+.my-book-oneLine {
+    display: flex;
+    margin-top: 50px;
+    padding: 0px 2% 0px 8.5%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.book-info {
+    display: inline-block;
+    padding: 2% 4% 0px 4%;
+    text-align: center;
+    border-bottom: 4px solid#FFC57A;
+}
+
+.book-cover {
+    top:4px;
+    position: relative;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+}
+
+.modal_overlay {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal_content {
+    background: white;
+    padding: 20px 20px;
+    position: absolute;
+    width: 574px;
+    height: 650px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal_title {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.btn-close {
+    cursor: pointer;
+    padding: 5px;
+    float: right;
+}
+
+.bookShelf-editor {
+    padding: 30px 30px 0px 30px;
+    height: 360px;
+}
+
+.bookShelf-tool-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.bookShelf-edit-icon {
+    cursor: pointer;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    padding: 6px 6px;
+    border: 1px solid #73958F;
+    border-radius: 15px;
+    background-color: #73958F;
+    margin-right: 10px;
+}
+
+.bookShelf-delete-icon {
+    cursor: pointer;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    padding: 6px 7px;
+    border: 1px solid #152416;
+    border-radius: 15px;
+    background-color: #152416;
+}
+
+.bookShelf-title {
+    font-size: 21px;
+    vertical-align: baseline;
+}
+
+.bookShelf-input {
+    display: inline-block;
+    margin: 25px 20px;
+    width: 490px;
+    height: 40px;
+    outline-color: #CECECE;
+    outline-width: 12px;
+    border: 1px solid #CECECE ;
+    font-size: 15px;
+}
+
+.bookShelf-add {
+    cursor: pointer;
+    position: relative;
+    margin-right: 15px;
+    width: 15px;
+    height: 15px;
+    top: -56px;
+    right: -230px;
+}
+
+.hidden {
+    display: none;
+}
+
+.bookShelf-edit-complete {
+    margin-top: 80px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 21px;
+    border: 2px solid #1A2E1B;
+    border-radius: 30px;
+    background-color: #1A2E1B;
 }
