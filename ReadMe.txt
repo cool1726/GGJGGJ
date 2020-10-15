@@ -128,3 +128,7 @@ css 파일 작성할 때, color와 font는 직접 스타일 지정하지 말고,
 <2020.10.14 좌니>
 - myPage에서 책장 수정하는것 html과 약간의 css 만 넣었고, myPage.js 만들어놨어요
 - 아마 myPage.css, myPage.html, myPage.js 만 건들 것 같아요. new 페이지 참고 많이 했어요. 고마워요
+
+<2020.10.15 좌니>
+- myPage.css 작업90프로 완료 했습니다.
+- js 작업은 이따가... 하겠습니다.
