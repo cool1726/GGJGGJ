@@ -20,7 +20,7 @@
         <div id="masonry-container">
             {% for post in posts reversed %}
             <div class="post-container">
-                <div class="closed-post">
+                <figure class="closed-post">
                     <img class="closed-opacity"> </img>
                     {% if post.postCover.url != null %}
                     <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
@@ -30,15 +30,16 @@
 
                     <p class="closed-title noto-medium white">{{post.title}}</p>
                     <p class="hidden closed-body">{{post.body}}</p>
-                </div>
+                </figure>
                 <div class="opened-post hidden">
                     {% if post.postCover.url != null %}
                     <img src="{{ post.postCover.url }}" class="opened-img" alt="...">
                     {% elif post.postCover2 != null %}
                     <img src="{{ post.postCover2 }}" class="opened-img" alt="...">
                     {% endif %}
+                    <i class="fas fa-times btn-close" type="button"></i>
                     <span class="pub-description pub-date">{{ post.postDate }}</span>
-                    <span class="pub-description">{{ post.username }}</span>
+                    <span class="pub-description pub-user">{{ post.username }}</span>
                     <div class="bottom-post-box">
                         <h3 class="post-title bareunbatang-medium">{{ post.title }}</h3>
                         <p class="post-body bareunbatang-light">{{ post.body }}</p>
@@ -52,7 +53,7 @@
 
     </div>
 
-    <script type="text/javascript" src="../static/js/home.js"></script>
+    <script type="text/javascript" src="../static/js/home2.js"></script>
 
 </body>
 

@@ -21,22 +21,31 @@
 }
 
 #masonry-container {
-    max-width: 1165px;
+    position: relative;
+    width: 1165px;
     height: 100%;
     box-sizing: border-box;
+}
+
+.post-container {
+    display: inline-block;
+    position: absolute;
+    width: 280px;
+    margin: 10px 0px;
 }
 
 /* closed-container : 0번 펼친 글 스타일 */
 .closed-post {
     display: inline-block;
-    position: absolute;
-    width: 280px;
+    width: 100%;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .closed-img {
+    display: inline-block;
     width: 100%;
+    vertical-align: bottom;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -44,6 +53,7 @@
 .closed-opacity {
     position: absolute;
     width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     border-radius: 5px;
@@ -53,7 +63,7 @@
 .closed-title {
     position: absolute;
     max-width: 220px;
-    top: 25px;
+    top: 30px;
     left: 30px;
     font-size: 16px;
     line-height: 140%;
@@ -61,9 +71,14 @@
 
 /* opened-container : 1번 펼친 글 스타일 (책정보 없고 글만 있는 상태) */
 .opened-post {
+    position: absolute;
     width: 575px;
+    height: fit-content;
     border-radius: 5px;
     border: 1px solid #CECECE;
+    margin-bottom: 15px;
+    transition: all 0.4s;
+    box-sizing: border-box;
 }
 
 .opened-img {
@@ -73,11 +88,27 @@
     border-radius: 5px;
 }
 
+.btn-close {
+    all: unset;
+    cursor: pointer;
+    padding: 5px;
+    float: right;
+  }
+
+.pub-date {
+    position: absolute;
+    top: 250px;
+    right: 90px;
+}
+
+.pub-user {
+    position: absolute;
+    top: 250px;
+    right: 30px;
+}
+
 .bottom-post-box {
     padding: 30px 50px;
-}
-.post-title {
-
 }
 
 .post-body {
