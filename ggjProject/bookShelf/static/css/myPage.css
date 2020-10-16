@@ -204,3 +204,17 @@
     border-radius: 30px;
     background-color: #1A2E1B;
 }
+
+.not-scroll {
+    overflow: hidden;
+}
+
+.bookShelf-name-change-complete {
+    cursor: pointer;
+    font-size: 15px;
+    border: 2px solid #152416;
+    background-color: #152416;
+    color: #FFC57A;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
