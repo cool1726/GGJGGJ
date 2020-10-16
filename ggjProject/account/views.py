@@ -37,7 +37,10 @@ def signup(request):
 """로그인 함수입니다. 로그인 유지까지 구현했는데 아직 되는지 안되는지 모르겠어요.일단 오류는 안남"""
 def login(request):
     # 해당 쿠키에 값이 없을 경우 None을 return 한다.
-    if request.COOKIES.get('username') is not None:
+    if str(request.user) != "AnonymousUser":
+        posts = Post.objects.all()
+        return render(request, 'home.html', {'posts': posts})
+    elif request.COOKIES.get('username') is not None:
         username = request.COOKIES.get('username')
         password = request.COOKIES.get('password')
         user = auth.authenticate(request, username=username, password=password)
@@ -68,10 +71,11 @@ def login(request):
     return render(request, "login.html") 
 
 def logout(request):
-    response = render(request, 'account/home.html')
+    auth.logout(request)
+    
+    response = render(request, "login.html")
     response.delete_cookie('username')
     response.delete_cookie('password')
-    auth.logout(request)
     return response
 """
 옛날 로그인 함수인데 혹시 몰라서 남겨둠.

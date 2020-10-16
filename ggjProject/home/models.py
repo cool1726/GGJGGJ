@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
+# from bookShelf.models import BookShelf
 
 # post
 """
@@ -24,6 +25,7 @@ class Post(models.Model):
     #bookID = models.BigIntegerField()
     bookID = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='bookID', null=True)
     #bookCover = models.ImageField(upload_to='images/bookCover/')
+    #bookShelfID = models.ForeignKey(BookShelf, on_delete=models.CASCADE, related_name='bookshelfID')
     bookShelfID = models.BigIntegerField()
     title = models.CharField(max_length = 100)
     body = models.TextField(max_length = 2000)

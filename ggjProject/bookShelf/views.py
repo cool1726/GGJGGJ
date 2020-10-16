@@ -10,24 +10,24 @@ def newBookShelf(request):
 def detail(request):
     return render(request, 'detail.html')
 
-"""책장 생성 함수 """
+"""책장 생성 함수 수정요함"""
 def createBookShelf(request):
     bookShelf = BookShelf()
     bookShelf.username = request.user
-    bookShelf.postID = request.POST.get('postID')
+    # bookShelf.postID.add(request.POST.get('postID'))
     bookShelf.bookShelfTitle = request.GET['bookShelfTitle']
     bookShelf.save()
     request.user.profile.bookShelf.add(bookShelf.id)
-
-    return redirect('/back_myPage/')
+    bookShelves = BookShelf.objects.all()
+    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
 """back_myPage.html 로 이동하는 함수. """
 def myPage(request):
     bookShelves = BookShelf.objects.all()
 
-    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
+    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
-"""책장 삭제 함수"""
+"""책장 삭제 함수 책장 삭제가 제대로 안됨(user만 비워짐.)""" 
 def deleteBookShelf(request, bookShelf_id):
     BookShelf.objects.get(id=bookShelf_id).delete()
     return redirect('/back_myPage')
