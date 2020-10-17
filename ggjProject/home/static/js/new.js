@@ -142,8 +142,8 @@ selectedBook.addEventListener("blur", deactiveBooks);
 
 // 도서 선택시
 function showSelectBook(event) {
+  console.log(event.id)
   var value = JSON.parse(event.id)
-  console.log(value)
   $('#bookResult').css("max-height", "0px");
   deactiveBooks;
   $('.selectedBook .book_item').remove()

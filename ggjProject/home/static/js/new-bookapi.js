@@ -33,20 +33,21 @@ $(document).ready(function () {
                         for (var j = 0; j < value.length; j++) {
                             var toObj = new Object;
                             toObj.thumbnail = value[j].thumbnail;
-                            toObj.title = value[j].title;
+                            toObj.title = value[j].title.replace("\'","’");
                             toObj.isbn = value[j].isbn;
                             toObj.authors = value[j].authors;
                             toObj.publisher = value[j].publisher;
                             toObj.datetime = value[j].datetime;
-                            let data = JSON.stringify(toObj);
-                            console.log(toObj)
+                            let data = JSON.stringify(toObj)//.replace("\'","’");
+                            //console.log(value[j]);
+                            
                             $('#bookResult').append('<div class="book_item" id=' + "'" + data + "'" + ' onclick="showSelectBook(this)">' +
-                                '<img src="' + value[j].thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
-                                '<p class="book_info title noto-medium">' + value[j].title + '</p>' +
-                                '<p class="book_info authors noto-light">' + value[j].authors + ' 지음</p>' +
+                                '<img src="' + toObj.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
+                                '<p class="book_info title noto-medium">' + toObj.title + '</p>' +
+                                '<p class="book_info authors noto-light">' + toObj.authors + ' 지음</p>' +
                                 // '<p class="contents">' + value[j].contents + '</p>' +
-                                '<p class="book_info publisher noto-light">' + value[j].publisher + '</p>' +
-                                '<p class="book_info datetime noto-light">' + strToDate(value[j].datetime) + '</p>' +
+                                '<p class="book_info publisher noto-light">' + toObj.publisher + '</p>' +
+                                '<p class="book_info datetime noto-light">' + strToDate(toObj.datetime) + '</p>' +
                                 '</div>' + '</div>')
 
                             // $('#bookResult').append('<li>'+value[j].title+value[j].authors+
