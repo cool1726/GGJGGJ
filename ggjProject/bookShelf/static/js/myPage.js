@@ -28,7 +28,7 @@ bookShelfToolContainerList.forEach(container => {
     const nameEditBtn = container.querySelector(".bookShelf-edit-icon");
     const deleteBtn = container.querySelector(".bookShelf-delete-icon");
 
-    const bookShelfTitle = container.querySelector(".bookShelf-title");
+    const bookShelfTitle = container.querySelector(".bookShelf-edit-title");
     const bookShelfTitleInput = container.querySelector(".bookShelf-title-input");
     const nameChangeCompleteBtn = container.querySelector(".bookShelf-name-change-complete");
 
