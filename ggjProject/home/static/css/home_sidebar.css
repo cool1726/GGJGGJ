@@ -144,10 +144,59 @@
 
 .post-body {
     line-height: 1.5;
-    margin-bottom: 20px;
+}
+
+.open-book{
+    margin-top: 20px;
 }
 
 .open-book:hover {
-    color: #205F53;
+    color: #1A2E1B;
+    cursor: pointer;
+}
+
+/* post의 도서 관련 정보 (이미지 // 도서명, 작가, 소개글, 링크) */
+.bottom-book-box {
+    width: 100%;
+    padding: 30px 30px;
+    background-color: #E2E2E2;
+    text-align: center;
+}
+
+.book-title, .book-author {
+    font-size: 14px;
+    text-align: left;
+}
+
+.book-img {
+    display: inline-block;
+    width: 25%;
+    margin-right: 10px;
+    object-fit: cover;
+    box-sizing: border-box;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.book-text {
+    display: inline-block;
+    width: 68%;
+    text-align: left;
+}
+
+.book-info {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.book-url {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.book-url:hover {
+    color: #1A2E1B;
     cursor: pointer;
 }

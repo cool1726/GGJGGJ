@@ -11,6 +11,9 @@ const body = document.querySelectorAll(".closed-body");
 const openedPost = document.querySelector(".opened-post");
 const btnClose = openedPost.querySelector(".btn-close");
 
+const btnOpenBook = openedPost.querySelector(".open-book");
+const bookContainer = openedPost.querySelector(".bottom-book-box");
+
 const resizeApply = (cols) => {
     let imgStack = Array.from({ length: cols }, () => 20);
     const colWidth = 295;
@@ -75,19 +78,27 @@ posts.forEach(post => {
         openedPost.style.display = "inline-flex";
         openedPost.classList.toggle("hidden");
 
-        console.log(post.children[1].src);
+        btnOpenBook.style.display = "block";
+        bookContainer.classList.add("hidden");
+
         openedPost.querySelector(".post-img").src = `${post.children[1].src}`;
         openedPost.querySelector(".post-title").innerHTML = `${post.children[2].innerHTML}`;
         openedPost.querySelector(".post-body").innerHTML = `${post.children[3].innerHTML}`;
         openedPost.querySelector(".pub-date").innerHTML = `${post.children[4].innerHTML}`;
         openedPost.querySelector(".pub-user").innerHTML = `${post.children[5].innerHTML}`;
 
+        console.log(post.children[6].src);
+        openedPost.querySelector(".book-img").src = `${post.children[6].src}`;
+        openedPost.querySelector(".book-title").innerHTML = `${post.children[7].innerHTML}`;
+        openedPost.querySelector(".book-author").innerHTML = `  by ${post.children[8].innerHTML}`;
+
         // console.log(openedPost.scrollWidth);
     });
 })
 
 const openBook = () => {
-    console.log();
+    btnOpenBook.style.display = "none";
+    bookContainer.classList.remove("hidden");
 }
 
 const closePostView = () => {
@@ -108,6 +119,9 @@ const closePostView = () => {
     resizeApply(cols);
     openedPost.style.display = "none";
     openedPost.classList.toggle("hidden");
+
+    btnOpenBook.style.display = "block";
+    bookContainer.classList.add("hidden");
 }
 
 window.onload = function () {

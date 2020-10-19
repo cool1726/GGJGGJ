@@ -32,12 +32,15 @@
                 <p class="hidden closed-body">{{post.body}}</p>
                 <p class="hidden closed-postDate">{{post.postDate}}</p>
                 <p class="hidden closed-username">{{post.username}}</p>
+                <img src="{{post.bookID.bookCover}}" class="hidden closed-bookid"></img>
+                <p class="hidden closed-bookid">{{post.bookID.bookName}}</p>
+                <p class="hidden closed-bookid">{{post.bookID.writer}}</p>
             </div>
             {% endfor %}
         </div>
 
         <div class="opened-post hidden">
-            <img src="" class="post-img" alt="...">
+            <img src="" class="post-img" alt="">
             <i class="fas fa-times btn-close" type="button" onclick="closePostView(this)"></i>
             <span class="pub-description pub-date">9999년 99월 99일</span>
             <span class="pub-description pub-user">username</span>
@@ -45,7 +48,22 @@
                 <h3 class="post-title bareunbatang-medium">제목을 입력하세요</h3>
                 <p class="post-body bareunbatang-light">내용을 입력하세요</p>
 
-                <p class="open-book" type="button" onclick="openBook()"> > 어떤 책인지 확인하기 < </p>
+                <span class="open-book paybooc-bold green" type="button" onclick="openBook()"> > 어떤 책인지 확인하기 < </span>
+            </div>
+            <div class="bottom-book-box hidden">
+                <img class="book-img" src="" alt="">
+                <div class="book-text">
+                    <div class="book-title noto-bold">책제목입니다</div>
+                    <div class="book-author noto-medium dark-gray">by 작가</div>
+                    <div class="book-info noto-light">(임시소개글임) 2020년은 앙투안 드 생텍쥐페리의 탄생 120주년이 되는 해이다. 문예출판사는 프랑스
+                        갈리마르출판사에서
+                        2013년
+                        출간한
+                        어린 왕자 : 출간 70주년 기념 갈리마르 에디션을 번역해, 문예출판사의 창립 53주년을 기념하며 독자들에게 선보인다. 문예출판사는 1973년 불문학자 김현이 번역한 어린
+                        왕자를 </div>
+                    <a href="http://www.kyobobook.co.kr/" target="_blank" class="book-url paybooc-bold green"> > 책
+                        구경하러 가기 < </a>
+                </div>
             </div>
         </div>
     </div>
