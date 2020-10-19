@@ -12,7 +12,7 @@ const openedPosts = document.querySelectorAll(".opened-post");
 // 이미지의 위치는 imgStack의 가장 작은 값과 그 인덱스를 보고 정한다
 // 위치를 정한 뒤에는 imgStack의 가장 작은 값에 해당 이미지의 높이를 더한다
 // 마지막 차례에는 imgStack의 가장 큰 값을 보고 이미지를 담은 Container 높이를 구한다
-const resizeApply = () => {
+const resizeApply = (resizePosts, stack) => {
     let cols;
     if (window.innerWidth > 1248) { // 4열
         cols = 4;
@@ -70,82 +70,96 @@ const resizeApply = () => {
 
 // 아예 닫혀진 글 클릭시 원래 해당 글 영역에 있던 글들은 모두 옆으로 밀림
 let flag = 0; // 0이면 클릭한 글이 없고, 1이면 이미 클릭한 글이 있음
+let onlyOpenPost;
 posts.forEach(post => {
-    // post.querySelector('.fas').addEventListener("click", () => {
-    //     closePostView(post);
-    // })
+    const closedPost = post.querySelector('.closed-post');
+    const openedPost = post.querySelector('.opened-post');
+
+    const closeBtnInOpened = openedPost.querySelector('.btn-close');
+
+    console.log(closedPost.classList);
+
     post.addEventListener("click", () => { // click event 처리
+        if (openedPost.classList.contains("hidden")) { // 펼칠 때
+            console.log("펼쳐!");
+            const closedHeight = closedPost.children[1].height;
 
-        const closedPost = post.querySelector('.closed-post');
-        const openedPost = post.querySelector('.opened-post');
+            closedPost.style.display = "none";
+            closedPost.classList.toggle("hidden");
 
-        if (flag) { // 원소가 담겨있을 때
-            posts.forEach(onlyOpenPost => {
-                if (onlyOpenPost.querySelector('.closed-post').style.display == "inline-block") {
-                    const c = onlyOpenPost.querySelector('.closed-post');
-                    const o = onlyOpenPost.querySelector('.opened-post');
-                    c.style.display = "inline-block";
-                    c.classList.toggle("hidden");
+            openedPost.style.display = "inline-block";
+            openedPost.classList.toggle("hidden");
 
-                    o.style.display = "none";
-                    o.classList.toggle("hidden");
-                    flag = 0;
+            console.log("closedPost");
+            console.log(closedPost);
+            console.log("openedPost");
+            console.log(openedPost);
+
+            const clickedTop = parseInt(post.style.top);
+            const clickedLeft = parseInt(post.style.left);
+            const clickedHeight = openedPost.scrollHeight;
+            const clickedWidth = openedPost.scrollWidth;
+            //console.log(closedPosts);
+
+            onlyOpenPost = post;
+
+            // post-container에 대해 겹치는 글들 모두 아래로 내리기
+            for (let i = 0; i < posts.length; i++) {
+                if (posts[i] != post) {
+
+                    let postTop = parseInt(posts[i].style.top);
+                    let postLeft = parseInt(posts[i].style.left);
+                    let postHeight = posts[i].children[0].children[1].height;
+
+                    if (postLeft == clickedLeft && postTop >= clickedTop) {
+                        // 클릭한 글 아래에 있으면서 같은 열에 있는 글에 대해 적용
+                        posts[i].style.top = `${postTop + clickedHeight - closedHeight}px`;
+                        posts[i].classList.add("moved");
+                    }
+                    else if (postTop + postHeight > clickedTop && postLeft >= clickedLeft && postLeft < clickedLeft + clickedWidth) {
+                        // 클릭한 글 위에 있으면서 겹치는 글에 대해 적용 (클릭한 글과는 다른 열에 있는 글)
+                        //console.log("wow", posts[i]);
+                        posts[i].style.top = `${postTop + clickedHeight - (postTop - clickedTop) + 15}px`;
+                        posts[i].classList.add("moved");
+                    }
+                    else if (postTop >= clickedTop && postLeft >= clickedLeft && postLeft < clickedLeft + clickedWidth) {
+                        // 클릭한 글 아래에 있으면서 다른 열에 있는 글에 대해 적용
+                        posts[i].style.top = `${postTop + clickedHeight + 15}px`;
+                        //console.log(posts[i].style.top);
+                        posts[i].classList.add("moved");
+                    }
                 }
-            })
+            }
+            flag = 1;
         }
+        else { // 닫을 때
+            console.log("닫아!");
 
-        const closedHeight = closedPost.children[1].height;
+            openedPost.style.display = "none";
+            openedPost.classList.toggle("hidden");
+            closedPost.style.display = "inline-block";
+            closedPost.classList.toggle("hidden");
 
-        closedPost.style.display = "none";
-        closedPost.classList.toggle("hidden");
+            console.log("closedPost");
+            console.log(closedPost);
+            console.log("openedPost");
+            console.log(openedPost);
 
-        openedPost.style.display = "inline-block";
-        openedPost.classList.toggle("hidden");
-
-        const clickedTop = parseInt(post.style.top);
-        const clickedLeft = parseInt(post.style.left);
-        const clickedHeight = openedPost.scrollHeight;
-        const clickedWidth = openedPost.scrollWidth;
-        console.log(closedPosts);
-
-        onlyOpenPost = post;
-
-        // post-container에 대해 겹치는 글들 모두 아래로 내리기
-        for (let i = 0; i < posts.length; i++) {
-            if (posts[i] != post) {
-                let postTop = parseInt(posts[i].style.top);
-                let postLeft = parseInt(posts[i].style.left);
-                let postHeight = posts[i].children[0].children[1].height;
-
-                if (postLeft == clickedLeft && postTop >= clickedTop) {
-                    // 클릭한 글 아래에 있으면서 같은 열에 있는 글에 대해 적용
-                    posts[i].style.top = `${postTop + clickedHeight - closedHeight}px`;
-                }
-                else if (postTop + postHeight > clickedTop && postLeft >= clickedLeft && postLeft < clickedLeft + clickedWidth) {
-                    // 클릭한 글 위에 있으면서 겹치는 글에 대해 적용 (클릭한 글과는 다른 열에 있는 글)
-                    console.log("wow", posts[i]);
-                    posts[i].style.top = `${postTop + clickedHeight - (postTop - clickedTop) + 15}px`;
+            for (let i = 0; i < posts.length; i++) {
+                if (posts[i] != post) {
 
                 }
-                else if (postTop >= clickedTop && postLeft >= clickedLeft && postLeft < clickedLeft + clickedWidth) {
-                    // 클릭한 글 아래에 있으면서 다른 열에 있는 글에 대해 적용
-                    posts[i].style.top = `${postTop + clickedHeight + 15}px`;
-                    //console.log(posts[i].style.top);
-                }
-
-                //postTop + posts[i].style.height >= clickedTop
             }
         }
-        flag = 1;
     });
 });
 
 // 한번 열린 글의 X버튼을 누르면 다시 닫힘
-openedPosts.forEach(post => {
-    post.addEventListener("click", () => {
-        closePost(post);
-    });
-});
+// openedPosts.forEach(post => {
+//     post.addEventListener("click", () => {
+//         console.log("close");
+//     });
+// });
 
 
 // 화면 크기가 달라질 때마다 resizeApply() -> column 조정

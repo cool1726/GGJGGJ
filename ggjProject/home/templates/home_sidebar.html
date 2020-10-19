@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
+    <script src="https://kit.fontawesome.com/c8c52fc116.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="main-container">
+        <div id="masonry-container">
+            지금 로그인되어있는 아이디(필명): {{user.username}}
+            {% for post in posts reversed %}
+            <div class="post-container">
+                <img class="closed-opacity"> </img>
+                {% if post.postCover.url != null %}
+                <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+                {% elif post.postCover2 != null %}
+                <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+                {% endif %}
+
+                <p class="closed-title noto-medium white">{{post.title}}</p>
+                <p class="hidden closed-body">{{post.body}}</p>
+                <p class="hidden closed-postDate">{{post.postDate}}</p>
+                <p class="hidden closed-username">{{post.username}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="opened-post hidden">
+            <img src="" class="post-img" alt="...">
+            <i class="fas fa-times btn-close" type="button" onclick="closePostView(this)"></i>
+            <span class="pub-description pub-date">9999년 99월 99일</span>
+            <span class="pub-description pub-user">username</span>
+            <div class="bottom-post-box">
+                <h3 class="post-title bareunbatang-medium">제목을 입력하세요</h3>
+                <p class="post-body bareunbatang-light">내용을 입력하세요</p>
+
+                <p class="open-book" type="button" onclick="openBook()"> > 어떤 책인지 확인하기 < </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/js/home_sidebar.js"></script>
+</body>
+
+</html>

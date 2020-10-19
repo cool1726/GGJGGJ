@@ -16,7 +16,7 @@ import sys
 """post들이 나옵니다.back_home.html로 이동"""
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'home.html', {'posts': posts})
+    return render(request, 'home_sidebar.html', {'posts': posts})
 
 """back_new.html로 이동"""
 def new(request):

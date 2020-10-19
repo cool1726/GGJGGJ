@@ -10,22 +10,31 @@
 }
 
 /* 1024px 이상일 때 적용할 기본 스타일 */
+/* 스크롤바 스타일 */
+* ::-webkit-scrollbar {
+    width: 6px;
+}
+  
+* ::-webkit-scrollbar-thumb {
+    background: #cecece;
+    border-radius: 4px;
+}
 
 /* 메인컨텐츠 관련 */
 .main-container {
-
-    width: 1165px;
     height: 100%;
     padding: 20px 30px;
     margin: 0 auto;
     box-sizing: content-box;
+    overflow: hidden;
 }
 
 #masonry-container {
     display: inline-flex;
     position: relative;
-    width: 1165px;
+    width: 100%;
     height: 100%;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -34,14 +43,20 @@
     position: absolute;
     width: 280px;
     margin: 10px 0px;
-}
-
-/* closed-container : 0번 펼친 글 스타일 */
-.closed-post {
-    display: inline-block;
-    width: 100%;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.post-container:hover .closed-opacity {
+    background-color: rgba(53, 53, 53, 0.5);
+}
+.post-container:hover .closed-title  {
+    color: #181818;
+}
+
+.post-container:click .closed-opacity, .post-container:active .closed-opacity {
+    border: 3px solid black;
+    background-color: rgba(53, 53, 53, 0.5);
 }
 
 .closed-img {
@@ -73,24 +88,32 @@
 
 /* opened-container : 1번 펼친 글 스타일 (책정보 없고 글만 있는 상태) */
 .opened-post {
-    position: absolute;
-    width: 575px;
-    height: fit-content;
+    position: fixed;
+    top: 102px;
+    right: 0px;
+    bottom: 0px;
+    margin: 15px 30px;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    /* border: 1px solid #cecece; */
+    border: 1px solid #cecece;
     border-radius: 5px;
-    border: 1px solid #CECECE;
-    margin-bottom: 15px;
     transition: all 0.4s;
+    box-sizing: border-box;
+    transform: translateZ(0);
+    overflow-y:scroll;
+}
+
+.post-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
     box-sizing: border-box;
 }
 
-.opened-img {
-    width: 573px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
 .btn-close {
+    position: absolute;
     all: unset;
     cursor: pointer;
     padding: 10px 15px;
@@ -110,19 +133,21 @@
 }
 
 .bottom-post-box {
+    width: 100%;
     padding: 30px 50px;
+    background-color: #f3f3f3;
+}
+
+.post-title {
+    margin-bottom: 10px;
 }
 
 .post-body {
     line-height: 1.5;
+    margin-bottom: 20px;
 }
 
-@media ( max-width: 1023px ) { 
-    /* 1023px 이하일 때 적용할 스타일*/
+.open-book:hover {
+    color: #205F53;
+    cursor: pointer;
 }
-@media ( max-width: 767px ) { 
-    /* 767px 이하일 때 적용할 스타일 */ 
-}
-
-
-
