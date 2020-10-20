@@ -47,8 +47,13 @@
                                     {% if user.username == bookShelf.username %}
                                         <div class="bookShelf-tool-container">
                                             <p class="paybooc-bold dark-gray bookShelf-edit-title">{{bookShelf.bookShelfTitle}}</p>
-                                            <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}">
-                                            <p class="paybooc-bold hidden bookShelf-name-change-complete">완료</p>
+                                            <form action="{% url 'back_updateBookShelf' bookShelf.id  %}" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}" name="bookShelfTitle">
+                                                <input type="submit" class="paybooc-bold hidden bookShelf-name-change-complete" value="완료">
+                                            </form>
+                                            <!-- <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}">
+                                            <a class="paybooc-bold hidden bookShelf-name-change-complete" href="">완료</a> -->
                                             <div>
                                                 <i class="bookShelf-edit-icon far fa-edit"></i>
                                                 <i class="bookShelf-delete-icon far fa-trash-alt"></i>

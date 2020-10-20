@@ -33,7 +33,7 @@ def deleteBookShelf(request, bookShelf_id):
     return redirect('/back_myPage')
 
 """책장 수정 함수"""
-def updateBookShelf(request, bookShelf_id):
+def updateBookShelf(request, bookShelf_id,):
     bookShelf = get_object_or_404(BookShelf,pk=bookShelf_id)
     bookShelves = BookShelf.objects.all()
     posts = Post.objects.all()
@@ -43,7 +43,7 @@ def updateBookShelf(request, bookShelf_id):
         if form.is_valid():
             bookShelf.bookShelfTitle = form.cleaned_data['bookShelfTitle']
             bookShelf.save()
-            return render(request,'back_myPage.html',{'bookShelves': bookShelves, 'posts': posts})
+            return render(request,'myPage.html',{'bookShelves': bookShelves, 'posts': posts})
     else:
         form = BookShelfUpdate(instance = bookShelf)
     return render(request,'back_updateBookShelf.html', {'form':form})
