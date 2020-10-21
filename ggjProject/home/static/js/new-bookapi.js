@@ -38,10 +38,33 @@ $(document).ready(function () {
                             toObj.authors = value[j].authors;
                             toObj.publisher = value[j].publisher;
                             toObj.datetime = value[j].datetime;
+
+                            var toObjc = new Object;
+                            toObjc.contents = value[j].contents;
+                            // var info = new Array();
+                            // info[0] = value[j].title;
+                            // info[1] = value[j].isbn;
+                            // info[2] = value[j].thumbnail;
+                            // info[3] = value[j].authors;
+                            // info[4]  = value[j].publisher;
+                            // info[5]  = value[j].datetime;
+                            // info[6]  = value[j].contents;
+
+                            // var info = "";
+                            // info = [{"title": value[j].title, "isbn" : value[j].isbn, "thumbnail": value[j].thumbnail}]
                             let data = JSON.stringify(toObj)//.replace("\'","’");
+                            let datac = JSON.stringify(toObjc)
+                            var datadata = value[j].contents;
                             //console.log(value[j]);
-                            
-                            $('#bookResult').append('<div class="book_item" id=' + "'" + data + "'" + ' onclick="showSelectBook(this)">' +
+                            $('#bookResult').append('<div class="book_item" id=' + "'" + data 
+                            + "' value1=" + "'" + value[j].thumbnail 
+                            + "' value2 = " + "'" + value[j].title 
+                            + "' value3 = " + "'" + value[j].isbn 
+                            + "' value4 = " + "'" + value[j].authors 
+                            + "' value5 = "+"'" + value[j].publisher 
+                            + "' value6 = " + "'" + value[j].datetime 
+                            + "' value7 = " + "'" + value[j].contents 
+                            + "'"+ ' onclick="showSelectBook(this)">' +
                                 '<img src="' + toObj.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
                                 '<p class="book_info title noto-medium">' + toObj.title + '</p>' +
                                 '<p class="book_info authors noto-light">' + toObj.authors + ' 지음</p>' +

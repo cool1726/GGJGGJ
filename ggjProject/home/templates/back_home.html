@@ -56,14 +56,19 @@
                 border: none;
             }
     </style>
-    <a href="{%url 'back_new'%}">글쓰기</a>
+    <a href="{%url 'new'%}">글쓰기</a>
+    <a href="{%url 'logout'%}">로그아웃</a>
     <!-- 끄적끄적 xd를 보고 프론트가 필요한 내용을 정리했습니다. 이런 식으로 쓰시면 됩니다.  -->
     지금 로그인되어있는 아이디(필명): {{user.username}}
     {% for post in posts %}
         <div class="body_box">
             <p>title: {{post.title}}</p>
             <p>body: {{post.body}}</p>
-            <img src=" {{ post.postCover.url }}" class="card-img-top" alt="...">
+            {% if post.postCover.url != null %}
+                <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+                {% elif post.postCover2 != null %}
+                <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+                {% endif %}
             <p>username: {{post.username}}</p>
             <p>postDate: {{post.postDate}}</p>
             <p>좋아요 갯수: {{post.like.all.count}}</p>

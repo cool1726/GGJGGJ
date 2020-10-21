@@ -14,7 +14,7 @@ class Book(models.Model):
     ISBN = models.TextField()
     writer = models.CharField(max_length=100)
     bookCover = models.ImageField(upload_to='images/bookCover/')
-    #description = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
     publisher = models.CharField(max_length=100)
 
     def __str__(self):

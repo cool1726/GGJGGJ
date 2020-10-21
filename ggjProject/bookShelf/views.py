@@ -25,11 +25,18 @@ def createBookShelf(request):
 def myPage(request):
     bookShelves = BookShelf.objects.all()
 
-    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
+    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
-"""책장 삭제 함수 책장 삭제가 제대로 안됨(user만 비워짐.)""" 
+"""책장 삭제 함수""" 
 def deleteBookShelf(request, bookShelf_id):
-    BookShelf.objects.get(id=bookShelf_id).delete()
+    # print(BookShelf.objects.get(id=bookShelf_id).postID.all)
+    # for po in BookShelf.objects.get(id=bookShelf_id).postID.all():
+    #     print(po.id)
+    bookShelf = BookShelf.objects.get(id=bookShelf_id)
+    for post in bookShelf.postID.all():
+        print(post.id)
+        post.delete()
+    bookShelf.delete()
     return redirect('/back_myPage')
 
 """책장 수정 함수"""

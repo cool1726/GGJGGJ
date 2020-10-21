@@ -19,6 +19,7 @@
     <div class="main-container">
         <div id="masonry-container">
             지금 로그인되어있는 아이디(필명): {{user.username}}
+            <a href="{%url 'logout'%}">로그아웃</a>
             {% for post in posts reversed %}
             <div class="post-container">
                 <img class="closed-opacity"> </img>

@@ -27,23 +27,29 @@ post create 함수
 """
 def create(request): #책장에 post 추가해줘야합니다. 책장이 bookShelfID 로 넘어옴. 저 넘어본 id를 가지고 책장.postid.add
     bookShelves = BookShelf.objects.all()
-    bookInfo = json.loads(request.POST.get('bookInfo'))
+    title = request.POST.get('booktitle')
+    isbn = request.POST.get('isbn')
+    authors = request.POST.get('authors')
+    thumbnail = request.POST.get('thumbnail')
+    publisher = request.POST.get('publisher')
+    contents = request.POST.get('contents')
+
     books = Book.objects.all()
     flag = 0
     posts = Post.objects.all()
     post = Post()
     for i in books:
-        if i.ISBN == bookInfo['isbn']:
+        if i.ISBN == isbn:
             flag = i
             break
     if flag==0:
         book = Book()
-        book.bookName = bookInfo['title'] #title
-        book.ISBN = bookInfo['isbn'] #isbn
-        book.writer = bookInfo['authors'][0] #authors
-        book.bookCover = bookInfo['thumbnail'] #thumbnail
-        #book.description = bookInfo['contents'] #contents
-        book.publisher = bookInfo['publisher'] #publisher
+        book.bookName = title
+        book.ISBN = isbn
+        book.writer = authors
+        book.bookCover = thumbnail
+        book.description = contents
+        book.publisher = publisher
         book.save()
         post.bookID = book
     else: 
