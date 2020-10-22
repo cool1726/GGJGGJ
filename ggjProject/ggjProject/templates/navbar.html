@@ -1,5 +1,5 @@
 {% load static %}
-<script type="text/javascript" src="../static/js/navbar.js"></script>
+
 
 <header class="top-navbar white-background">
     <span>
@@ -23,7 +23,8 @@
         <span class="navbar-profile">
             <i class="fas fa-user-circle vertically-center fa-3x"></i>
             <div class="navbar-welcome vertically-center dark-green">
-                <span>안녕하세요<br>{{user.username}} 독자님!</span>
+                
+                <span id="profile">안녕하세요<br>{{user.username}} 독자님!</span>
                 <div class="navbar-mymenu hidden">
                     <ul>
                         <li><a href="">마이페이지</a></li>
@@ -35,3 +36,4 @@
     </div>
 
 </header>
+<script type="text/javascript" src="../static/js/navbar.js"></script>

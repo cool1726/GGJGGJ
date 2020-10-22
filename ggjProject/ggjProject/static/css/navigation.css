@@ -122,6 +122,13 @@
 .navbar-menu li a:hover {
     color: #205F53;
 }
+/*.navbar-mymenu{
+    display: inline-block;
+    list-style: none;
+    padding: 10px 20px;
+    border: 1px solid black;
+    /* 엉엉 왜 박스안에 들어가질 못하니 ㅜ 
+}*/
 
 /* 푸터관련모음 */
 .bottom-footer {
