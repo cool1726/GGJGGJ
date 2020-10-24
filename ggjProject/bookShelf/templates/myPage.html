@@ -33,6 +33,46 @@
     
                     <a class="navbar-bookShelf-edit gray" id="btn-edit-bookShelf" href="javascript:return false;">책장 편집하기</a>
 
+                    <div class="hidden post-container">
+                        <div class="hidden selected-post">
+                            <img src="" class="post-img" alt="">
+                            <i class="fas fa-times btn-close" type="button" onclick="closePostView(this)"></i>
+                            <span class="noto-medium beige pub-description pub-date">9999년 99월 99일</span>
+                            <span class="noto-medium beige pub-description pub-user">username</span>
+    
+                            <span class="likes-box">
+                                <a href="" class="btn-like {% if user in post.like.all %} active {% endif %}"><i
+                                    class="far fa-heart beige like-btn"></i></a>
+                                <span class="likes-num beige noto-light">0</span>
+                                <!-- <i class="fas fa-heart beige liked-btn hidden"></i> -->
+                            </span>
+                            <span class="scrap-box">
+                                <a href="" class="btn-scrap {% if user in post.scrap.all %} active {% endif %}"><i
+                                        class="far fa-bookmark beige scrap-btn"></i></a>
+    
+                                <span class="scrap-num beige noto-light">0</span>
+                                <!-- <i class="fas fa-bookmark"></i> -->
+                            </span>
+    
+    
+                            <div class="bottom-post-box">
+                                <h3 class="post-title bareunbatang-medium">제목을 입력하세요</h3>
+                                <p class="post-body bareunbatang-light">내용을 입력하세요</p>
+    
+                            </div>
+                            <div class="bottom-book-box">
+                                <img class="book-img" src="" alt="">
+                                <div class="book-text">
+                                    <div class="book-title noto-bold">책제목입니다</div>
+                                    <div class="book-author noto-medium dark-gray">by 작가</div>
+                                    <p class="book-description noto-light">책소개글이 없음</p>
+                                    <a href="http://www.kyobobook.co.kr/" target="_blank" class="book-url paybooc-bold green"> > 책
+                                        구경하러 가기 < </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="modal hidden">
                         <!--배경-->
                         <div class="modal_overlay"></div>
@@ -56,15 +96,18 @@
                                             <a class="paybooc-bold hidden bookShelf-name-change-complete" href="">완료</a> -->
                                             <div>
                                                 <i class="bookShelf-edit-icon far fa-edit"></i>
-                                                <i class="bookShelf-delete-icon far fa-trash-alt"></i>
+                                                <a href="{% url 'back_deleteBookShelf' bookShelf.id %}"><i class="bookShelf-delete-icon far fa-trash-alt"></i></a>
                                             </div>
                                         </div>
                                     {%endif%}
                                 {% endfor %}    
                             </div>
                             <center>
-                                <input class="paybooc-light bookShelf-input" placeholder="  새로운 책장 이름을 입력하세요" type="text">
-                                <i class="fas fa-plus bookShelf-add"></i>
+                                <form action="{% url 'back_createBookShelf' %}">
+                                    <input class="paybooc-light bookShelf-input" placeholder="  새로운 책장 이름을 입력하세요" type="text" name="bookShelfTitle">
+                                    <!-- <input class="btn btn-dark" type="submit" value="제출하기"> -->
+                                    <button style="border: none; color: none; background: none;" type="submit"><i class="fas fa-plus bookShelf-add"></i></button>
+                                </form>
                             </center>
                             <!-- <center>
                                 <a href="" class="noto-bold bookShelf-edit-complete beige">편집 완료</a>
@@ -93,6 +136,40 @@
                         document.write("<div class='book-info' id='{{post.bookShelfID}}'>")
                         document.write('<a class="book-cover" href="" id="{{post.bookID.bookName}}"><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
                     </script>
+
+                    <div class="hidden posts">
+                        <img class="closed-opacity"> </img>
+                        {% if post.postCover.url != null %}
+                        <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+                        {% elif post.postCover2 != null %}
+                        <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+                        {% endif %}
+
+                        <p class="closed-title noto-medium white">{{post.title}}</p>
+                        <p class="hidden">{{post.body}}</p>
+                        <p class="hidden">{{post.postDate | date:'Y.m.d'}}
+
+                        </p>
+                        <p class="hidden closed-username">{{post.username}}</p>
+                        <img src="{{post.bookID.bookCover}}" class="hidden closed-bookid"></img>
+                        <p class="hidden closed-bookName">{{post.bookID.bookName}}</p>
+                        <p class="hidden closed-bookWriter">{{post.bookID.writer}}</p>
+                        <p class="hidden closed-bookDescription">{{post.bookID.description}}</p>
+
+                        <a href="{% url 'back_postLike' post.id %}" class="hidden closed-likes"></a>
+                        {% if user in post.like.all %}
+                        <p class="hidden closed-likeNum">{{ post.like.all.count }}</p>
+                        {% else %}
+                        <p class="hidden closed-likeNum">0</p>
+                        {% endif %}
+
+                        <a href="{% url 'back_postScrap' post.id %}" class="hidden closed-scrap">{</a>
+                        {% if user in post.scrap.all %}
+                        <p class="hidden closed-scrapNum">{{ post.scrap.all.count }}</p>
+                        {% else %}
+                        <p class="hidden closed-scrapNum">0</p>
+                        {% endif %}
+                    </div>
             {% endfor %}
             <script>
                 document.write("</div>")

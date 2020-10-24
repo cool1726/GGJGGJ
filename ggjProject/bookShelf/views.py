@@ -12,14 +12,17 @@ def detail(request):
 
 """책장 생성 함수 수정요함"""
 def createBookShelf(request):
+    title = request.GET['bookShelfTitle']
+    bookShelves = BookShelf.objects.all()
+    if (title==""):
+       return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all}) 
     bookShelf = BookShelf()
     bookShelf.username = request.user
     # bookShelf.postID.add(request.POST.get('postID'))
-    bookShelf.bookShelfTitle = request.GET['bookShelfTitle']
+    bookShelf.bookShelfTitle = title
     bookShelf.save()
     request.user.profile.bookShelf.add(bookShelf.id)
-    bookShelves = BookShelf.objects.all()
-    return render(request, 'back_myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
+    return render(request, 'myPage.html', {'bookShelves': bookShelves, 'posts': request.user.profile.postID.all})
 
 """back_myPage.html 로 이동하는 함수. """
 def myPage(request):
