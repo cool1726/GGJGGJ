@@ -14,8 +14,11 @@ const btnClose = openedPost.querySelector(".btn-close");
 const btnOpenBook = openedPost.querySelector(".open-book");
 const bookContainer = openedPost.querySelector(".bottom-book-box");
 
+const btnLike = openedPost.querySelector(".likes-box");
+const btnScrap = openedPost.querySelector(".scrap-box");
+
 const resizeApply = (cols) => {
-    let imgStack = Array.from({ length: cols }, () => 20);
+    let imgStack = Array.from({ length: cols }, () => 0);
     const colWidth = 295;
     const bottomMargin = 15;
     const minHeight = 160;
@@ -29,7 +32,9 @@ const resizeApply = (cols) => {
 
         let autoHeight = 0;
         if (body[i].textContent.length < 130) {
-            autoHeight = minHeight;
+            autoHeight = minHeight + Math.floor(Math.random() * 20);
+        } else if (body[i].textContent.length > 600) {
+            autoHeight = 500 + Math.floor(Math.random() * 100);
         } else {
             autoHeight = Math.floor(body[i].textContent.length * 1.2);
         }
@@ -58,24 +63,36 @@ posts.forEach(post => {
     post.addEventListener("click", () => { // click event 처리
         console.log("펼쳐!");
         let cols = 0;
-        if (window.innerWidth > 1248) { // 4열
+        if (window.innerWidth > 1580) {
+            cols = 4;
+            masonry.style.width = "1180px";
+            main.style.width = "1200px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
+        } else if (window.innerWidth > 1248) { // 4열
             cols = 3;
             masonry.style.width = "890px";
+            main.style.width = "910px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else if (window.innerWidth > 950) { // 3열
             cols = 2;
             masonry.style.width = "580px";
+            main.style.width = "600px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else if (window.innerWidth > 650) { // 2열
             cols = 1;
             masonry.style.width = "290px";
+            main.style.width = "310px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else { // 1열
             cols = 1;
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         }
         resizeApply(cols);
         // console.log(main.scrollWidth);
         // console.log(masonry.scrollWidth);
 
-        openedPost.style.width = `${main.clientWidth - masonry.clientWidth - 70}px`;
-        openedPost.style.display = "inline-flex";
+
+        openedPost.style.display = "flex";
         openedPost.classList.toggle("hidden");
 
         btnOpenBook.style.display = "block";
@@ -85,16 +102,26 @@ posts.forEach(post => {
         openedPost.querySelector(".post-title").innerHTML = `${post.children[2].innerHTML}`;
         openedPost.querySelector(".post-body").innerHTML = `${post.children[3].innerHTML}`;
         openedPost.querySelector(".pub-date").innerHTML = `${post.children[4].innerHTML}`;
-        openedPost.querySelector(".pub-user").innerHTML = `${post.children[5].innerHTML}`;
+        openedPost.querySelector(".pub-user").innerHTML = `@${post.children[5].innerHTML}`;
 
         console.log(post.children[6].src);
         openedPost.querySelector(".book-img").src = `${post.children[6].src}`;
         openedPost.querySelector(".book-title").innerHTML = `${post.children[7].innerHTML}`;
-        openedPost.querySelector(".book-author").innerHTML = `  by ${post.children[8].innerHTML}`;
+        openedPost.querySelector(".book-author").innerHTML = `   by ${post.children[8].innerHTML}`;
+        openedPost.querySelector(".book-description").innerHTML = `${post.children[9].innerHTML} ...`;
 
-        // console.log(openedPost.scrollWidth);
+        openedPost.querySelector(".btn-like").href = `${post.children[10].href}`;
+        openedPost.querySelector(".likes-num").innerHTML = `${post.children[11].innerHTML}`;
+        openedPost.querySelector(".btn-scrap").href = `${post.children[12].href}`;
+        openedPost.querySelector(".scrap-num").innerHTML = `${post.children[13].innerHTML}`;
     });
 })
+
+const strToDate = (obj) => {
+    let year = obj.substring(0, 4);
+    let month = obj.substring(5, 7);
+    return `${year}년 ${month}월`;
+}
 
 const openBook = () => {
     btnOpenBook.style.display = "none";
@@ -106,35 +133,56 @@ const closePostView = () => {
     let cols = 0;
     if (window.innerWidth > 1248) { // 4열
         cols = 4;
-        masonry.style.width = "890px";
+        masonry.style.width = "1180px";
+        main.style.width = "100%";
     } else if (window.innerWidth > 950) { // 3열
         cols = 3;
-        masonry.style.width = "580px";
+        masonry.style.width = "890";
+        main.style.width = "100%";
     } else if (window.innerWidth > 650) { // 2열
         cols = 2;
-        masonry.style.width = "290px";
+        masonry.style.width = "580";
+        main.style.width = "100%";
     } else { // 1열
         cols = 1;
+        main.style.width = "100%";
     }
     resizeApply(cols);
     openedPost.style.display = "none";
     openedPost.classList.toggle("hidden");
 
-    btnOpenBook.style.display = "block";
+    bookContainer.style.display = "block";
     bookContainer.classList.add("hidden");
 }
 
 window.onload = function () {
     window.addEventListener('resize', function () {
         let cols = 0;
-        if (window.innerWidth > 1248) { // 4열
+        if (window.innerWidth > 1580) {
             cols = 4;
+            masonry.style.width = "1180px";
+            main.style.width = "1195px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
+        } else if (window.innerWidth > 1248) { // 4열
+            cols = 4;
+            masonry.style.width = "890px";
+            main.style.width = "905px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else if (window.innerWidth > 950) { // 3열
             cols = 3;
+            masonry.style.width = "590px";
+            main.style.width = "600px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else if (window.innerWidth > 650) { // 2열
             cols = 2;
+            masonry.style.width = "295px";
+            main.style.width = "310px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         } else { // 1열
             cols = 1;
+            masonry.style.width = "295px";
+            main.style.width = "310px";
+            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
         }
         resizeApply(cols);
     });
@@ -143,11 +191,18 @@ window.onload = function () {
 let cols = 0;
 if (window.innerWidth > 1248) { // 4열
     cols = 4;
+    masonry.style.width = "1180px";
 } else if (window.innerWidth > 950) { // 3열
     cols = 3;
+    masonry.style.width = "890px";
 } else if (window.innerWidth > 650) { // 2열
     cols = 2;
+    masonry.style.width = "590px";
 } else { // 1열
     cols = 1;
+    masonry.style.width = "295px";
 }
 resizeApply(cols);
+
+
+// 좋아요, 스크랩 버튼 클릭처리

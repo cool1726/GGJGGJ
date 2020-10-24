@@ -9,33 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>back_home</title>
 </head>
+
 <body>
     {% load static %}
-        <style>
-            .list-group-item{
-                list-style: none;
-            }
-            .btn-like{
-                display: inline-block;
-                width: 250px;
-                height: 250px;
-                background: url("{% static 'emptyheart.png' %}");
-                background-position:-100px -400px;
-                text-indent:-9999px;
-                overflow:hidden;
-                border:1px solid black;
-            }
-            .btn-like.active{
-                display: inline-block;
-                width: 250px;
-                height: 250px;
-                background:url("{% static 'heart.png' %}");
-                background-position: -50px -400px;
-                text-indent: -9999px;
-                overflow: hidden;
-                border: 1px solid black;
-            }
-            .btn-scrap{
+    <style>
+        .list-group-item {
+            list-style: none;
+        }
+
+        .btn-like {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background: url("{% static 'emptyheart.png' %}");
+            background-position: -100px -400px;
+            text-indent: -9999px;
+            overflow: hidden;
+            border: 1px solid black;
+        }
+
+        .btn-like.active {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background:url("{% static 'heart.png' %}");
+            background-position: -50px -400px;
+            text-indent: -9999px;
+            overflow: hidden;
+            border: 1px solid black;
+        }
+
+        .btn-scrap {
             display: inline-block;
             width: 250px;
             height: 250px;
@@ -44,46 +48,50 @@
             text-indent: -9999px;
             overflow: hidden;
             border: none;
-            }
-            .btn-scrap.active{
-                display: inline-block;
-                width: 250px;
-                height: 250px;
-                background: url("{% static 'heart.png' %}");
-                background-position: -515px -100px;
-                text-indent: -9999px;
-                overflow: hidden;
-                border: none;
-            }
+        }
+
+        .btn-scrap.active {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background: url("{% static 'heart.png' %}");
+            background-position: -515px -100px;
+            text-indent: -9999px;
+            overflow: hidden;
+            border: none;
+        }
     </style>
     <a href="{%url 'new'%}">글쓰기</a>
     <a href="{%url 'logout'%}">로그아웃</a>
     <!-- 끄적끄적 xd를 보고 프론트가 필요한 내용을 정리했습니다. 이런 식으로 쓰시면 됩니다.  -->
     지금 로그인되어있는 아이디(필명): {{user.username}}
     {% for post in posts %}
-        <div class="body_box">
-            <p>title: {{post.title}}</p>
-            <p>body: {{post.body}}</p>
-            {% if post.postCover.url != null %}
-                <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
-                {% elif post.postCover2 != null %}
-                <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
-                {% endif %}
-            <p>username: {{post.username}}</p>
-            <p>postDate: {{post.postDate}}</p>
-            <p>좋아요 갯수: {{post.like.all.count}}</p>
-            <li class="list-group-item">
-                <p>아래를 누르면 좋아요입니다. </p>
-                <a href="{% url 'back_postLike' post.id %}" class="float-left btn-like {% if user in post.like.all %} active {% endif %}">좋아요!</a>
-                {% if post.like.all.count %}
-                <span class="float-left">
-                    {{post.like.all.count}}
-                </span>
-                {% endif %}
-                <p>아래를 누르면 스크랩입니다. </p>
-                <a href="{% url 'back_postScrap' post.id %}" class="float-right btn-scrap {% if user in post.scrap.all %} active {% endif %}">저장하기!</a>
-            </li>
-        </div>
+    <div class="body_box">
+        <p>title: {{post.title}}</p>
+        <p>body: {{post.body}}</p>
+        {% if post.postCover.url != null %}
+        <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
+        {% elif post.postCover2 != null %}
+        <img src="{{ post.postCover2 }}" class="closed-img" alt="...">
+        {% endif %}
+        <p>username: {{post.username}}</p>
+        <p>postDate: {{post.postDate}}</p>
+        <p>좋아요 갯수: {{post.like.all.count}}</p>
+        <li class="list-group-item">
+            <p>아래를 누르면 좋아요입니다. </p>
+            <a href="{% url 'back_postLike' post.id %}"
+                class="float-left btn-like {% if user in post.like.all %} active {% endif %}">좋아요!</a>
+            {% if post.like.all.count %}
+            <span class="float-left">
+                {{post.like.all.count}}
+            </span>
+            {% endif %}
+            <p>아래를 누르면 스크랩입니다. </p>
+            <a href="{% url 'back_postScrap' post.id %}"
+                class="float-right btn-scrap {% if user in post.scrap.all %} active {% endif %}">저장하기!</a>
+        </li>
+    </div>
     {% endfor %}
 </body>
+
 </html>
