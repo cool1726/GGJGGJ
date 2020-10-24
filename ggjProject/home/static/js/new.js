@@ -208,3 +208,15 @@ function formCheck() {
     document.form.submit();
   }
 }
+
+// 제목 글자수 체크하는 함수
+function textCounter() {
+  let inputTitle = document.querySelector(".new_input_title").value;
+  let strLen = inputTitle.length;
+  console.log(strLen);
+  document.querySelector(".title-counter").innerHTML = `${strLen} / 100`;
+
+  if (strLen > 100) {
+    alert("제목은 최대 100자까지 입력가능합니다");
+  }
+}
