@@ -63,11 +63,11 @@ posts.forEach(post => {
     post.addEventListener("click", () => { // click event 처리
         console.log("펼쳐!");
         let cols = 0;
-        if (window.innerWidth > 1580) {
+        if (window.innerWidth > 1880) {
             cols = 4;
             masonry.style.width = "1180px";
             main.style.width = "1200px";
-            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
+            openedPost.style.width = `680px`;
         } else if (window.innerWidth > 1248) { // 4열
             cols = 3;
             masonry.style.width = "890px";
@@ -117,11 +117,6 @@ posts.forEach(post => {
     });
 })
 
-const strToDate = (obj) => {
-    let year = obj.substring(0, 4);
-    let month = obj.substring(5, 7);
-    return `${year}년 ${month}월`;
-}
 
 const openBook = () => {
     btnOpenBook.style.display = "none";
@@ -151,18 +146,18 @@ const closePostView = () => {
     openedPost.style.display = "none";
     openedPost.classList.toggle("hidden");
 
-    bookContainer.style.display = "block";
+    btnOpenBook.style.display = "block";
     bookContainer.classList.add("hidden");
 }
 
 window.onload = function () {
     window.addEventListener('resize', function () {
         let cols = 0;
-        if (window.innerWidth > 1580) {
+        if (window.innerWidth > 1880) {
             cols = 4;
             masonry.style.width = "1180px";
-            main.style.width = "1195px";
-            openedPost.style.width = `${window.innerWidth - masonry.clientWidth - 50}px`;
+            main.style.width = "1200px";
+            openedPost.style.width = `680px`;
         } else if (window.innerWidth > 1248) { // 4열
             cols = 4;
             masonry.style.width = "890px";
@@ -189,7 +184,12 @@ window.onload = function () {
 }
 
 let cols = 0;
-if (window.innerWidth > 1248) { // 4열
+if (window.innerWidth > 1880) {
+    cols = 4;
+    masonry.style.width = "1180px";
+    main.style.width = "1200px";
+    openedPost.style.width = `680px`;
+} else if (window.innerWidth > 1248) { // 4열
     cols = 4;
     masonry.style.width = "1180px";
 } else if (window.innerWidth > 950) { // 3열
@@ -202,6 +202,7 @@ if (window.innerWidth > 1248) { // 4열
     cols = 1;
     masonry.style.width = "295px";
 }
+
 resizeApply(cols);
 
 
