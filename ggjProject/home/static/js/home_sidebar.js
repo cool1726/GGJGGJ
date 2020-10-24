@@ -132,11 +132,11 @@ const closePostView = () => {
         main.style.width = "100%";
     } else if (window.innerWidth > 950) { // 3열
         cols = 3;
-        masonry.style.width = "890";
+        masonry.style.width = "890px";
         main.style.width = "100%";
     } else if (window.innerWidth > 650) { // 2열
         cols = 2;
-        masonry.style.width = "580";
+        masonry.style.width = "580px";
         main.style.width = "100%";
     } else { // 1열
         cols = 1;
@@ -187,20 +187,23 @@ let cols = 0;
 if (window.innerWidth > 1880) {
     cols = 4;
     masonry.style.width = "1180px";
-    main.style.width = "1200px";
-    openedPost.style.width = `680px`;
+    main.style.width = "100%";
 } else if (window.innerWidth > 1248) { // 4열
     cols = 4;
     masonry.style.width = "1180px";
+    main.style.width = "100%";
 } else if (window.innerWidth > 950) { // 3열
     cols = 3;
     masonry.style.width = "890px";
+    main.style.width = "100%";
 } else if (window.innerWidth > 650) { // 2열
     cols = 2;
     masonry.style.width = "590px";
+    main.style.width = "100%";
 } else { // 1열
     cols = 1;
     masonry.style.width = "295px";
+    main.style.width = "100%";
 }
 
 resizeApply(cols);
