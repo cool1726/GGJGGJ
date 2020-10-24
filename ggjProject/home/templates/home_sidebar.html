@@ -47,7 +47,7 @@
                 <p class="hidden closed-likeNum">0</p>
                 {% endif %}
 
-                <a href="% url 'back_postScrap' post.id %}" class="hidden closed-scrap">{</a>
+                <a href="{% url 'back_postScrap' post.id %}" class="hidden closed-scrap">{</a>
                 {% if user in post.scrap.all %}
                 <p class="hidden closed-scrapNum">{{ post.scrap.all.count }}</p>
                 {% else %}

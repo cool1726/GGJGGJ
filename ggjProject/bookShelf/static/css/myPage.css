@@ -7,7 +7,7 @@
 }
 
 .navbar-bookShelf {
-    padding: 17px 18.5% 0px 18.5%;
+    padding: 35px 18.5% 0px 18.5%;
 }
 
 .navbar-bookShelf-border {
@@ -15,7 +15,7 @@
     border: solid #205F53 1px;
     background: #FFFFFF;
     justify-content: space-between;
-    padding: 17px 1%;
+    padding: 0px 1%;
 }
 
 .navbar-bookShelf-border li {
@@ -35,6 +35,8 @@
     font-family: 'paybooc-Medium', sans-serif;
     font-size: 18px;
     padding: 0px 10px;
+    position: relative;
+    top: 16px;
     text-decoration: none;
 }
 
@@ -47,7 +49,7 @@
 .my-book-search-input {
     border: 1px solid #CECECE;
     border-radius: 45px;
-    height: 44px;
+    height: 15px;
     width: 35%;
     font-family: 'paybooc-Medium', sans-serif;
     color: #222222;
@@ -113,7 +115,7 @@
     padding: 20px 20px;
     position: absolute;
     width: 574px;
-    height: 650px;
+    height: 600px;
     box-sizing: border-box;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
 }
@@ -145,8 +147,8 @@
 .bookShelf-edit-icon {
     cursor: pointer;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     padding: 6px 6px;
     border: 1px solid #73958F;
     border-radius: 15px;
@@ -157,8 +159,8 @@
 .bookShelf-delete-icon {
     cursor: pointer;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     padding: 6px 7px;
     border: 1px solid #152416;
     border-radius: 15px;
