@@ -9,12 +9,15 @@
     <nav class="navbar-links">
         <ul>
             <li><a class="vertically-center" href="{% url 'home' %}">둘러보기</a></li>
-            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">책갈피</a></li>
-            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">팔로잉</a></li>
+            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">책갈피</a>
+            </li>
+            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">팔로잉</a>
+            </li>
             {% if user.is_active %}
             <li><a class="vertically-center" href="{% url 'back_myPage' %}">나의 책장</a></li>
             {% else %}
-            <li><a class="vertically-center" onclick="alert('나의 책장을 보려면 로그인해주세요')" href="javascript:return false;">나의 책장</a></li>
+            <li><a class="vertically-center" onclick="alert('나의 책장을 보려면 로그인해주세요')" href="javascript:return false;">나의
+                    책장</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -24,10 +27,11 @@
         <a class="navbar-btn-write vertically-center beige" href="{% url 'new' %}">
             <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
         {% else %}
-        <a class="navbar-btn-write vertically-center beige" onclick="alert('글을 쓰려면 로그인해주세요')" href="javascript:return false;">
+        <a class="navbar-btn-write vertically-center beige" onclick="alert('글을 쓰려면 로그인해주세요')"
+            href="javascript:return false;">
             <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
         {% endif %}
-        
+
 
         <span class="navbar-profile">
             {% if user.is_active %}

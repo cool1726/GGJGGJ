@@ -216,7 +216,7 @@ function textCounter() {
   console.log(strLen);
   document.querySelector(".title-counter").innerHTML = `${strLen} / 100`;
 
-  if (strLen > 100) {
+  if (strLen >= 100) {
     alert("제목은 최대 100자까지 입력가능합니다");
   }
 }

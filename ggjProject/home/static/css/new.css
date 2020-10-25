@@ -15,6 +15,7 @@ form {
   display: flex;
   padding: 20px 10% 50px;
   margin: 0 auto;
+  margin-bottom: 200px;
   max-width: 1160px;
   min-width: 880px;
   align-items: flex-start;
@@ -57,7 +58,6 @@ form {
 .new-input-body {
   display: block;
   width: 100%;
-  height: calc(100vh - 300px);
   padding: 5px 20px;
   margin: 10px 0;
   font-size: 18px;
@@ -66,6 +66,7 @@ form {
   line-height: 1.8;
   resize: none;
   word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .new-input-body {

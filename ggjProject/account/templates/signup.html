@@ -27,16 +27,16 @@
             {% csrf_token %}
             <h2 class="signup-guide-box">본인인증</h2>
             <input class="acc-small-input" name="phoneNumber" type="text" value="" placeholder="휴대폰 번호"><!-- 전화번호 -->
-            <input class="acc-small-btn" type="button" value="인증번호 발송">
+            <input class="acc-small-btn" type="button" onclick="alert('서비스 준비 중입니다')" value="인증번호 발송">
             <br>
             <input class="acc-small-input" name="certifiNumber" type="text" value="" placeholder="인증 번호"><!-- 인증번호 -->
-            <input class="acc-small-btn" type="button" value="인증번호 확인">
+            <input class="acc-small-btn" type="button" onclick="alert('서비스 준비 중입니다')" value="인증번호 확인">
 
             <h2 class="signup-guide-box">기본정보 입력</h2>
             <input class="acc-wide-input" name="email" type="text" value="" placeholder="이메일"><!-- 이메일 -->
             <br>
-            <input class="acc-small-input" name="username" type="text" value="" placeholder="필명(ID)"><!-- 아이디 -->
-            <input class="acc-small-btn" type="button" value="필명 중복검사">
+            <input class="acc-wide-input" name="username" type="text" value="" placeholder="필명(ID)"><!-- 아이디 -->
+            <!-- <input class="acc-small-btn" type="button" value="필명 중복검사"> -->
 
             <br>
             <input class="acc-wide-input" name="password" type="password" value=""

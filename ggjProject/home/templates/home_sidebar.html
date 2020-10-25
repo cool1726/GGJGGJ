@@ -41,17 +41,27 @@
                 <p class="hidden closed-bookDescription">{{post.bookID.description}}</p>
 
                 <a href="{% url 'back_postLike' post.id %}" class="hidden closed-likes"></a>
-                {% if user in post.like.all %}
+                {% if post.like.all.count %}
                 <p class="hidden closed-likeNum">{{ post.like.all.count }}</p>
                 {% else %}
                 <p class="hidden closed-likeNum">0</p>
                 {% endif %}
+                {% if user in post.like.all %}
+                <p class="hidden">liked</p>
+                {% else %}
+                <p class="hidden">not liked</p>
+                {% endif %}
 
                 <a href="{% url 'back_postScrap' post.id %}" class="hidden closed-scrap">{</a>
-                {% if user in post.scrap.all %}
+                {% if post.scrap.all.count %}
                 <p class="hidden closed-scrapNum">{{ post.scrap.all.count }}</p>
                 {% else %}
                 <p class="hidden closed-scrapNum">0</p>
+                {% endif %}
+                {% if user in post.scrap.all %}
+                <p class="hidden">scraped</p>
+                {% else %}
+                <p class="hidden">not scraped</p>
                 {% endif %}
             </div>
             {% endfor %}
@@ -64,15 +74,12 @@
             <span class="noto-medium beige pub-description pub-user">username</span>
 
             <span class="likes-box">
-                <a href="" class="btn-like {% if user in post.like.all %} active {% endif %}"><i
-                        class="far fa-heart beige like-btn"></i></a>
+                <a href="" class="btn-like"> <i class="fa-heart beige like-btn"></i></a>
                 <span class="likes-num beige noto-light">0</span>
                 <!-- <i class="fas fa-heart beige liked-btn hidden"></i> -->
             </span>
             <span class="scrap-box">
-                <a href="" class="btn-scrap {% if user in post.scrap.all %} active {% endif %}"><i
-                        class="far fa-bookmark beige scrap-btn"></i></a>
-
+                <a href="" class="btn-scrap"><i class="fa-bookmark beige scrap-btn"></i></a>
                 <span class="scrap-num beige noto-light">0</span>
                 <!-- <i class="fas fa-bookmark"></i> -->
             </span>

@@ -16,22 +16,25 @@
 <body>
 
     {% include 'navbar.html' %}
-    
+
     <div class="navbar-bookShelf">
-        <a class="bookShelf-title green" href="">나의 책장</a> 
+        <a class="bookShelf-title green" href="">나의 책장</a>
         <div class="bookShelf-floating">
             <div>
                 <div class="navbar-bookShelf-border">
                     <ul>
-                        <li><a class="navbar-bookShelf-item green" href="javascript:return false;" onclick="reloadBookShelf(-1);">전체</a></li>
+                        <li><a class="navbar-bookShelf-item green" href="javascript:return false;"
+                                onclick="reloadBookShelf(-1);">전체</a></li>
                         {% for bookShelf in bookShelves %}
-                            {% if user.username == bookShelf.username %}
-                                <li><a class="navbar-bookShelf-item green" href="javascript:return false;" onclick="reloadBookShelf('{{bookShelf.id}}')">{{bookShelf.bookShelfTitle}}</a></li>
-                            {%endif%}
+                        {% if user.username == bookShelf.username %}
+                        <li><a class="navbar-bookShelf-item green" href="javascript:return false;"
+                                onclick="reloadBookShelf('{{bookShelf.id}}')">{{bookShelf.bookShelfTitle}}</a></li>
+                        {%endif%}
                         {% endfor %}
                     </ul>
-    
-                    <a class="navbar-bookShelf-edit gray" id="btn-edit-bookShelf" href="javascript:return false;">책장 편집하기</a>
+
+                    <a class="navbar-bookShelf-edit gray" id="btn-edit-bookShelf" href="javascript:return false;">책장
+                        편집하기</a>
 
                     <!-- <div class="hidden post-container">
                         <div class="hidden selected-post">
@@ -80,32 +83,39 @@
                             <!--종료 아이콘-->
                             <i class="fas fa-times btn-close" type="button"></i>
                             <div class="modal_title paybooc-extrabold green">나의 책장 편집</div>
-                            
+
                             <div class="bookShelf-editor">
                                 {% for bookShelf in bookShelves %}
-                                    {% if user.username == bookShelf.username %}
-                                        <div class="bookShelf-tool-container">
-                                            <p class="paybooc-bold dark-gray bookShelf-edit-title">{{bookShelf.bookShelfTitle}}</p>
-                                            <form action="{% url 'back_updateBookShelf' bookShelf.id  %}" method="POST" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}" name="bookShelfTitle">
-                                                <input type="submit" class="paybooc-bold hidden bookShelf-name-change-complete" value="완료">
-                                            </form>
-                                            <!-- <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}">
+                                {% if user.username == bookShelf.username %}
+                                <div class="bookShelf-tool-container">
+                                    <p class="paybooc-bold dark-gray bookShelf-edit-title">{{bookShelf.bookShelfTitle}}
+                                    </p>
+                                    <form action="{% url 'back_updateBookShelf' bookShelf.id  %}" method="POST"
+                                        enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input class="paybooc-medium hidden bookShelf-title-input"
+                                            value="{{bookShelf.bookShelfTitle}}" name="bookShelfTitle">
+                                        <input type="submit" class="paybooc-bold hidden bookShelf-name-change-complete"
+                                            value="완료">
+                                    </form>
+                                    <!-- <input class="paybooc-medium hidden bookShelf-title-input" value="{{bookShelf.bookShelfTitle}}">
                                             <a class="paybooc-bold hidden bookShelf-name-change-complete" href="">완료</a> -->
-                                            <div>
-                                                <i class="bookShelf-edit-icon far fa-edit"></i>
-                                                <a href="{% url 'back_deleteBookShelf' bookShelf.id %}"><i class="bookShelf-delete-icon far fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    {%endif%}
-                                {% endfor %}    
+                                    <div>
+                                        <i class="bookShelf-edit-icon far fa-edit"></i>
+                                        <a href="{% url 'back_deleteBookShelf' bookShelf.id %}"><i
+                                                class="bookShelf-delete-icon far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {% endfor %}
                             </div>
                             <center>
                                 <form action="{% url 'back_createBookShelf' %}">
-                                    <input class="paybooc-light bookShelf-input" placeholder="  새로운 책장 이름을 입력하세요" type="text" name="bookShelfTitle">
+                                    <input class="paybooc-light bookShelf-input" placeholder="  새로운 책장 이름을 입력하세요"
+                                        type="text" name="bookShelfTitle">
                                     <!-- <input class="btn btn-dark" type="submit" value="제출하기"> -->
-                                    <button style="border: none; color: none; background: none;" type="submit"><i class="fas fa-plus bookShelf-add"></i></button>
+                                    <button style="border: none; color: none; background: none;" type="submit"><i
+                                            class="fas fa-plus bookShelf-add"></i></button>
                                 </form>
                             </center>
                             <!-- <center>
@@ -115,9 +125,10 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="my-book-search">
-                <input onkeyup="searchBook()" class="my-book-search-input" id="bookName" placeholder="찾고 싶은 책을 검색하세요" type="text">
+                <input onkeyup="searchBook()" class="my-book-search-input" id="bookName" placeholder="찾고 싶은 책을 검색하세요"
+                    type="text">
             </div>
         </div>
     </div>
@@ -126,17 +137,18 @@
         <div class="my-bookShelf">
             <!-- 전체 로딩을 끝내고, 책장을 선택하면 책장에 맞는 책만 보여 주도록 -->
             <script>
-                var count=0;
+                var count = 0;
 
                 document.write("<div class='my-book-oneLine'>")
             </script>
             {% for post in posts %}
-                    <script>
-                        document.write("<div class='book-info' id='{{post.bookShelfID}}'>")
-                        document.write('<a class="book-cover" href="" id="{{post.bookID.bookName}}"><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
-                    </script>
-
-                    <!-- <div class="hidden posts">
+            {% if post.username == user.username %}
+            <script>
+                document.write("<div class='book-info' id='{{post.bookShelfID}}'>")
+                document.write(`<a class='book-cover' href='' onclick="alert('해당 기능은 준비중입니다')" id='{{post.bookID.bookName}}'> <img src='{{post.bookID.bookCover}}' alt=''></a></div>`)
+            </script>
+            {% endif %}
+            <!-- <div class="hidden posts">
                         <img class="closed-opacity"> </img>
                         {% if post.postCover.url != null %}
                         <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
@@ -172,21 +184,21 @@
             {% endfor %}
             <script>
                 document.write("</div>")
-            
+
                 var item, idOfElements;
 
                 function reloadBookShelf(id) {
                     item = document.getElementsByClassName("book-info");
-                    if(id==-1){
-                        for(i=0; i<item.length;i++){
+                    if (id == -1) {
+                        for (i = 0; i < item.length; i++) {
                             item[i].style.display = "flex";
                         }
-                    }else{
-                        for(i=0; i<item.length;i++){
+                    } else {
+                        for (i = 0; i < item.length; i++) {
                             idOfElements = item[i].id
-                            if(idOfElements==id){
+                            if (idOfElements == id) {
                                 item[i].style.display = "flex";
-                            }else{
+                            } else {
                                 item[i].style.display = "none";
                             }
                         }
@@ -194,21 +206,21 @@
                 }
 
                 function searchBook() {
-            
+
                     var value, name, item, i;
 
                     value = document.getElementById("bookName").value;
                     item = document.getElementsByClassName("book-info");
-                    
+
                     console.log(value);
 
                     name = document.getElementsByClassName("book-cover")
 
-                    for(i=0;  i<item.length; i++){
-                        if(name[i].id.indexOf(value) > -1){
+                    for (i = 0; i < item.length; i++) {
+                        if (name[i].id.indexOf(value) > -1) {
                             console.log("in");
                             item[i].style.display = "flex";
-                        }else{
+                        } else {
                             console.log("else");
                             item[i].style.display = "none";
                         }
@@ -217,7 +229,7 @@
             </script>
         </div>
     </div>
-    
+
     {% include 'footer.html' %}
 
     <script type="text/javascript" src="../static/js/myPage.js"></script>

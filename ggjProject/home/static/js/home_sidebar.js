@@ -112,8 +112,23 @@ posts.forEach(post => {
 
         openedPost.querySelector(".btn-like").href = `${post.children[10].href}`;
         openedPost.querySelector(".likes-num").innerHTML = `${post.children[11].innerHTML}`;
-        openedPost.querySelector(".btn-scrap").href = `${post.children[12].href}`;
-        openedPost.querySelector(".scrap-num").innerHTML = `${post.children[13].innerHTML}`;
+        if (post.children[12].innerHTML == 'liked') {
+            openedPost.querySelector(".like-btn").classList.remove("far");
+            openedPost.querySelector(".like-btn").classList.add("fas");
+        } else {
+            openedPost.querySelector(".like-btn").classList.remove("fas");
+            openedPost.querySelector(".like-btn").classList.add("far");
+        }
+
+        openedPost.querySelector(".btn-scrap").href = `${post.children[13].href}`;
+        openedPost.querySelector(".scrap-num").innerHTML = `${post.children[14].innerHTML}`;
+        if (post.children[15].innerHTML == 'scraped') {
+            openedPost.querySelector(".scrap-btn").classList.remove("far");
+            openedPost.querySelector(".scrap-btn").classList.add("fas");
+        } else {
+            openedPost.querySelector(".scrap-btn").classList.remove("fas");
+            openedPost.querySelector(".scrap-btn").classList.add("far");
+        }
     });
 })
 
@@ -234,3 +249,6 @@ resizeApply(cols);
 
 
 // 좋아요, 스크랩 버튼 클릭처리
+const likeBtn = openedPost.querySelector(".like-btn");
+const scrapBtn = openedPost.querySelector(".scrap-btn");
+
