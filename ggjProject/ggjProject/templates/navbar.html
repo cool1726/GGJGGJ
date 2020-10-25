@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <header class="top-navbar white-background">
     <span>
         <img class="navbar-logo vertically-center" src="{% static 'images/ggjlogo.png' %}" alt="끄적끄적로고">
@@ -10,20 +9,30 @@
     <nav class="navbar-links">
         <ul>
             <li><a class="vertically-center" href="{% url 'home' %}">둘러보기</a></li>
-            <li><a class="vertically-center" href="">책갈피</a></li>
-            <li><a class="vertically-center" href="">팔로잉</a></li>
+            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">책갈피</a></li>
+            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">팔로잉</a></li>
+            {% if user.is_active %}
             <li><a class="vertically-center" href="{% url 'back_myPage' %}">나의 책장</a></li>
+            {% else %}
+            <li><a class="vertically-center" onclick="alert('나의 책장을 보려면 로그인해주세요')" href="javascript:return false;">나의 책장</a></li>
+            {% endif %}
         </ul>
     </nav>
 
     <div>
+        {% if user.is_active %}
         <a class="navbar-btn-write vertically-center beige" href="{% url 'new' %}">
             <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
+        {% else %}
+        <a class="navbar-btn-write vertically-center beige" onclick="alert('글을 쓰려면 로그인해주세요')" href="javascript:return false;">
+            <i class="fas fa-pen-nib vertically-center"></i> 글쓰기</a>
+        {% endif %}
+        
 
         <span class="navbar-profile">
+            {% if user.is_active %}
             <i class="fas fa-user-circle vertically-center fa-3x"></i>
             <div class="navbar-welcome vertically-center dark-green">
-
                 <span id="profile">안녕하세요<br>{{user.username}} 독자님!</span>
                 <div class="navbar-mymenu hidden">
                     <ul>
@@ -32,6 +41,10 @@
                     </ul>
                 </div>
             </div>
+            {% else %}
+            <a class="navbar-btn-write vertically-center beige" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt vertically-center"></i> 로그인</a>
+            {% endif %}
         </span>
     </div>
 

@@ -7,12 +7,9 @@ const overlay = modal.querySelector(".modal_overlay");
 const closeBtn = modal.querySelector(".btn-close");
 const completeBtn = modal.querySelector(".bookShelf-edit-complete");
 
-const bookShelfTitle = modal.querySelector(".bookShelf-title");
-const bookShelfTitleInput = modal.querySelector(".bookShelf-title-input");
-const nameChangeCompleteBtn = modal.querySelector(".bookShelf-name-change-complete");
+const bookShelfToolContainerList = modal.querySelectorAll(".bookShelf-tool-container");
 
-const nameEditBtn = modal.querySelector(".bookShelf-edit-icon");
-const deleteBtn = modal.querySelector(".bookShelf-delete-icon");
+const posts = document.querySelectorAll(".posts");
 
 const openModal = () => {
     modal.classList.remove("hidden");
@@ -24,21 +21,29 @@ const closeModal = () => {
     body.classList.remove("not-scroll");
 };
 
-const changeBookShelfName = () => {
-    bookShelfTitle.classList.add("hidden")
-    bookShelfTitleInput.classList.remove("hidden")
-    nameChangeCompleteBtn.classList.remove("hidden")
-}
-
-const onBookShelfNameChangeComplete = () => {
-    bookShelfTitle.classList.remove("hidden")
-    bookShelfTitleInput.classList.add("hidden")
-    nameChangeCompleteBtn.classList.add("hidden")
-}
-
 overlay.addEventListener("click",closeModal);
 closeBtn.addEventListener("click",closeModal);
 openEditBtn.addEventListener("click",openModal);
 
-nameEditBtn.addEventListener("click", changeBookShelfName);
-nameChangeCompleteBtn.addEventListener("click", onBookShelfNameChangeComplete);
+bookShelfToolContainerList.forEach(container => {
+
+    const nameEditBtn = container.querySelector(".bookShelf-edit-icon");
+    const deleteBtn = container.querySelector(".bookShelf-delete-icon");
+
+    const bookShelfTitle = container.querySelector(".bookShelf-edit-title");
+    const bookShelfTitleInput = container.querySelector(".bookShelf-title-input");
+    const nameChangeCompleteBtn = container.querySelector(".bookShelf-name-change-complete");
+
+    nameEditBtn.addEventListener("click", () => {
+        bookShelfTitle.classList.add("hidden");
+        bookShelfTitleInput.classList.remove("hidden");
+        nameChangeCompleteBtn.classList.remove("hidden");
+    });
+
+    nameChangeCompleteBtn.addEventListener("click", () => {
+        bookShelfTitle.classList.remove("hidden");
+        bookShelfTitleInput.classList.add("hidden");
+        nameChangeCompleteBtn.classList.add("hidden");
+    });
+
+});

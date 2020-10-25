@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>My Page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/myPage.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
@@ -33,7 +33,7 @@
     
                     <a class="navbar-bookShelf-edit gray" id="btn-edit-bookShelf" href="javascript:return false;">책장 편집하기</a>
 
-                    <div class="hidden post-container">
+                    <!-- <div class="hidden post-container">
                         <div class="hidden selected-post">
                             <img src="" class="post-img" alt="">
                             <i class="fas fa-times btn-close" type="button" onclick="closePostView(this)"></i>
@@ -44,16 +44,15 @@
                                 <a href="" class="btn-like {% if user in post.like.all %} active {% endif %}"><i
                                     class="far fa-heart beige like-btn"></i></a>
                                 <span class="likes-num beige noto-light">0</span>
-                                <!-- <i class="fas fa-heart beige liked-btn hidden"></i> -->
+
                             </span>
                             <span class="scrap-box">
                                 <a href="" class="btn-scrap {% if user in post.scrap.all %} active {% endif %}"><i
                                         class="far fa-bookmark beige scrap-btn"></i></a>
     
                                 <span class="scrap-num beige noto-light">0</span>
-                                <!-- <i class="fas fa-bookmark"></i> -->
+                                
                             </span>
-    
     
                             <div class="bottom-post-box">
                                 <h3 class="post-title bareunbatang-medium">제목을 입력하세요</h3>
@@ -71,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="modal hidden">
                         <!--배경-->
@@ -137,7 +136,7 @@
                         document.write('<a class="book-cover" href="" id="{{post.bookID.bookName}}"><img src="{{post.bookID.bookCover}}" alt=""></a></div>')
                     </script>
 
-                    <div class="hidden posts">
+                    <!-- <div class="hidden posts">
                         <img class="closed-opacity"> </img>
                         {% if post.postCover.url != null %}
                         <img src="{{ post.postCover.url }}" class="closed-img" alt="...">
@@ -169,7 +168,7 @@
                         {% else %}
                         <p class="hidden closed-scrapNum">0</p>
                         {% endif %}
-                    </div>
+                    </div> -->
             {% endfor %}
             <script>
                 document.write("</div>")

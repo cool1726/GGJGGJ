@@ -1,13 +1,13 @@
 .bookShelf-title {
     font-family: 'paybooc-Extrabold', sans-serif;
-    text-decoration: none;
     font-size: 40px;
+    text-decoration: none;
     display: flex;
     justify-content: center;
 }
 
 .navbar-bookShelf {
-    padding: 17px 18.5% 0px 18.5%;
+    padding: 35px 18.5% 0px 18.5%;
 }
 
 .navbar-bookShelf-border {
@@ -15,7 +15,7 @@
     border: solid #205F53 1px;
     background: #FFFFFF;
     justify-content: space-between;
-    padding: 17px 1%;
+    padding: 0px 1%;
 }
 
 .navbar-bookShelf-border li {
@@ -35,6 +35,8 @@
     font-family: 'paybooc-Medium', sans-serif;
     font-size: 18px;
     padding: 0px 10px;
+    position: relative;
+    top: 16px;
     text-decoration: none;
 }
 
@@ -47,7 +49,7 @@
 .my-book-search-input {
     border: 1px solid #CECECE;
     border-radius: 45px;
-    height: 44px;
+    height: 15px;
     width: 35%;
     font-family: 'paybooc-Medium', sans-serif;
     color: #222222;
@@ -65,8 +67,8 @@
 }
 
 .my-bookShelf {
-    margin: 0px 10%;
-    padding: 80px 5%;
+    margin: 0px 13%;
+    padding: 80px 1%;
     background: #152416;
 }
 
@@ -113,7 +115,7 @@
     padding: 20px 20px;
     position: absolute;
     width: 574px;
-    height: 650px;
+    height: 600px;
     box-sizing: border-box;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
 }
@@ -145,8 +147,8 @@
 .bookShelf-edit-icon {
     cursor: pointer;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     padding: 6px 6px;
     border: 1px solid #73958F;
     border-radius: 15px;
@@ -157,15 +159,15 @@
 .bookShelf-delete-icon {
     cursor: pointer;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     padding: 6px 7px;
     border: 1px solid #152416;
     border-radius: 15px;
     background-color: #152416;
 }
 
-.bookShelf-title {
+.bookShelf-edit-title {
     font-size: 21px;
     vertical-align: baseline;
 }
@@ -217,4 +219,178 @@
     color: #FFC57A;
     border-radius: 15px;
     padding: 5px 10px;
+}
+
+/* 각각의 post 선택 시 */
+.post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+}
+
+.selected-post {
+    background: white;
+    padding: 20px 20px;
+    position: absolute;
+    width: 700px;
+    height: 800px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.post-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.btn-close {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 15px;
+    position: absolute;
+    text-align: right;
+  }
+
+.pub-date {
+    position: absolute;
+    top: 260px;
+    left: 30px;
+    font-size: 14px;
+}
+
+.pub-user {
+    position: absolute;
+    top: 260px;
+    left: 110px;
+    font-size: 14px;
+}
+
+/* 좋아요, 스크랩 버튼 */
+.likes-box {
+    position: absolute;
+    top: 250px;
+    right: 60px;
+}
+
+.like-btn {
+    display: block;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.likes-num {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+}
+
+.scrap-box {
+    position: absolute;
+    top: 250px;
+    right: 30px;
+}
+
+.scrap-btn {
+    display: block;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.scrap-num {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+}
+
+
+/* 글 관련 부분 (제목, 본문) */
+.bottom-post-box {
+    width: 100%;
+    padding: 30px 40px;
+    background-color: #f3f3f3;
+}
+
+.post-title {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.post-body {
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.open-book{
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.open-book:hover {
+    color: #1A2E1B;
+    cursor: pointer;
+}
+
+/* post의 도서 관련 정보 (이미지 // 도서명, 작가, 소개글, 링크) */
+.bottom-book-box {
+    width: 100%;
+    padding: 30px 30px;
+    background-color: #E2E2E2;
+    text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.4s;
+}
+
+.book-img {
+    display: inline-block;
+    width: 120px;
+    margin-right: 10px;
+    object-fit: cover;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.book-text {
+    display: inline-flex;
+    width: calc(100% - 140px);
+    text-align: left;
+    flex-wrap: wrap;
+    flex-direction: column;
+    vertical-align: top;
+}
+
+.book-title, .book-author {
+    display: flex;
+    font-size: 14px;
+    text-align: left;
+}
+
+.book-description {
+    display: flex;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.book-url {
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.book-url:hover {
+    color: #1A2E1B;
+    cursor: pointer;
 }

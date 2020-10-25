@@ -9,7 +9,7 @@ const completeBtn = modal.querySelector(".bookShelf-edit-complete");
 
 const bookShelfToolContainerList = modal.querySelectorAll(".bookShelf-tool-container");
 
-const posts = document.querySelectorAll(".posts");
+// const posts = document.querySelectorAll(".posts");
 
 const openModal = () => {
     modal.classList.remove("hidden");
