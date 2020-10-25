@@ -71,7 +71,8 @@ def create(request): #책장에 post 추가해줘야합니다. 책장이 bookShe
     bookShelf = bookShelves.get(id = bookshelfID)
     bookShelf.postID.add(post.id)
     request.user.profile.postID.add(post.id)
-    return render(request,'home_sidebar.html',{'bookShelves': bookShelves, 'posts': posts})
+    return redirect('/')
+    # return render(request,'home_sidebar.html',{'bookShelves': bookShelves, 'posts': posts})
 
 """post삭제할 수 있는 함수"""
 def delete(request, post_id):

@@ -13,6 +13,7 @@
 
 /* 메인컨텐츠 관련 */
 .main-container {
+
     width: 1165px;
     height: 100%;
     padding: 20px 30px;
@@ -21,6 +22,7 @@
 }
 
 #masonry-container {
+    display: inline-flex;
     position: relative;
     width: 1165px;
     height: 100%;
@@ -91,7 +93,7 @@
 .btn-close {
     all: unset;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px 15px;
     float: right;
   }
 

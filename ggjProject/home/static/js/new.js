@@ -205,7 +205,7 @@ function formCheck() {
   } else if (form.postCover.files.length == 0 && form.postCover2.value == null) {
     alert("사진을 올려주세요");
   } else {
-    document.form.submit();
+    form.submit();
   }
 }
 

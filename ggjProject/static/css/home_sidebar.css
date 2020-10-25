@@ -50,7 +50,7 @@
     background-color: rgba(53, 53, 53, 0.5);
 }
 .post-container:hover .closed-title  {
-    color: #181818;
+    color: #F8F2C9;
 }
 
 .post-container:click .closed-opacity, .post-container:active .closed-opacity {

@@ -25,7 +25,7 @@ SECRET_KEY = 'c@0hgdjabauz$2e!60a7nh_pd4+svf^v&b7ibvg^#iqav^qtgr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ggjEnv.eba-maq8q6pb.us-west-2.elasticbeanstalk.com']
 
 # Application definition
 
@@ -121,7 +121,8 @@ USE_TZ = True
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ggjProject', 'static'),
     os.path.join(BASE_DIR, 'home', 'static'),
-    os.path.join(BASE_DIR, 'account', 'static')
+    os.path.join(BASE_DIR, 'account', 'static'),
+    os.path.join(BASE_DIR, 'bookShelf', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

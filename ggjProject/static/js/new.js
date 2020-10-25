@@ -142,22 +142,30 @@ selectedBook.addEventListener("blur", deactiveBooks);
 
 // 도서 선택시
 function showSelectBook(event) {
+  // console.log(event.id)
   var value = JSON.parse(event.id)
-  console.log(value)
+  // var value2 = JSON.parse($(event).attr('value'))
+  console.log($(event).attr('value1'))
   $('#bookResult').css("max-height", "0px");
   deactiveBooks;
   $('.selectedBook .book_item').remove()
   $('.selectedBook').append('<div class="book_item" id="' + "value" + '">' +
-    '<img src="' + value.thumbnail + '" class="thumbnail" />' + '<div class="book_infos">' +
-    '<p class="book_info title noto-medium">' + value.title + '</p>' +
-    '<p class="book_info authors noto-light">' + value.authors + ' 지음</p>' +
+    '<img src="' + $(event).attr('value1') + '" class="thumbnail" />' + '<div class="book_infos">' +
+    '<p class="book_info title noto-medium">' + $(event).attr('value2') + '</p>' +
+    '<p class="book_info authors noto-light">' + $(event).attr('value4') + ' 지음</p>' +
     // '<p class="contents">' + value[j].contents + '</p>' +
-    '<p class="book_info publisher noto-light">' + value.publisher + '</p>' +
-    '<p class="book_info datetime noto-light">' + strToDate(value.datetime) + '</p>' +
+    '<p class="book_info publisher noto-light">' + $(event).attr('value5') + '</p>' +
+    '<p class="book_info datetime noto-light">' + strToDate($(event).attr('value6')) + '</p>' +
     '</div>' + '</div>')
-  console.log(JSON.stringify(value))
-  $('#bookInfo').val(JSON.stringify(value));
-
+  // console.log(JSON.stringify(value))
+  $('#thumbnail').val($(event).attr('value1'));
+  $('#booktitle').val($(event).attr('value2'));
+  $('#isbn').val($(event).attr('value3'));
+  $('#authors').val($(event).attr('value4'));
+  $('#publisher').val($(event).attr('value5'));
+  $('#datetime').val($(event).attr('value6'));
+  $('#contents').val($(event).attr('value7'));
+  console.log($('#contents').val)
 }
 
 // unsplash 사진 선택시
@@ -192,11 +200,23 @@ function formCheck() {
     return false;
   } else if (form.bookShelfID.value == "") {
     alert("책장을 선택해주세요");
-  } else if (form.bookInfo.value == "") {
+  } else if (form.booktitle.value == "") {
     alert("읽으신 책을 선택해주세요");
   } else if (form.postCover.files.length == 0 && form.postCover2.value == null) {
     alert("사진을 올려주세요");
   } else {
-    document.form.submit();
+    form.submit();
+  }
+}
+
+// 제목 글자수 체크하는 함수
+function textCounter() {
+  let inputTitle = document.querySelector(".new_input_title").value;
+  let strLen = inputTitle.length;
+  console.log(strLen);
+  document.querySelector(".title-counter").innerHTML = `${strLen} / 100`;
+
+  if (strLen >= 100) {
+    alert("제목은 최대 100자까지 입력가능합니다");
   }
 }
