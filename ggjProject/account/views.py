@@ -15,24 +15,28 @@ from django.http import JsonResponse
 # Create your views here.
 """회원가입을 위한 함수입니다. 로그인 함수는 추후 구현 예정입니다. """
 def signup(request):
-    if request.method == "POST":
-        if request.POST['password'] == request.POST['passwordCheck']:
-            try:
-                user = User.objects.get(username=request.POST['username'])
-                return render(request, "signup.html", {'error': '필명이 중복됩니다'})
-            except:
-                user = User.objects.create_user(
-                    email = request.POST['email'], username=request.POST['username'], password=request.POST['password']) 
-                name = request.POST['name']
-                phoneNumber = request.POST['phoneNumber']
-                profile = Profile(user=user, name=name, phoneNumber=phoneNumber)
-                profile.save()
-                auth.login(request, user)
-                return redirect('/')
+    if str(request.user) == "AnonymousUser":
+        if request.method == "POST":
+            if request.POST['password'] == request.POST['passwordCheck']:
+                try:
+                    user = User.objects.get(username=request.POST['username'])
+                    return render(request, "signup.html", {'error': '필명이 중복됩니다'})
+                except:
+                    user = User.objects.create_user(
+                        email = request.POST['email'], username=request.POST['username'], password=request.POST['password']) 
+                    # name = request.POST['name']
+                    phoneNumber = request.POST['phoneNumber']
+                    profile = Profile(user=user, phoneNumber=phoneNumber)
+                    profile.save()
+                    auth.login(request, user)
+                    return redirect('/')
+            else:
+                return render(request, "signup.html", {'error':'비밀번호가 일치하지 않습니다'})
         else:
-            return render(request, "signup.html", {'error':'비밀번호가 일치하지 않습니다'})
-    else:
-        return render(request, "signup.html")
+            return render(request, "signup.html")
+    else: 
+        posts = Post.objects.all()
+        return render(request, 'home.html', {'posts': posts})
 
 """로그인 함수입니다. 로그인 유지까지 구현했는데 아직 되는지 안되는지 모르겠어요.일단 오류는 안남"""
 def login(request):

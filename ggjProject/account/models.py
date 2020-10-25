@@ -11,7 +11,7 @@ from bookShelf.models import BookShelf
 """
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.TextField(max_length=10)
+    # name = models.TextField(max_length=10)
     phoneNumber = models.TextField(max_length=20)
     postID = models.ManyToManyField(Post, related_name= 'myPost')
     scrap = models.ManyToManyField(Post, related_name = 'myScarp', blank=True)
