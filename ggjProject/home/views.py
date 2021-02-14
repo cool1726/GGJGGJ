@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden, HttpResponseRedirect, HttpRespons
 from urllib.parse import urlparse
 from django.views.generic.base import View
 from .models import Post, Book
+from account.models import FollowRelation
 from account.models import Profile
 from django.utils import timezone
 from bookShelf.models import BookShelf
@@ -15,7 +16,27 @@ import sys
 # Create your views here.
 """post들이 나옵니다.back_home.html로 이동"""
 def home(request):
-    posts = Post.objects.all()
+    searchKeyword = request.GET.get('keyword','')
+    print(searchKeyword)
+    if(searchKeyword == '') :
+        posts = Post.objects.all()
+    else :
+        posts = Post.objects.filter(title__contains = searchKeyword)       
+    return render(request, 'home_sidebar.html', {'posts': posts})
+    # return render(request, 'back_home.html', {'posts': posts}) # back 수정용
+
+"""책갈피(스크랩)해둔 글들만 노출 """
+def scrap(request):
+    posts = Post.objects.filter(scrap = request.user)
+    return render(request, 'home_sidebar.html', {'posts': posts})
+
+"""팔로잉 해둔 사람들 글만 노출"""
+def follow(request):
+    followRelation = FollowRelation.objects.get(follower = request.user)
+    followees = []
+    for followee in followRelation.followee.all():
+        followees.append(followee.username)
+    posts = Post.objects.filter(username__in = followees)
     return render(request, 'home_sidebar.html', {'posts': posts})
 
 """back_new.html로 이동"""

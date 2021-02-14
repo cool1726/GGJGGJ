@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import home, new, delete, update, PostLike, postScrap, create
+from django.conf.urls import url
+from .views import home, new, delete, update, PostLike, postScrap, create, scrap, follow
 urlpatterns = [
-    path('', home, name="home"),
+    url(r'^$', home, name="home"),
+    path('scrap', scrap, name="scrap"),
+    path('follow', follow, name="follow"),
     path('back_new', new, name='new'),
     path('back_create', create, name = 'back_create'),
     path('back_delete/<int:post_id>', delete, name='back_delete'),

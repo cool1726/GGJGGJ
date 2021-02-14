@@ -9,9 +9,11 @@
     <nav class="navbar-links">
         <ul>
             <li><a class="vertically-center" href="{% url 'home' %}">둘러보기</a></li>
-            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">책갈피</a>
+            <!-- <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">책갈피</a> -->
+            <li><a class="vertically-center" href="{% url 'scrap' %}">책갈피</a>
             </li>
-            <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">팔로잉</a>
+            <!-- <li><a class="vertically-center" onclick="alert('해당 기능은 준비중입니다')" href="javascript:return false;">팔로잉</a> -->
+            <li><a class="vertically-center" href="{% url 'follow' %}">팔로잉</a>
             </li>
             {% if user.is_active %}
             <li><a class="vertically-center" href="{% url 'back_myPage' %}">나의 책장</a></li>
